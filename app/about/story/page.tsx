@@ -29,7 +29,7 @@ export default function StoryPage() {
           </div>
           <div>
             <Image
-              src="/placeholder.svg?height=400&width=500"
+              src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg"
               alt="Company Story"
               width={500}
               height={400}

@@ -36,11 +36,12 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=400&width=500&text=Digital%20Security"
+                src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg"
                 alt="Digital Security Technology"
                 width={500}
                 height={400}
                 className="rounded-lg shadow-2xl"
+                priority
               />
             </div>
           </div>
@@ -137,13 +138,6 @@ export default function HomePage() {
           </Button>
         </div>
       </section>
-
-      {/* Home Image Section */}
-      {/* <section className="py-20">
-        <div className="container mx-auto px-4 text-center">
-      
-        </div>
-      </section> */}
     </div>
   )
 }
