@@ -13,7 +13,7 @@ export default function MagazinePage() {
     author: "김보안",
     date: "2024-01-15",
     category: "기술 동향",
-    image: "/images/magazine/deepfake-tech-trends.jpg",
+    image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg",
   }
 
   const posts = [
@@ -23,7 +23,7 @@ export default function MagazinePage() {
       author: "이전문가",
       date: "2024-01-10",
       category: "보안 가이드",
-      image: "/images/magazine/bodycam-prevention.jpg",
+      image: "https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg",
     },
     {
       title: "AI 기반 사이버 보안의 미래",
@@ -31,7 +31,7 @@ export default function MagazinePage() {
       author: "박연구원",
       date: "2024-01-08",
       category: "기술 동향",
-      image: "/images/magazine/ai-cybersecurity.jpg",
+      image: "https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg",
     },
     {
       title: "기업을 위한 디지털 보안 체크리스트",
@@ -39,7 +39,7 @@ export default function MagazinePage() {
       author: "최컨설턴트",
       date: "2024-01-05",
       category: "기업 보안",
-      image: "/images/magazine/enterprise-security.jpg",
+      image: "https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg",
     },
     {
       title: "청소년 대상 사이버 범죄 예방 교육의 중요성",
@@ -47,7 +47,7 @@ export default function MagazinePage() {
       author: "정교육자",
       date: "2024-01-03",
       category: "교육",
-      image: "/images/magazine/youth-education.jpg",
+      image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
     },
     {
       title: "딥페이크 탐지 기술의 최신 발전 현황",
@@ -55,7 +55,7 @@ export default function MagazinePage() {
       author: "김연구원",
       date: "2024-01-01",
       category: "기술 동향",
-      image: "/images/magazine/deepfake-detection.jpg",
+      image: "https://images.pexels.com/photos/8386423/pexels-photo-8386423.jpeg",
     },
     {
       title: "개인정보 보호를 위한 실용적 가이드",
@@ -63,7 +63,7 @@ export default function MagazinePage() {
       author: "이보안전문가",
       date: "2023-12-28",
       category: "개인정보 보호",
-      image: "/images/magazine/privacy-protection.jpg",
+      image: "https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg",
     },
   ]
 
@@ -98,10 +98,11 @@ export default function MagazinePage() {
         <div className="grid lg:grid-cols-2 gap-0">
           <div className="relative h-64 lg:h-auto">
             <Image
-              src={featuredPost.image || "/placeholder.svg"}
+              src={featuredPost.image}
               alt={featuredPost.title}
               fill
               className="object-cover"
+              priority
             />
           </div>
           <div className="p-8 flex flex-col justify-center">
@@ -134,7 +135,7 @@ export default function MagazinePage() {
           {posts.map((post, index) => (
             <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative h-48">
-                <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" />
+                <Image src={post.image} alt={post.title} fill className="object-cover" />
               </div>
               <CardHeader>
                 <Badge className="w-fit mb-2">{post.category}</Badge>
