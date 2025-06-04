@@ -40,11 +40,12 @@ export default function FeaturedPostPage() {
         {/* Featured Image */}
         <div className="mb-8">
           <Image
-            src="/images/magazine/deepfake-tech-trends.jpg"
+            src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg"
             alt="딥페이크 기술 동향"
             width={800}
             height={400}
             className="w-full rounded-lg object-cover"
+            priority
           />
         </div>
 
