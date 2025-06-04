@@ -5,7 +5,7 @@ const posts: any[] = [
 ]
 
 export default async function MagazinePost(props: { params: { slug: string } }) {
-  const { params } = await props
+  const { params } = props
   const postIndex = parseInt(params.slug.replace("post-", "")) - 1
   const post = posts[postIndex]
 
