@@ -40,11 +40,12 @@ export default function Post2Page() {
         {/* Featured Image */}
         <div className="mb-8">
           <Image
-            src="/images/magazine/ai-cybersecurity.jpg"
+            src="https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg"
             alt="AI 사이버 보안"
             width={800}
             height={400}
             className="w-full rounded-lg object-cover"
+            priority
           />
         </div>
 
@@ -57,6 +58,16 @@ export default function Post2Page() {
 
           <h2 className="text-2xl font-bold mt-8 mb-4">AI 보안 기술의 현재</h2>
           <p className="mb-6">현재 AI 기반 사이버 보안 기술은 다음과 같은 영역에서 활발히 활용되고 있습니다:</p>
+
+          <div className="mb-8">
+            <Image
+              src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg"
+              alt="AI 기술"
+              width={600}
+              height={300}
+              className="w-full rounded-lg object-cover"
+            />
+          </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <Card>
@@ -92,6 +103,16 @@ export default function Post2Page() {
 
           <h2 className="text-2xl font-bold mt-8 mb-4">주요 AI 보안 기술</h2>
 
+          <div className="mb-8">
+            <Image
+              src="https://images.pexels.com/photos/8386423/pexels-photo-8386423.jpeg"
+              alt="머신러닝"
+              width={600}
+              height={300}
+              className="w-full rounded-lg object-cover"
+            />
+          </div>
+
           <h3 className="text-xl font-semibold mt-6 mb-3">1. 행동 분석 (Behavioral Analysis)</h3>
           <p className="mb-4">
             AI는 사용자와 시스템의 정상적인 행동 패턴을 학습하여, 비정상적인 활동을 실시간으로 탐지할 수 있습니다.
@@ -105,6 +126,17 @@ export default function Post2Page() {
 
           <h3 className="text-xl font-semibold mt-6 mb-3">2. 자연어 처리 (NLP)</h3>
           <p className="mb-4">NLP 기술을 활용하여 피싱 이메일, 악성 메시지, 소셜 엔지니어링 공격을 탐지합니다.</p>
+          
+          <div className="mb-8">
+            <Image
+              src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg"
+              alt="자연어 처리"
+              width={600}
+              height={300}
+              className="w-full rounded-lg object-cover"
+            />
+          </div>
+
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
             <h4 className="font-semibold text-blue-800 mb-2">NLP 활용 사례</h4>
             <ul className="text-blue-700 space-y-1">
@@ -123,6 +155,16 @@ export default function Post2Page() {
             <li>위조 문서 탐지</li>
             <li>생체 인증 보안 강화</li>
           </ul>
+
+          <div className="mb-8">
+            <Image
+              src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg"
+              alt="컴퓨터 비전"
+              width={600}
+              height={300}
+              className="w-full rounded-lg object-cover"
+            />
+          </div>
 
           <h2 className="text-2xl font-bold mt-8 mb-4">AI 보안의 장점</h2>
 
@@ -173,6 +215,16 @@ export default function Post2Page() {
             </Card>
           </div>
 
+          <div className="mb-8">
+            <Image
+              src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg"
+              alt="AI 보안 시스템"
+              width={600}
+              height={300}
+              className="w-full rounded-lg object-cover"
+            />
+          </div>
+
           <h2 className="text-2xl font-bold mt-8 mb-4">도전과제와 한계</h2>
           <p className="mb-6">AI 기반 보안 기술이 많은 장점을 제공하지만, 여전히 해결해야 할 과제들이 있습니다:</p>
 
@@ -196,6 +248,16 @@ export default function Post2Page() {
 
           <h2 className="text-2xl font-bold mt-8 mb-4">미래 전망</h2>
           <p className="mb-6">AI 기반 사이버 보안 기술은 다음과 같은 방향으로 발전할 것으로 예상됩니다:</p>
+
+          <div className="mb-8">
+            <Image
+              src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"
+              alt="미래 기술"
+              width={600}
+              height={300}
+              className="w-full rounded-lg object-cover"
+            />
+          </div>
 
           <div className="space-y-4 mb-8">
             <div className="flex items-start gap-3">

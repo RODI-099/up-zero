@@ -40,11 +40,12 @@ export default function Post1Page() {
         {/* Featured Image */}
         <div className="mb-8">
           <Image
-            src="/images/magazine/bodycam-prevention.jpg"
+            src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg"
             alt="몸캠피싱 예방"
             width={800}
             height={400}
             className="w-full rounded-lg object-cover"
+            priority
           />
         </div>
 
@@ -65,6 +66,16 @@ export default function Post1Page() {
             기억하고 실천하세요.
           </p>
 
+          <div className="mb-8">
+            <Image
+              src="https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg"
+              alt="온라인 보안"
+              width={600}
+              height={300}
+              className="w-full rounded-lg object-cover"
+            />
+          </div>
+
           <h2 className="text-2xl font-bold mt-8 mb-4">1. 낯선 사람과의 화상통화 거부</h2>
           <p className="mb-6">
             온라인에서 만난 낯선 사람이 화상통화를 제안한다면 단호히 거절하세요. 특히 다음과 같은 상황에서는 더욱
@@ -76,6 +87,16 @@ export default function Post1Page() {
             <li>화상통화를 강요하거나 압박하는 경우</li>
             <li>금전적 도움이나 선물을 제안하는 경우</li>
           </ul>
+
+          <div className="mb-8">
+            <Image
+              src="https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg"
+              alt="개인정보 보호"
+              width={600}
+              height={300}
+              className="w-full rounded-lg object-cover"
+            />
+          </div>
 
           <h2 className="text-2xl font-bold mt-8 mb-4">2. 개인정보 노출 최소화</h2>
           <p className="mb-6">온라인에서는 개인정보 노출을 최소화해야 합니다:</p>
@@ -96,6 +117,17 @@ export default function Post1Page() {
 
           <h2 className="text-2xl font-bold mt-8 mb-4">3. 의심스러운 링크 클릭 금지</h2>
           <p className="mb-6">가해자들은 종종 악성 링크를 통해 개인정보를 탈취하거나 기기를 해킹합니다:</p>
+          
+          <div className="mb-8">
+            <Image
+              src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg"
+              alt="사이버 보안"
+              width={600}
+              height={300}
+              className="w-full rounded-lg object-cover"
+            />
+          </div>
+
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
             <h3 className="font-semibold text-yellow-800 mb-2">주의해야 할 링크</h3>
             <ul className="text-yellow-700 space-y-1">
@@ -137,6 +169,16 @@ export default function Post1Page() {
                 </ul>
               </CardContent>
             </Card>
+          </div>
+
+          <div className="mb-8">
+            <Image
+              src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
+              alt="긴급 대응"
+              width={600}
+              height={300}
+              className="w-full rounded-lg object-cover"
+            />
           </div>
 
           <h2 className="text-2xl font-bold mt-8 mb-4">5. 피해 발생 시 즉시 대응</h2>
