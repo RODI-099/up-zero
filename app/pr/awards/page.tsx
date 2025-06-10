@@ -11,7 +11,7 @@ export default function AwardsPage() {
       date: "2024.02.15",
       category: "기술 혁신",
       description: "딥페이크 탐지 기술의 혁신성과 사회적 기여도를 인정받아 수상",
-      image: `/placeholder.svg?height=300&width=400&text=Award:${encodeURIComponent("2024 정보보호 기술혁신상")}`,
+      image: "https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg",
       badge: "최신",
     },
     {
@@ -20,7 +20,7 @@ export default function AwardsPage() {
       date: "2023.12.10",
       category: "연구 성과",
       description: "AI 기반 사이버 보안 기술 연구의 우수성을 인정받아 수상",
-      image: `/placeholder.svg?height=300&width=400&text=Award:${encodeURIComponent("2023 AI 우수연구상")}`,
+      image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg",
       badge: "연구",
     },
     {
@@ -29,7 +29,7 @@ export default function AwardsPage() {
       date: "2023.11.20",
       category: "정부 포상",
       description: "기술 혁신을 통한 사회적 가치 창출과 일자리 창출 공로 인정",
-      image: `/placeholder.svg?height=300&width=400&text=Award:${encodeURIComponent("2023 벤처기업 기술혁신상")}`,
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
       badge: "정부",
     },
     {
@@ -38,7 +38,7 @@ export default function AwardsPage() {
       date: "2023.10.15",
       category: "보안 기술",
       description: "국가 사이버보안 강화에 기여한 공로를 인정받아 수상",
-      image: `/placeholder.svg?height=300&width=400&text=Award:${encodeURIComponent("2023 사이버보안 우수기업상")}`,
+      image: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg",
       badge: "보안",
     },
     {
@@ -47,7 +47,7 @@ export default function AwardsPage() {
       date: "2022.12.05",
       category: "창업 성과",
       description: "혁신적인 기술과 빠른 성장을 통한 창업 생태계 기여 인정",
-      image: `/placeholder.svg?height=300&width=400&text=Award:${encodeURIComponent("2022 스타트업 대상")}`,
+      image: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg",
       badge: "창업",
     },
     {
@@ -56,7 +56,7 @@ export default function AwardsPage() {
       date: "2022.11.18",
       category: "디지털 혁신",
       description: "디지털 전환 시대의 보안 기술 혁신 공로 인정",
-      image: `/placeholder.svg?height=300&width=400&text=Award:${encodeURIComponent("2022 디지털 혁신상")}`,
+      image: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg",
       badge: "혁신",
     },
   ]
@@ -67,7 +67,7 @@ export default function AwardsPage() {
       type: "기술 파트너십",
       date: "2024.01",
       description: "Azure 클라우드 기반 보안 솔루션 공동 개발",
-      logo: `/placeholder.svg?height=80&width=120&text=${encodeURIComponent("Microsoft Korea")}`,
+      logo: "https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg",
       status: "진행중",
     },
     {
@@ -75,7 +75,7 @@ export default function AwardsPage() {
       type: "전략적 제휴",
       date: "2023.12",
       description: "기업용 통합 보안 솔루션 공동 마케팅",
-      logo: `/placeholder.svg?height=80&width=120&text=${encodeURIComponent("삼성SDS")}`,
+      logo: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg",
       status: "활성",
     },
     {
@@ -83,7 +83,7 @@ export default function AwardsPage() {
       type: "연구 협력",
       date: "2023.11",
       description: "AI 보안 기술 공동 연구개발",
-      logo: `/placeholder.svg?height=80&width=120&text=${encodeURIComponent("KAIST")}`,
+      logo: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
       status: "진행중",
     },
     {
@@ -91,7 +91,7 @@ export default function AwardsPage() {
       type: "기술 협력",
       date: "2023.10",
       description: "클라우드 보안 서비스 기술 협력",
-      logo: `/placeholder.svg?height=80&width=120&text=${encodeURIComponent("NHN")}`,
+      logo: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg",
       status: "활성",
     },
     {
@@ -99,7 +99,7 @@ export default function AwardsPage() {
       type: "해외 파트너십",
       date: "2023.09",
       description: "일본 시장 진출을 위한 전략적 파트너십",
-      logo: `/placeholder.svg?height=80&width=120&text=${encodeURIComponent("일본 CyberAgent")}`,
+      logo: "https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg",
       status: "활성",
     },
     {
@@ -107,7 +107,7 @@ export default function AwardsPage() {
       type: "정부 협력",
       date: "2023.08",
       description: "국가 사이버보안 정책 수립 협력",
-      logo: `/placeholder.svg?height=80&width=120&text=${encodeURIComponent("한국인터넷진흥원(KISA)")}`,
+      logo: "https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg",
       status: "진행중",
     },
   ]
@@ -118,28 +118,28 @@ export default function AwardsPage() {
       description: "정보보안 관리체계 국제 표준 인증",
       date: "2023.06",
       validity: "2026.06",
-      image: `/placeholder.svg?height=100&width=100&text=${encodeURIComponent("ISO 27001")}`,
+      image: "https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg",
     },
     {
       title: "GS 인증 1등급",
       description: "소프트웨어 품질 우수성 인증",
       date: "2023.05",
       validity: "2026.05",
-      image: `/placeholder.svg?height=100&width=100&text=${encodeURIComponent("GS 인증 1등급")}`,
+      image: "https://images.pexels.com/photos/8386423/pexels-photo-8386423.jpeg",
     },
     {
       title: "CC 인증",
       description: "Common Criteria 보안 평가 인증",
       date: "2023.04",
       validity: "2028.04",
-      image: `/placeholder.svg?height=100&width=100&text=${encodeURIComponent("CC 인증")}`,
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
     },
     {
       title: "K-ICT 보안 인증",
       description: "국가정보원 보안 적합성 검증",
       date: "2023.03",
       validity: "2026.03",
-      image: `/placeholder.svg?height=100&width=100&text=${encodeURIComponent("K-ICT 보안 인증")}`,
+      image: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg",
     },
   ]
 
@@ -173,7 +173,7 @@ export default function AwardsPage() {
                 {award.badge}
               </Badge>
               <div className="relative h-48">
-                <Image src={award.image || "/placeholder.svg"} alt={award.title} fill className="object-contain p-4" />
+                <Image src={award.image} alt={award.title} fill className="object-cover" />
               </div>
               <CardHeader>
                 <div className="flex items-center gap-2 mb-2">
@@ -202,13 +202,13 @@ export default function AwardsPage() {
           {partnerships.map((partnership, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="w-24 h-16 mx-auto mb-4 bg-gray-100 rounded-lg flex items-center justify-center">
+                <div className="w-24 h-16 mx-auto mb-4 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
                   <Image
-                    src={partnership.logo || "/placeholder.svg"}
+                    src={partnership.logo}
                     alt={partnership.title}
                     width={120}
                     height={80}
-                    className="object-contain"
+                    className="object-cover w-full h-full"
                   />
                 </div>
                 <CardTitle className="text-lg">{partnership.title}</CardTitle>
@@ -236,13 +236,13 @@ export default function AwardsPage() {
           {certifications.map((cert, index) => (
             <Card key={index} className="text-center">
               <CardHeader>
-                <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center overflow-hidden rounded-lg">
                   <Image
-                    src={cert.image || "/placeholder.svg"}
+                    src={cert.image}
                     alt={cert.title}
                     width={100}
                     height={100}
-                    className="object-contain"
+                    className="object-cover w-full h-full"
                   />
                 </div>
                 <CardTitle className="text-lg">{cert.title}</CardTitle>
