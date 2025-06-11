@@ -168,11 +168,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log('✅ Auth user created successfully:', authData.user.id)
       console.log('📧 User email confirmed:', authData.user.email_confirmed_at ? 'Yes' : 'No')
 
-      // Step 3: Wait for auth user to be fully created
-      console.log('⏳ Waiting for auth user to be fully created...')
-      await new Promise(resolve => setTimeout(resolve, 3000))
-
-      // Step 4: Create user profile in our users table
+      // Step 3: Create user profile in our users table
       console.log('3️⃣ Creating user profile...')
       const { data: profileData, error: profileError } = await supabase
         .from('users')

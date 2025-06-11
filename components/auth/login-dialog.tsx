@@ -30,9 +30,13 @@ export function LoginDialog({ children }: LoginDialogProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    console.log('Login form submitted for:', email)
+    // Trim whitespace from email and password
+    const trimmedEmail = email.trim()
+    const trimmedPassword = password.trim()
     
-    if (!email || !password) {
+    console.log('Login form submitted for:', trimmedEmail)
+    
+    if (!trimmedEmail || !trimmedPassword) {
       toast({
         title: "입력 오류",
         description: "이메일과 비밀번호를 모두 입력해주세요.",
@@ -41,7 +45,7 @@ export function LoginDialog({ children }: LoginDialogProps) {
       return
     }
 
-    const result = await login(email, password)
+    const result = await login(trimmedEmail, trimmedPassword)
     
     if (result.success) {
       toast({
