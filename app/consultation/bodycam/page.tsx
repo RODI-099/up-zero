@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -6,9 +9,111 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Shield, AlertTriangle, Phone, Clock, CheckCircle, Users } from "lucide-react"
+import { Shield, AlertTriangle, Phone, Clock, CheckCircle, Users, Loader2 } from "lucide-react"
+import { useAuth } from "@/components/auth/auth-context"
+import { createConsultation } from "@/lib/api/consultations"
+import { useToast } from "@/hooks/use-toast"
 
 export default function BodycamConsultationPage() {
+  const { user } = useAuth()
+  const { toast } = useToast()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    name: user?.name || '',
+    phone: '',
+    email: user?.email || '',
+    situation: '',
+    platform: '',
+    moneyDemand: '',
+    urgency: '',
+    details: '',
+    preferredContact: '',
+    contactTime: '',
+    privacy: false,
+    emergency: false,
+    followup: false,
+  })
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!user) {
+      toast({
+        title: "로그인 필요",
+        description: "상담 신청을 위해 로그인이 필요합니다.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    if (!formData.privacy) {
+      toast({
+        title: "개인정보 동의 필요",
+        description: "개인정보 수집 및 이용에 동의해주세요.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      await createConsultation({
+        type: 'bodycam',
+        urgency: formData.urgency as any,
+        details: formData.details,
+        contact_info: {
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          situation: formData.situation,
+          platform: formData.platform,
+          moneyDemand: formData.moneyDemand,
+          preferredContact: formData.preferredContact,
+          contactTime: formData.contactTime,
+          emergency: formData.emergency,
+          followup: formData.followup,
+        }
+      })
+
+      toast({
+        title: "상담 신청 완료",
+        description: "상담 신청이 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.",
+      })
+
+      // Reset form
+      setFormData({
+        name: user?.name || '',
+        phone: '',
+        email: user?.email || '',
+        situation: '',
+        platform: '',
+        moneyDemand: '',
+        urgency: '',
+        details: '',
+        preferredContact: '',
+        contactTime: '',
+        privacy: false,
+        emergency: false,
+        followup: false,
+      })
+
+    } catch (error) {
+      console.error('Error creating consultation:', error)
+      toast({
+        title: "신청 실패",
+        description: "상담 신청 중 오류가 발생했습니다. 다시 시도해주세요.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleInputChange = (field: string, value: any) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+  }
+
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-4xl mx-auto">
@@ -138,43 +243,44 @@ export default function BodycamConsultationPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name">이름 *</Label>
-                      <Input id="name" placeholder="실명 또는 가명" required />
+                      <Input 
+                        id="name" 
+                        placeholder="실명 또는 가명" 
+                        value={formData.name}
+                        onChange={(e) => handleInputChange('name', e.target.value)}
+                        required 
+                      />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="age">연령대</Label>
-                      <Select>
-                        <SelectTrigger>
-                          <SelectValue placeholder="연령대 선택" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="10s">10대</SelectItem>
-                          <SelectItem value="20s">20대</SelectItem>
-                          <SelectItem value="30s">30대</SelectItem>
-                          <SelectItem value="40s">40대</SelectItem>
-                          <SelectItem value="50s">50대 이상</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="phone">연락처 *</Label>
-                      <Input id="phone" placeholder="010-1234-5678" required />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">이메일</Label>
-                      <Input id="email" type="email" placeholder="example@email.com" />
+                      <Input 
+                        id="phone" 
+                        placeholder="010-1234-5678" 
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        required 
+                      />
                     </div>
                   </div>
 
                   <div className="space-y-2">
+                    <Label htmlFor="email">이메일</Label>
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="example@email.com" 
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
                     <Label htmlFor="situation">현재 상황 *</Label>
-                    <Select>
+                    <Select value={formData.situation} onValueChange={(value) => handleInputChange('situation', value)}>
                       <SelectTrigger>
                         <SelectValue placeholder="현재 상황을 선택해주세요" />
                       </SelectTrigger>
@@ -189,41 +295,8 @@ export default function BodycamConsultationPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="platform">피해 발생 플랫폼</Label>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="피해가 발생한 플랫폼을 선택해주세요" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="telegram">텔레그램</SelectItem>
-                        <SelectItem value="discord">디스코드</SelectItem>
-                        <SelectItem value="skype">스카이프</SelectItem>
-                        <SelectItem value="zoom">줌</SelectItem>
-                        <SelectItem value="kakao">카카오톡</SelectItem>
-                        <SelectItem value="other">기타</SelectItem>
-                        <SelectItem value="unknown">모름/기억안남</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="money-demand">금전 요구 여부</Label>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="금전 요구 상황을 선택해주세요" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="demanding">현재 돈을 요구받고 있음</SelectItem>
-                        <SelectItem value="paid">이미 돈을 보냄</SelectItem>
-                        <SelectItem value="refused">요구를 거절함</SelectItem>
-                        <SelectItem value="no-demand">아직 금전 요구 없음</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
                     <Label htmlFor="urgency">긴급도 *</Label>
-                    <Select>
+                    <Select value={formData.urgency} onValueChange={(value) => handleInputChange('urgency', value)}>
                       <SelectTrigger>
                         <SelectValue placeholder="긴급도를 선택해주세요" />
                       </SelectTrigger>
@@ -231,7 +304,7 @@ export default function BodycamConsultationPage() {
                         <SelectItem value="emergency">매우 긴급 (현재 협박받는 중)</SelectItem>
                         <SelectItem value="urgent">긴급 (24시간 이내 연락 필요)</SelectItem>
                         <SelectItem value="normal">보통 (3일 이내)</SelectItem>
-                        <SelectItem value="consultation">상담 목적 (1주일 이내)</SelectItem>
+                        <SelectItem value="low">상담 목적 (1주일 이내)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -242,12 +315,14 @@ export default function BodycamConsultationPage() {
                       id="details"
                       placeholder="피해 상황을 자세히 설명해주세요. 언제부터 시작되었는지, 어떤 방식으로 접근했는지, 현재 어떤 협박을 받고 있는지 등을 포함해주세요. 개인정보는 최소한으로만 입력해주세요."
                       rows={6}
+                      value={formData.details}
+                      onChange={(e) => handleInputChange('details', e.target.value)}
                     />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="preferred-contact">선호 연락 방법 *</Label>
-                    <Select>
+                    <Select value={formData.preferredContact} onValueChange={(value) => handleInputChange('preferredContact', value)}>
                       <SelectTrigger>
                         <SelectValue placeholder="선호하는 연락 방법을 선택해주세요" />
                       </SelectTrigger>
@@ -260,36 +335,33 @@ export default function BodycamConsultationPage() {
                     </Select>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="contact-time">연락 가능 시간</Label>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="연락 가능한 시간대를 선택해주세요" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="anytime">언제든지 (긴급상황)</SelectItem>
-                        <SelectItem value="business">업무시간 (09:00-18:00)</SelectItem>
-                        <SelectItem value="evening">저녁시간 (18:00-22:00)</SelectItem>
-                        <SelectItem value="weekend">주말</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
                   <div className="space-y-4">
                     <div className="flex items-center space-x-2">
-                      <Checkbox id="privacy" />
+                      <Checkbox 
+                        id="privacy" 
+                        checked={formData.privacy}
+                        onCheckedChange={(checked) => handleInputChange('privacy', checked)}
+                      />
                       <Label htmlFor="privacy" className="text-sm">
                         개인정보 수집 및 이용에 동의합니다. * (상담 목적으로만 사용)
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Checkbox id="emergency" />
+                      <Checkbox 
+                        id="emergency" 
+                        checked={formData.emergency}
+                        onCheckedChange={(checked) => handleInputChange('emergency', checked)}
+                      />
                       <Label htmlFor="emergency" className="text-sm">
                         긴급상황 시 24시간 연락 받는 것에 동의합니다.
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Checkbox id="followup" />
+                      <Checkbox 
+                        id="followup" 
+                        checked={formData.followup}
+                        onCheckedChange={(checked) => handleInputChange('followup', checked)}
+                      />
                       <Label htmlFor="followup" className="text-sm">
                         사후 관리 및 추가 상담 연락에 동의합니다.
                       </Label>
@@ -297,11 +369,20 @@ export default function BodycamConsultationPage() {
                   </div>
 
                   <div className="flex gap-4">
-                    <Button type="submit" className="flex-1 bg-red-600 hover:bg-red-700" size="lg">
-                      긴급 상담 신청
-                    </Button>
-                    <Button type="button" variant="outline" className="flex-1" size="lg">
-                      일반 상담 신청
+                    <Button 
+                      type="submit" 
+                      className="flex-1 bg-red-600 hover:bg-red-700" 
+                      size="lg"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          신청 중...
+                        </>
+                      ) : (
+                        "상담 신청하기"
+                      )}
                     </Button>
                   </div>
                 </form>
