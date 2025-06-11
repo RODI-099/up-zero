@@ -35,6 +35,8 @@ export function SignupDialog({ children }: SignupDialogProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    console.log('Signup form submitted with:', { name, email, password: '***' })
+    
     if (!name || !email || !password || !confirmPassword) {
       toast({
         title: "입력 오류",
@@ -71,9 +73,9 @@ export function SignupDialog({ children }: SignupDialogProps) {
       return
     }
 
-    const success = await signup(email, password, name)
+    const result = await signup(email, password, name)
     
-    if (success) {
+    if (result.success) {
       toast({
         title: "회원가입 성공",
         description: "upoZero에 오신 것을 환영합니다!",
@@ -86,9 +88,10 @@ export function SignupDialog({ children }: SignupDialogProps) {
       setAgreeTerms(false)
       setAgreePrivacy(false)
     } else {
+      console.error('Signup failed:', result.error)
       toast({
         title: "회원가입 실패",
-        description: "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.",
+        description: result.error || "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.",
         variant: "destructive",
       })
     }

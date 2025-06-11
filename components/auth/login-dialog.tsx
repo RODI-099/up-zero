@@ -30,6 +30,8 @@ export function LoginDialog({ children }: LoginDialogProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    console.log('Login form submitted for:', email)
+    
     if (!email || !password) {
       toast({
         title: "입력 오류",
@@ -39,9 +41,9 @@ export function LoginDialog({ children }: LoginDialogProps) {
       return
     }
 
-    const success = await login(email, password)
+    const result = await login(email, password)
     
-    if (success) {
+    if (result.success) {
       toast({
         title: "로그인 성공",
         description: "환영합니다!",
@@ -50,9 +52,10 @@ export function LoginDialog({ children }: LoginDialogProps) {
       setEmail("")
       setPassword("")
     } else {
+      console.error('Login failed:', result.error)
       toast({
         title: "로그인 실패",
-        description: "이메일 또는 비밀번호가 올바르지 않습니다.",
+        description: result.error || "이메일 또는 비밀번호가 올바르지 않습니다.",
         variant: "destructive",
       })
     }
