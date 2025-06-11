@@ -1,11 +1,41 @@
-# Your Complete Supabase Migration File
+/*
+  # Initial Schema Setup for upoZero
 
-## File Location
-`supabase/migrations/20250611022409_orange_breeze.sql`
+  1. New Tables
+    - `users`
+      - `id` (uuid, primary key)
+      - `email` (text, unique)
+      - `name` (text)
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+    
+    - `consultations`
+      - `id` (uuid, primary key)
+      - `user_id` (uuid, foreign key)
+      - `type` (enum: bodycam, deepfake, general)
+      - `status` (enum: pending, in_progress, completed, cancelled)
+      - `urgency` (enum: emergency, urgent, normal, low)
+      - `details` (text)
+      - `contact_info` (jsonb)
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+    
+    - `case_studies`
+      - `id` (uuid, primary key)
+      - `title` (text)
+      - `excerpt` (text)
+      - `content` (text)
+      - `category` (text)
+      - `author` (text)
+      - `image_url` (text)
+      - `published_at` (timestamp)
+      - `created_at` (timestamp)
 
-## Complete Migration Content
+  2. Security
+    - Enable RLS on all tables
+    - Add policies for authenticated users
+*/
 
-```sql
 -- Create custom types
 CREATE TYPE consultation_type AS ENUM ('bodycam', 'deepfake', 'general');
 CREATE TYPE consultation_status AS ENUM ('pending', 'in_progress', 'completed', 'cancelled');
@@ -150,65 +180,3 @@ INSERT INTO case_studies (title, excerpt, content, category, author, image_url) 
   '보안전문가',
   'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg'
 );
-```
-
-## How to Run This Migration
-
-### Step 1: Go to Supabase Dashboard
-1. Visit: https://zuplyqfhioctteilbsfy.supabase.co
-2. Log in to your Supabase account
-
-### Step 2: Open SQL Editor
-1. Click on "SQL Editor" in the left sidebar
-2. Click "New Query" to create a new SQL query
-
-### Step 3: Copy and Paste
-1. Copy the ENTIRE migration content above (everything between the ```sql tags)
-2. Paste it into the SQL Editor
-
-### Step 4: Execute Migration
-1. Click the "Run" button (or press Ctrl+Enter)
-2. Wait for the migration to complete
-
-### Step 5: Verify Success
-After running the migration, you should see:
-- ✅ 3 new tables created: `users`, `consultations`, `case_studies`
-- ✅ Row Level Security enabled
-- ✅ 4 sample case studies inserted
-- ✅ All policies and triggers created
-
-## What This Migration Creates
-
-### Tables:
-1. **users** - User accounts and profiles
-2. **consultations** - Consultation requests from users
-3. **case_studies** - Educational case studies (with 4 sample entries)
-
-### Security:
-- Row Level Security (RLS) enabled on all tables
-- Policies to protect user data
-- Authentication-based access control
-- **FIXED**: Added INSERT policy for users table to allow profile creation
-
-### Sample Data:
-- 4 real case studies about digital security threats
-- Ready-to-use content for your magazine section
-
-## After Migration Success
-Once the migration runs successfully, your website will be fully functional with:
-- ✅ User registration and login
-- ✅ Consultation form submissions
-- ✅ Case studies in the magazine section
-- ✅ Complete database integration
-
-## Important Fix Applied
-The migration now includes the missing INSERT policy for the users table:
-```sql
-CREATE POLICY "Users can create own data"
-  ON users
-  FOR INSERT
-  TO authenticated
-  WITH CHECK (auth.uid() = id);
-```
-
-This policy allows authenticated users to create their own profile data, which is essential for the signup process to work correctly.
