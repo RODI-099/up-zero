@@ -35,18 +35,19 @@ export function SignupDialog({ children }: SignupDialogProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    console.log('🚀 Signup form submitted with:', { 
-      name, 
-      email, 
-      password: password ? '***' : 'empty',
-      confirmPassword: confirmPassword ? '***' : 'empty',
+    console.log('🚀 SIGNUP DEBUG: Form submitted')
+    console.log('📝 Form data:', { 
+      name: name?.trim() || 'EMPTY', 
+      email: email?.trim() || 'EMPTY', 
+      passwordLength: password?.length || 0,
+      confirmPasswordLength: confirmPassword?.length || 0,
       agreeTerms,
       agreePrivacy
     })
     
-    // Validation checks
+    // Enhanced validation with detailed logging
     if (!name?.trim()) {
-      console.error('❌ Name is empty')
+      console.error('❌ VALIDATION FAILED: Name is empty')
       toast({
         title: "입력 오류",
         description: "이름을 입력해주세요.",
@@ -56,7 +57,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
     }
 
     if (!email?.trim()) {
-      console.error('❌ Email is empty')
+      console.error('❌ VALIDATION FAILED: Email is empty')
       toast({
         title: "입력 오류",
         description: "이메일을 입력해주세요.",
@@ -65,8 +66,20 @@ export function SignupDialog({ children }: SignupDialogProps) {
       return
     }
 
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email.trim())) {
+      console.error('❌ VALIDATION FAILED: Invalid email format')
+      toast({
+        title: "이메일 형식 오류",
+        description: "올바른 이메일 주소를 입력해주세요.",
+        variant: "destructive",
+      })
+      return
+    }
+
     if (!password) {
-      console.error('❌ Password is empty')
+      console.error('❌ VALIDATION FAILED: Password is empty')
       toast({
         title: "입력 오류",
         description: "비밀번호를 입력해주세요.",
@@ -76,7 +89,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
     }
 
     if (!confirmPassword) {
-      console.error('❌ Confirm password is empty')
+      console.error('❌ VALIDATION FAILED: Confirm password is empty')
       toast({
         title: "입력 오류",
         description: "비밀번호 확인을 입력해주세요.",
@@ -86,7 +99,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
     }
 
     if (password !== confirmPassword) {
-      console.error('❌ Passwords do not match')
+      console.error('❌ VALIDATION FAILED: Passwords do not match')
       toast({
         title: "비밀번호 불일치",
         description: "비밀번호가 일치하지 않습니다.",
@@ -96,7 +109,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
     }
 
     if (password.length < 6) {
-      console.error('❌ Password too short')
+      console.error('❌ VALIDATION FAILED: Password too short')
       toast({
         title: "비밀번호 오류",
         description: "비밀번호는 최소 6자 이상이어야 합니다.",
@@ -106,7 +119,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
     }
 
     if (!agreeTerms) {
-      console.error('❌ Terms not agreed')
+      console.error('❌ VALIDATION FAILED: Terms not agreed')
       toast({
         title: "약관 동의 필요",
         description: "이용약관에 동의해주세요.",
@@ -116,7 +129,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
     }
 
     if (!agreePrivacy) {
-      console.error('❌ Privacy not agreed')
+      console.error('❌ VALIDATION FAILED: Privacy not agreed')
       toast({
         title: "약관 동의 필요",
         description: "개인정보처리방침에 동의해주세요.",
@@ -125,15 +138,16 @@ export function SignupDialog({ children }: SignupDialogProps) {
       return
     }
 
-    console.log('✅ All validations passed, calling signup...')
+    console.log('✅ ALL VALIDATIONS PASSED - Starting signup process')
 
     try {
+      console.log('🔄 Calling signup function...')
       const result = await signup(email.trim(), password, name.trim())
       
-      console.log('📝 Signup result:', result)
+      console.log('📋 SIGNUP RESULT:', result)
       
       if (result.success) {
-        console.log('✅ Signup successful!')
+        console.log('🎉 SIGNUP SUCCESSFUL!')
         toast({
           title: "회원가입 성공",
           description: "upoZero에 오신 것을 환영합니다!",
@@ -147,18 +161,30 @@ export function SignupDialog({ children }: SignupDialogProps) {
         setAgreeTerms(false)
         setAgreePrivacy(false)
       } else {
-        console.error('❌ Signup failed:', result.error)
+        console.error('💥 SIGNUP FAILED:', result.error)
+        
+        // Enhanced error handling with specific messages
+        let errorMessage = result.error || "회원가입 중 오류가 발생했습니다."
+        
+        if (result.error?.includes('already registered')) {
+          errorMessage = "이미 가입된 이메일입니다. 로그인을 시도해보세요."
+        } else if (result.error?.includes('invalid email')) {
+          errorMessage = "유효하지 않은 이메일 주소입니다."
+        } else if (result.error?.includes('weak password')) {
+          errorMessage = "비밀번호가 너무 약합니다. 더 강한 비밀번호를 사용해주세요."
+        }
+        
         toast({
           title: "회원가입 실패",
-          description: result.error || "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.",
+          description: errorMessage,
           variant: "destructive",
         })
       }
     } catch (error) {
-      console.error('💥 Signup exception:', error)
+      console.error('💥 SIGNUP EXCEPTION:', error)
       toast({
         title: "회원가입 오류",
-        description: "예상치 못한 오류가 발생했습니다. 다시 시도해주세요.",
+        description: "예상치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
         variant: "destructive",
       })
     }
@@ -187,7 +213,10 @@ export function SignupDialog({ children }: SignupDialogProps) {
               type="text"
               placeholder="이름을 입력하세요"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                console.log('📝 Name changed:', e.target.value)
+                setName(e.target.value)
+              }}
               required
             />
           </div>
@@ -198,7 +227,10 @@ export function SignupDialog({ children }: SignupDialogProps) {
               type="email"
               placeholder="example@email.com"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                console.log('📧 Email changed:', e.target.value)
+                setEmail(e.target.value)
+              }}
               required
             />
           </div>
@@ -209,7 +241,10 @@ export function SignupDialog({ children }: SignupDialogProps) {
               type="password"
               placeholder="최소 6자 이상"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                console.log('🔒 Password changed, length:', e.target.value.length)
+                setPassword(e.target.value)
+              }}
               required
             />
           </div>
@@ -220,7 +255,10 @@ export function SignupDialog({ children }: SignupDialogProps) {
               type="password"
               placeholder="비밀번호를 다시 입력하세요"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={(e) => {
+                console.log('🔒 Confirm password changed, length:', e.target.value.length)
+                setConfirmPassword(e.target.value)
+              }}
               required
             />
           </div>
@@ -229,7 +267,10 @@ export function SignupDialog({ children }: SignupDialogProps) {
               <Checkbox 
                 id="terms" 
                 checked={agreeTerms}
-                onCheckedChange={(checked) => setAgreeTerms(checked as boolean)}
+                onCheckedChange={(checked) => {
+                  console.log('📋 Terms agreement changed:', checked)
+                  setAgreeTerms(checked as boolean)
+                }}
               />
               <Label htmlFor="terms" className="text-sm">
                 이용약관에 동의합니다 *
@@ -239,7 +280,10 @@ export function SignupDialog({ children }: SignupDialogProps) {
               <Checkbox 
                 id="privacy" 
                 checked={agreePrivacy}
-                onCheckedChange={(checked) => setAgreePrivacy(checked as boolean)}
+                onCheckedChange={(checked) => {
+                  console.log('🔒 Privacy agreement changed:', checked)
+                  setAgreePrivacy(checked as boolean)
+                }}
               />
               <Label htmlFor="privacy" className="text-sm">
                 개인정보처리방침에 동의합니다 *

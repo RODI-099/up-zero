@@ -121,13 +121,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsLoading(true)
     
     try {
-      console.log('🚀 Starting signup process...')
+      console.log('🚀 SIGNUP PROCESS STARTED')
       console.log('📧 Email:', email)
       console.log('👤 Name:', name)
       console.log('🔒 Password length:', password.length)
       
-      // Step 1: Sign up with Supabase Auth
-      console.log('1️⃣ Creating auth user...')
+      // Step 1: Check if user already exists
+      console.log('1️⃣ Checking if user already exists...')
+      const { data: existingUser } = await supabase
+        .from('users')
+        .select('email')
+        .eq('email', email)
+        .single()
+
+      if (existingUser) {
+        console.error('❌ User already exists with this email')
+        setIsLoading(false)
+        return { success: false, error: 'User with this email already exists' }
+      }
+
+      // Step 2: Sign up with Supabase Auth
+      console.log('2️⃣ Creating auth user...')
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
@@ -154,12 +168,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log('✅ Auth user created successfully:', authData.user.id)
       console.log('📧 User email confirmed:', authData.user.email_confirmed_at ? 'Yes' : 'No')
 
-      // Step 2: Wait a moment for the auth user to be fully created
+      // Step 3: Wait for auth user to be fully created
       console.log('⏳ Waiting for auth user to be fully created...')
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      await new Promise(resolve => setTimeout(resolve, 3000))
 
-      // Step 3: Create user profile in our users table
-      console.log('2️⃣ Creating user profile...')
+      // Step 4: Create user profile in our users table
+      console.log('3️⃣ Creating user profile...')
       const { data: profileData, error: profileError } = await supabase
         .from('users')
         .insert([
@@ -185,8 +199,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         if (fetchError) {
           console.error('❌ Failed to fetch existing profile:', fetchError)
+          
+          // Try to clean up the auth user if profile creation failed
+          console.log('🧹 Attempting to clean up auth user...')
+          await supabase.auth.signOut()
+          
           setIsLoading(false)
-          return { success: false, error: 'Failed to create user profile' }
+          return { success: false, error: 'Failed to create user profile. Please try again.' }
         }
 
         if (existingProfile) {
@@ -208,13 +227,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         })
       }
 
+      console.log('🎉 SIGNUP PROCESS COMPLETED SUCCESSFULLY')
       setIsLoading(false)
       return { success: true }
       
     } catch (error) {
       console.error('💥 Signup exception:', error)
       setIsLoading(false)
-      return { success: false, error: 'An unexpected error occurred during signup' }
+      return { success: false, error: 'An unexpected error occurred during signup. Please try again.' }
     }
   }
 
