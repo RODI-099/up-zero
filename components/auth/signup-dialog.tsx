@@ -35,18 +35,58 @@ export function SignupDialog({ children }: SignupDialogProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    console.log('Signup form submitted with:', { name, email, password: '***' })
+    console.log('🚀 Signup form submitted with:', { 
+      name, 
+      email, 
+      password: password ? '***' : 'empty',
+      confirmPassword: confirmPassword ? '***' : 'empty',
+      agreeTerms,
+      agreePrivacy
+    })
     
-    if (!name || !email || !password || !confirmPassword) {
+    // Validation checks
+    if (!name?.trim()) {
+      console.error('❌ Name is empty')
       toast({
         title: "입력 오류",
-        description: "모든 필드를 입력해주세요.",
+        description: "이름을 입력해주세요.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    if (!email?.trim()) {
+      console.error('❌ Email is empty')
+      toast({
+        title: "입력 오류",
+        description: "이메일을 입력해주세요.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    if (!password) {
+      console.error('❌ Password is empty')
+      toast({
+        title: "입력 오류",
+        description: "비밀번호를 입력해주세요.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    if (!confirmPassword) {
+      console.error('❌ Confirm password is empty')
+      toast({
+        title: "입력 오류",
+        description: "비밀번호 확인을 입력해주세요.",
         variant: "destructive",
       })
       return
     }
 
     if (password !== confirmPassword) {
+      console.error('❌ Passwords do not match')
       toast({
         title: "비밀번호 불일치",
         description: "비밀번호가 일치하지 않습니다.",
@@ -56,6 +96,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
     }
 
     if (password.length < 6) {
+      console.error('❌ Password too short')
       toast({
         title: "비밀번호 오류",
         description: "비밀번호는 최소 6자 이상이어야 합니다.",
@@ -64,34 +105,60 @@ export function SignupDialog({ children }: SignupDialogProps) {
       return
     }
 
-    if (!agreeTerms || !agreePrivacy) {
+    if (!agreeTerms) {
+      console.error('❌ Terms not agreed')
       toast({
         title: "약관 동의 필요",
-        description: "이용약관과 개인정보처리방침에 동의해주세요.",
+        description: "이용약관에 동의해주세요.",
         variant: "destructive",
       })
       return
     }
 
-    const result = await signup(email, password, name)
-    
-    if (result.success) {
+    if (!agreePrivacy) {
+      console.error('❌ Privacy not agreed')
       toast({
-        title: "회원가입 성공",
-        description: "upoZero에 오신 것을 환영합니다!",
+        title: "약관 동의 필요",
+        description: "개인정보처리방침에 동의해주세요.",
+        variant: "destructive",
       })
-      setOpen(false)
-      setName("")
-      setEmail("")
-      setPassword("")
-      setConfirmPassword("")
-      setAgreeTerms(false)
-      setAgreePrivacy(false)
-    } else {
-      console.error('Signup failed:', result.error)
+      return
+    }
+
+    console.log('✅ All validations passed, calling signup...')
+
+    try {
+      const result = await signup(email.trim(), password, name.trim())
+      
+      console.log('📝 Signup result:', result)
+      
+      if (result.success) {
+        console.log('✅ Signup successful!')
+        toast({
+          title: "회원가입 성공",
+          description: "upoZero에 오신 것을 환영합니다!",
+        })
+        setOpen(false)
+        // Reset form
+        setName("")
+        setEmail("")
+        setPassword("")
+        setConfirmPassword("")
+        setAgreeTerms(false)
+        setAgreePrivacy(false)
+      } else {
+        console.error('❌ Signup failed:', result.error)
+        toast({
+          title: "회원가입 실패",
+          description: result.error || "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.",
+          variant: "destructive",
+        })
+      }
+    } catch (error) {
+      console.error('💥 Signup exception:', error)
       toast({
-        title: "회원가입 실패",
-        description: result.error || "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.",
+        title: "회원가입 오류",
+        description: "예상치 못한 오류가 발생했습니다. 다시 시도해주세요.",
         variant: "destructive",
       })
     }
@@ -114,7 +181,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">이름</Label>
+            <Label htmlFor="name">이름 *</Label>
             <Input
               id="name"
               type="text"
@@ -125,7 +192,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="signup-email">이메일</Label>
+            <Label htmlFor="signup-email">이메일 *</Label>
             <Input
               id="signup-email"
               type="email"
@@ -136,7 +203,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="signup-password">비밀번호</Label>
+            <Label htmlFor="signup-password">비밀번호 *</Label>
             <Input
               id="signup-password"
               type="password"
@@ -147,7 +214,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="confirm-password">비밀번호 확인</Label>
+            <Label htmlFor="confirm-password">비밀번호 확인 *</Label>
             <Input
               id="confirm-password"
               type="password"
