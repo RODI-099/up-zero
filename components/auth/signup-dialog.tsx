@@ -35,18 +35,24 @@ export function SignupDialog({ children }: SignupDialogProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    // Trim whitespace from all inputs
+    const trimmedName = name.trim()
+    const trimmedEmail = email.trim()
+    const trimmedPassword = password.trim()
+    const trimmedConfirmPassword = confirmPassword.trim()
+    
     console.log('🚀 SIGNUP DEBUG: Form submitted')
     console.log('📝 Form data:', { 
-      name: name?.trim() || 'EMPTY', 
-      email: email?.trim() || 'EMPTY', 
-      passwordLength: password?.length || 0,
-      confirmPasswordLength: confirmPassword?.length || 0,
+      name: trimmedName || 'EMPTY', 
+      email: trimmedEmail || 'EMPTY', 
+      passwordLength: trimmedPassword?.length || 0,
+      confirmPasswordLength: trimmedConfirmPassword?.length || 0,
       agreeTerms,
       agreePrivacy
     })
     
     // Enhanced validation with detailed logging
-    if (!name?.trim()) {
+    if (!trimmedName) {
       console.error('❌ VALIDATION FAILED: Name is empty')
       toast({
         title: "입력 오류",
@@ -56,7 +62,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
       return
     }
 
-    if (!email?.trim()) {
+    if (!trimmedEmail) {
       console.error('❌ VALIDATION FAILED: Email is empty')
       toast({
         title: "입력 오류",
@@ -68,7 +74,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
 
     // Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email.trim())) {
+    if (!emailRegex.test(trimmedEmail)) {
       console.error('❌ VALIDATION FAILED: Invalid email format')
       toast({
         title: "이메일 형식 오류",
@@ -78,7 +84,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
       return
     }
 
-    if (!password) {
+    if (!trimmedPassword) {
       console.error('❌ VALIDATION FAILED: Password is empty')
       toast({
         title: "입력 오류",
@@ -88,7 +94,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
       return
     }
 
-    if (!confirmPassword) {
+    if (!trimmedConfirmPassword) {
       console.error('❌ VALIDATION FAILED: Confirm password is empty')
       toast({
         title: "입력 오류",
@@ -98,7 +104,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
       return
     }
 
-    if (password !== confirmPassword) {
+    if (trimmedPassword !== trimmedConfirmPassword) {
       console.error('❌ VALIDATION FAILED: Passwords do not match')
       toast({
         title: "비밀번호 불일치",
@@ -108,7 +114,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
       return
     }
 
-    if (password.length < 6) {
+    if (trimmedPassword.length < 6) {
       console.error('❌ VALIDATION FAILED: Password too short')
       toast({
         title: "비밀번호 오류",
@@ -142,7 +148,7 @@ export function SignupDialog({ children }: SignupDialogProps) {
 
     try {
       console.log('🔄 Calling signup function...')
-      const result = await signup(email.trim(), password, name.trim())
+      const result = await signup(trimmedEmail, trimmedPassword, trimmedName)
       
       console.log('📋 SIGNUP RESULT:', result)
       
@@ -163,20 +169,9 @@ export function SignupDialog({ children }: SignupDialogProps) {
       } else {
         console.error('💥 SIGNUP FAILED:', result.error)
         
-        // Enhanced error handling with specific messages
-        let errorMessage = result.error || "회원가입 중 오류가 발생했습니다."
-        
-        if (result.error?.includes('already registered')) {
-          errorMessage = "이미 가입된 이메일입니다. 로그인을 시도해보세요."
-        } else if (result.error?.includes('invalid email')) {
-          errorMessage = "유효하지 않은 이메일 주소입니다."
-        } else if (result.error?.includes('weak password')) {
-          errorMessage = "비밀번호가 너무 약합니다. 더 강한 비밀번호를 사용해주세요."
-        }
-        
         toast({
           title: "회원가입 실패",
-          description: errorMessage,
+          description: result.error || "회원가입 중 오류가 발생했습니다.",
           variant: "destructive",
         })
       }

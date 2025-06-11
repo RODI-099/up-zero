@@ -27,6 +27,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     console.log('🔄 AuthProvider: Initializing...')
     
+    // Check if we have valid Supabase credentials
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    
+    const isValidConfig = supabaseUrl && 
+                         supabaseKey && 
+                         supabaseUrl !== 'https://placeholder.supabase.co' && 
+                         supabaseUrl !== 'your_supabase_project_url_here' &&
+                         supabaseKey !== 'placeholder-key' &&
+                         supabaseKey !== 'your_supabase_anon_key_here'
+    
+    if (!isValidConfig) {
+      console.warn('⚠️ Supabase not configured. Authentication features will be limited.')
+      setIsLoading(false)
+      return
+    }
+    
     // Get initial session
     supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error) {
@@ -86,18 +103,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
+    // Check if Supabase is configured
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const isValidConfig = supabaseUrl && 
+                         supabaseUrl !== 'https://placeholder.supabase.co' && 
+                         supabaseUrl !== 'your_supabase_project_url_here'
+    
+    if (!isValidConfig) {
+      return { success: false, error: 'Database not configured. Please set up Supabase credentials.' }
+    }
+
+    // Trim whitespace from inputs
+    const trimmedEmail = email.trim()
+    const trimmedPassword = password.trim()
+
     setIsLoading(true)
     try {
-      console.log('🔐 Attempting login for:', email)
+      console.log('🔐 Attempting login for:', trimmedEmail)
       
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+        email: trimmedEmail,
+        password: trimmedPassword,
       })
 
       if (error) {
         console.error('❌ Login error:', error)
         setIsLoading(false)
+        
+        // Provide more specific error messages
+        if (error.message.includes('Invalid login credentials')) {
+          return { success: false, error: '이메일 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요.' }
+        } else if (error.message.includes('Email not confirmed')) {
+          return { success: false, error: '이메일 인증이 필요합니다. 이메일을 확인해주세요.' }
+        } else if (error.message.includes('Too many requests')) {
+          return { success: false, error: '너무 많은 로그인 시도가 있었습니다. 잠시 후 다시 시도해주세요.' }
+        }
+        
         return { success: false, error: error.message }
       }
 
@@ -118,37 +159,38 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const signup = async (email: string, password: string, name: string): Promise<{ success: boolean; error?: string }> => {
+    // Check if Supabase is configured
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const isValidConfig = supabaseUrl && 
+                         supabaseUrl !== 'https://placeholder.supabase.co' && 
+                         supabaseUrl !== 'your_supabase_project_url_here'
+    
+    if (!isValidConfig) {
+      return { success: false, error: 'Database not configured. Please set up Supabase credentials.' }
+    }
+
+    // Trim whitespace from inputs
+    const trimmedEmail = email.trim()
+    const trimmedPassword = password.trim()
+    const trimmedName = name.trim()
+
     setIsLoading(true)
     
     try {
       console.log('🚀 SIGNUP PROCESS STARTED')
-      console.log('📧 Email:', email)
-      console.log('👤 Name:', name)
-      console.log('🔒 Password length:', password.length)
+      console.log('📧 Email:', trimmedEmail)
+      console.log('👤 Name:', trimmedName)
+      console.log('🔒 Password length:', trimmedPassword.length)
       
-      // Step 1: Check if user already exists
-      console.log('1️⃣ Checking if user already exists...')
-      const { data: existingUser } = await supabase
-        .from('users')
-        .select('email')
-        .eq('email', email)
-        .single()
-
-      if (existingUser) {
-        console.error('❌ User already exists with this email')
-        setIsLoading(false)
-        return { success: false, error: 'User with this email already exists' }
-      }
-
-      // Step 2: Sign up with Supabase Auth
-      console.log('2️⃣ Creating auth user...')
+      // Step 1: Sign up with Supabase Auth
+      console.log('1️⃣ Creating auth user...')
       const { data: authData, error: authError } = await supabase.auth.signUp({
-        email,
-        password,
+        email: trimmedEmail,
+        password: trimmedPassword,
         options: {
           emailRedirectTo: undefined, // Disable email confirmation
           data: {
-            name: name // Include name in metadata
+            name: trimmedName // Include name in metadata
           }
         }
       })
@@ -156,6 +198,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (authError) {
         console.error('❌ Auth signup error:', authError)
         setIsLoading(false)
+        
+        // Provide more specific error messages
+        if (authError.message.includes('User already registered')) {
+          return { success: false, error: '이미 가입된 이메일입니다. 로그인을 시도해보세요.' }
+        } else if (authError.message.includes('Password should be at least')) {
+          return { success: false, error: '비밀번호는 최소 6자 이상이어야 합니다.' }
+        } else if (authError.message.includes('Unable to validate email address')) {
+          return { success: false, error: '유효하지 않은 이메일 주소입니다.' }
+        } else if (authError.message.includes('Signup is disabled')) {
+          return { success: false, error: '현재 회원가입이 비활성화되어 있습니다.' }
+        }
+        
         return { success: false, error: authError.message }
       }
 
@@ -168,15 +222,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log('✅ Auth user created successfully:', authData.user.id)
       console.log('📧 User email confirmed:', authData.user.email_confirmed_at ? 'Yes' : 'No')
 
-      // Step 3: Create user profile in our users table
-      console.log('3️⃣ Creating user profile...')
+      // Step 2: Create user profile in our users table
+      console.log('2️⃣ Creating user profile...')
       const { data: profileData, error: profileError } = await supabase
         .from('users')
         .insert([
           {
             id: authData.user.id,
-            email,
-            name,
+            email: trimmedEmail,
+            name: trimmedName,
           }
         ])
         .select()
