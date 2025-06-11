@@ -67,7 +67,46 @@ export default function MagazinePage() {
     },
   ]
 
-  const categories = ["전체", "기술 동향", "보안 가이드", "기업 보안", "교육", "개인정보 보호"]
+  const caseStudies = [
+    {
+      title: "데이팅 앱을 통한 몸캠피싱 피해 사례",
+      excerpt: "외로움을 이용한 데이팅 앱 몸캠피싱의 실제 피해 사례와 대응 방법을 소개합니다.",
+      author: "보안전문가",
+      date: "2024-01-20",
+      category: "피해 사례",
+      image: "https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg",
+      content: "A씨는 외로운 일상 속에서 누군가와 대화를 나누고 싶어 데이팅 앱을 시작했습니다. 며칠간 메시지를 주고받은 상대가 영상통화를 제안했고, 통화 도중 자연스럽게 신체 노출을 유도하더니 그 장면이 녹화되었다며 협박이 시작됐습니다. 이후 A씨는 '당신 연락처에 있는 사람들에게 전부 보내겠다'는 메시지를 받고 극심한 불안에 시달리며 결국 경찰과 상담기관을 찾게 되었습니다."
+    },
+    {
+      title: "군인 대상 몸캠피싱 협박 사례",
+      excerpt: "군인의 특수한 상황을 악용한 몸캠피싱 사례와 군부대 내 대응 방안을 다룹니다.",
+      author: "보안전문가",
+      date: "2024-01-18",
+      category: "피해 사례",
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
+      content: "휴가 중 데이팅 앱에서 알게 된 여성과 몇 차례 대화를 나눈 뒤 영상통화를 하게 됐습니다. 통화 도중 상대가 음질이 안 좋다며 특정 앱을 설치하라고 해 그대로 따랐고, 이후 예상치 못한 상황에서 신체 노출 장면이 녹화됐습니다. 곧이어 저장된 영상과 함께 군부대 상관 연락처가 포함된 명단을 보여주며 협박 메시지가 날아왔습니다."
+    },
+    {
+      title: "SNS 친구요청을 통한 몸캠피싱 접근",
+      excerpt: "SNS를 통한 자연스러운 접근으로 시작된 몸캠피싱 사례를 분석합니다.",
+      author: "보안전문가",
+      date: "2024-01-16",
+      category: "피해 사례",
+      image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg",
+      content: "A씨는 평소처럼 SNS를 둘러보던 중 낯선 사람에게 친구 요청을 받았고, 프로필 사진이 자연스러워 별 의심 없이 수락했습니다. 상대는 빠르게 친근감을 형성하며 대화를 이어갔고, 얼마 지나지 않아 영상통화를 시도했습니다. 통화 중 자연스럽게 신체 노출을 유도하더니, 이내 녹화된 영상과 함께 친구 목록을 언급하며 협박 메시지를 보내오기 시작했습니다."
+    },
+    {
+      title: "게임 채팅을 통한 몸캠피싱 사례",
+      excerpt: "온라인 게임을 통해 형성된 관계를 악용한 새로운 형태의 몸캠피싱 사례입니다.",
+      author: "보안전문가",
+      date: "2024-01-14",
+      category: "피해 사례",
+      image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg",
+      content: "A씨는 평소 즐겨하던 모바일 게임에서 자주 매칭되던 유저와 자연스럽게 친해졌고, 게임 내 채팅을 통해 카카오톡 아이디를 주고받게 됐습니다. 이후 상대는 친근한 말투로 관심을 표현하며 영상통화를 요청했고, 통화 도중 신체 노출을 유도했습니다. 곧이어 해당 장면이 녹화되었다는 메시지와 함께 친구 목록과 게임 커뮤니티에 유포하겠다는 협박이 이어졌습니다."
+    }
+  ]
+
+  const categories = ["전체", "기술 동향", "보안 가이드", "기업 보안", "교육", "개인정보 보호", "피해 사례"]
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -127,6 +166,43 @@ export default function MagazinePage() {
           </div>
         </div>
       </Card>
+
+      {/* Case Studies Section */}
+      <div className="mb-12">
+        <h2 className="text-3xl font-bold mb-8">실제 피해 사례</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          {caseStudies.map((caseStudy, index) => (
+            <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
+              <div className="relative h-48">
+                <Image src={caseStudy.image} alt={caseStudy.title} fill className="object-cover" />
+              </div>
+              <CardHeader>
+                <Badge className="w-fit mb-2 bg-red-100 text-red-800">{caseStudy.category}</Badge>
+                <CardTitle className="line-clamp-2">{caseStudy.title}</CardTitle>
+                <CardDescription className="line-clamp-3">{caseStudy.excerpt}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                  <div className="flex items-center gap-1">
+                    <User className="h-4 w-4" />
+                    {caseStudy.author}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-4 w-4" />
+                    {caseStudy.date}
+                  </div>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                  <p className="text-sm text-gray-700 line-clamp-4">{caseStudy.content}</p>
+                </div>
+                <Button asChild variant="outline" className="w-full">
+                  <Link href={`/magazine/case-study-${index + 1}`}>자세히 보기</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
 
       {/* Recent Posts */}
       <div className="mb-12">
