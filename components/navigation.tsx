@@ -207,7 +207,7 @@ export function Navigation() {
             ) : (
               <>
                 <LoginDialog>
-                  <Button variant="ghost" size="sm">
+                  <Button variant="ghost\" size="sm">
                     <LogIn className="mr-2 h-4 w-4" />
                     로그인
                   </Button>
