@@ -1,18 +1,16 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+// Default values to prevent crashes during development
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key'
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.error('❌ Missing Supabase environment variables!')
-  console.error('NEXT_PUBLIC_SUPABASE_URL:', supabaseUrl ? 'Present' : 'Missing')
-  console.error('NEXT_PUBLIC_SUPABASE_ANON_KEY:', supabaseAnonKey ? 'Present' : 'Missing')
-  throw new Error('Missing Supabase environment variables')
+// Only show warnings if we're not using placeholder values
+if (supabaseUrl === 'https://placeholder.supabase.co' || supabaseAnonKey === 'placeholder-key') {
+  console.warn('⚠️ Using placeholder Supabase credentials. Please set up your environment variables.')
+  console.warn('📝 Create a .env.local file with your Supabase credentials')
+} else {
+  console.log('✅ Supabase credentials loaded successfully')
 }
-
-console.log('🔧 Supabase client configuration:')
-console.log('📍 URL:', supabaseUrl)
-console.log('🔑 Anon Key:', supabaseAnonKey ? `${supabaseAnonKey.substring(0, 20)}...` : 'Missing')
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
@@ -28,15 +26,17 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   }
 })
 
-// Test connection on initialization
-supabase.auth.getSession().then(({ data, error }) => {
-  if (error) {
-    console.error('❌ Supabase connection test failed:', error)
-  } else {
-    console.log('✅ Supabase connection test successful')
-    console.log('📊 Session status:', data.session ? 'Active' : 'No session')
-  }
-})
+// Test connection only if we have real credentials
+if (supabaseUrl !== 'https://placeholder.supabase.co') {
+  supabase.auth.getSession().then(({ data, error }) => {
+    if (error) {
+      console.error('❌ Supabase connection test failed:', error)
+    } else {
+      console.log('✅ Supabase connection test successful')
+      console.log('📊 Session status:', data.session ? 'Active' : 'No session')
+    }
+  })
+}
 
 // Types for our database tables
 export interface User {
