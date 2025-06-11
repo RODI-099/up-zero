@@ -1,35 +1,13 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Function to validate if a URL is properly formatted
-function isValidUrl(url: string): boolean {
-  try {
-    new URL(url)
-    return true
-  } catch {
-    return false
-  }
-}
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-// Get environment variables with validation
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key'
+console.log('🔧 Supabase client configuration:')
+console.log('📍 URL:', supabaseUrl)
+console.log('🔑 Anon Key:', supabaseAnonKey ? `${supabaseAnonKey.substring(0, 20)}...` : 'Missing')
 
-// Check if we have placeholder values or invalid URLs
-const isPlaceholderUrl = supabaseUrl === 'https://placeholder.supabase.co' || 
-                        supabaseUrl === 'your_supabase_project_url_here' ||
-                        !isValidUrl(supabaseUrl)
-
-const isPlaceholderKey = supabaseAnonKey === 'placeholder-key' || 
-                        supabaseAnonKey === 'your_supabase_anon_key_here'
-
-// Use valid fallback URL if we have invalid configuration
-const validSupabaseUrl = isPlaceholderUrl ? 'https://zuplyqfhioctteilbsfy.supabase.co' : supabaseUrl
-const validSupabaseKey = isPlaceholderKey ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1cGx5cWZoaW9jdHRlaWxic2Z5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk1MTI3MzAsImV4cCI6MjA2NTA4ODczMH0.c7c8Fk2j2s5ZvQRfAewv4gMc5CQoaT0pdfcdZ3zQxyk' : supabaseAnonKey
-
-console.log('✅ Supabase credentials configured successfully')
-console.log('🔗 Project URL:', validSupabaseUrl)
-
-export const supabase = createClient(validSupabaseUrl, validSupabaseKey, {
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
@@ -43,7 +21,7 @@ export const supabase = createClient(validSupabaseUrl, validSupabaseKey, {
   }
 })
 
-// Test connection
+// Test connection on initialization
 supabase.auth.getSession().then(({ data, error }) => {
   if (error) {
     console.error('❌ Supabase connection test failed:', error)
