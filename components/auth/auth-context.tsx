@@ -27,23 +27,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     console.log('🔄 AuthProvider: Initializing...')
     
-    // Check if we have valid Supabase credentials
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    
-    const isValidConfig = supabaseUrl && 
-                         supabaseKey && 
-                         supabaseUrl !== 'https://placeholder.supabase.co' && 
-                         supabaseUrl !== 'your_supabase_project_url_here' &&
-                         supabaseKey !== 'placeholder-key' &&
-                         supabaseKey !== 'your_supabase_anon_key_here'
-    
-    if (!isValidConfig) {
-      console.warn('⚠️ Supabase not configured. Authentication features will be limited.')
-      setIsLoading(false)
-      return
-    }
-    
     // Get initial session
     supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error) {
@@ -103,16 +86,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
-    // Check if Supabase is configured
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const isValidConfig = supabaseUrl && 
-                         supabaseUrl !== 'https://placeholder.supabase.co' && 
-                         supabaseUrl !== 'your_supabase_project_url_here'
-    
-    if (!isValidConfig) {
-      return { success: false, error: 'Database not configured. Please set up Supabase credentials.' }
-    }
-
     setIsLoading(true)
     try {
       console.log('🔐 Attempting login for:', email)
@@ -145,16 +118,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const signup = async (email: string, password: string, name: string): Promise<{ success: boolean; error?: string }> => {
-    // Check if Supabase is configured
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const isValidConfig = supabaseUrl && 
-                         supabaseUrl !== 'https://placeholder.supabase.co' && 
-                         supabaseUrl !== 'your_supabase_project_url_here'
-    
-    if (!isValidConfig) {
-      return { success: false, error: 'Database not configured. Please set up Supabase credentials.' }
-    }
-
     setIsLoading(true)
     
     try {
