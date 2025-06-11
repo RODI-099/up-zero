@@ -45,7 +45,8 @@ const posts = [
 ];
 
 export default async function MagazinePost({ params }: { params: { slug: string } }) {
-  const postIndex = parseInt(params.slug.replace("post-", "")) - 1;
+  const resolvedParams = await params;
+  const postIndex = parseInt(resolvedParams.slug.replace("post-", "")) - 1;
   const post = posts[postIndex];
 
   if (!post) {
