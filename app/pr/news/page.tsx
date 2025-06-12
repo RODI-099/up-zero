@@ -13,7 +13,7 @@ export default function NewsPage() {
       "upoZero가 개발한 실시간 딥페이크 탐지 기술이 국제 보안 전시회에서 주목받으며 해외 진출의 발판을 마련했습니다.",
     date: "2024-01-20",
     category: "기업 소식",
-    image: "/placeholder.svg?height=300&width=600",
+    image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg",
     source: "디지털타임스",
   }
 
@@ -24,7 +24,7 @@ export default function NewsPage() {
       date: "2024-01-18",
       category: "정부 과제",
       source: "전자신문",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
     },
     {
       title: "몸캠피싱 피해 급증...upoZero 솔루션 주목",
@@ -32,7 +32,7 @@ export default function NewsPage() {
       date: "2024-01-15",
       category: "업계 동향",
       source: "보안뉴스",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg",
     },
     {
       title: "upoZero CEO, '2024 보안기술 혁신상' 수상",
@@ -40,7 +40,7 @@ export default function NewsPage() {
       date: "2024-01-12",
       category: "수상",
       source: "IT조선",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg",
     },
     {
       title: "AI 기반 사이버보안 시장 성장...upoZero 수혜 전망",
@@ -48,7 +48,7 @@ export default function NewsPage() {
       date: "2024-01-10",
       category: "시장 분석",
       source: "한국경제",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.pexels.com/photos/8386423/pexels-photo-8386423.jpeg",
     },
     {
       title: "upoZero, 일본 사이버보안 기업과 파트너십 체결",
@@ -56,7 +56,7 @@ export default function NewsPage() {
       date: "2024-01-08",
       category: "파트너십",
       source: "매일경제",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg",
     },
     {
       title: "딥페이크 기술 악용 사례 증가...대응 기술 개발 시급",
@@ -64,7 +64,7 @@ export default function NewsPage() {
       date: "2024-01-05",
       category: "기술 동향",
       source: "ZDNet Korea",
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg",
     },
   ]
 
@@ -115,7 +115,7 @@ export default function NewsPage() {
         <div className="grid lg:grid-cols-2 gap-0">
           <div className="relative h-64 lg:h-auto">
             <Image
-              src={featuredNews.image || "/placeholder.svg"}
+              src={featuredNews.image}
               alt={featuredNews.title}
               fill
               className="object-cover"
@@ -151,7 +151,7 @@ export default function NewsPage() {
           {news.map((item, index) => (
             <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative h-48">
-                <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
+                <Image src={item.image} alt={item.title} fill className="object-cover" />
               </div>
               <CardHeader>
                 <Badge className="w-fit mb-2">{item.category}</Badge>
