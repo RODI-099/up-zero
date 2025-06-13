@@ -6,6 +6,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { AuthProvider } from "@/components/auth/auth-context"
 import { Toaster } from "@/components/ui/toaster"
+import { KakaoChannelButton } from "@/components/kakao-channel-button"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           <Navigation />
           <main>{children}</main>
           <Footer />
+          <KakaoChannelButton />
           <Toaster />
         </AuthProvider>
       </body>
