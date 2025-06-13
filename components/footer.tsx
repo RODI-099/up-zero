@@ -77,7 +77,7 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">고객센터</h3>
             <ul className="space-y-2">
-              <li className="text-gray-300">전화: 02-1234-5678</li>
+              <li className="text-gray-300">전화: 1668-2293</li>
               <li className="text-gray-300">이메일: info@upozero.com</li>
               <li className="text-gray-300">운영시간: 평일 09:00-18:00</li>
               <li>
