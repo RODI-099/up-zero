@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 function KakaoTalkLogo() {
   return (
     <svg
-      width="24"
+      width="35"
       height="24"
       viewBox="0 0 24 24"
       fill="none"
