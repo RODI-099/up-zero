@@ -14,7 +14,7 @@ import { useAuth } from "@/components/auth/auth-context"
 import { createConsultation } from "@/lib/api/consultations"
 import { useToast } from "@/hooks/use-toast"
 
-export default function BodycamConsultationPage() {
+export default function BodycamConsultationPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const { user } = useAuth()
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
