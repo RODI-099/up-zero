@@ -28,21 +28,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     console.log('🔄 AuthProvider: Initializing...')
     
     // Check if we have valid Supabase credentials
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    
-    const isValidConfig = supabaseUrl && 
-                         supabaseKey && 
-                         supabaseUrl !== 'https://placeholder.supabase.co' && 
-                         supabaseUrl !== 'your_supabase_project_url_here' &&
-                         supabaseKey !== 'placeholder-key' &&
-                         supabaseKey !== 'your_supabase_anon_key_here'
-    
-    if (!isValidConfig) {
-      console.warn('⚠️ Supabase not configured. Authentication features will be limited.')
-      setIsLoading(false)
-      return
-    }
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://zuplyqfhioctteilbsfy.supabase.co'
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1cGx5cWZoaW9jdHRlaWxic2Z5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk1MTI3MzAsImV4cCI6MjA2NTA4ODczMH0.c7c8Fk2j2s5ZvQRfAewv4gMc5CQoaT0pdfcdZ3zQxyk'
     
     // Get initial session
     supabase.auth.getSession().then(({ data: { session }, error }) => {
@@ -103,16 +90,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
-    // Check if Supabase is configured
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const isValidConfig = supabaseUrl && 
-                         supabaseUrl !== 'https://placeholder.supabase.co' && 
-                         supabaseUrl !== 'your_supabase_project_url_here'
-    
-    if (!isValidConfig) {
-      return { success: false, error: 'Database not configured. Please set up Supabase credentials.' }
-    }
-
     // Trim whitespace from inputs
     const trimmedEmail = email.trim()
     const trimmedPassword = password.trim()
@@ -159,16 +136,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const signup = async (email: string, password: string, name: string): Promise<{ success: boolean; error?: string }> => {
-    // Check if Supabase is configured
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const isValidConfig = supabaseUrl && 
-                         supabaseUrl !== 'https://placeholder.supabase.co' && 
-                         supabaseUrl !== 'your_supabase_project_url_here'
-    
-    if (!isValidConfig) {
-      return { success: false, error: 'Database not configured. Please set up Supabase credentials.' }
-    }
-
     // Trim whitespace from inputs
     const trimmedEmail = email.trim()
     const trimmedPassword = password.trim()
