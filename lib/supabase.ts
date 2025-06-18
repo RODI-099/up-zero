@@ -21,16 +21,6 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   }
 })
 
-// Test connection on initialization
-supabase.auth.getSession().then(({ data, error }) => {
-  if (error) {
-    console.error('❌ Supabase connection test failed:', error)
-  } else {
-    console.log('✅ Supabase connection test successful')
-    console.log('📊 Session status:', data.session ? 'Active' : 'No session')
-  }
-})
-
 // Types for our database tables
 export interface User {
   id: string
