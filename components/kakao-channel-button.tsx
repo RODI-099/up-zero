@@ -37,7 +37,7 @@ function KakaoTalkLogo() {
 export function KakaoChannelButton() {
   const handleKakaoChannelClick = () => {
     // Open KakaoTalk channel in a new window
-    window.open('http://pf.kakao.com/_xnxhXrn/chat', '_blank', 'noopener,noreferrer')
+    window.open('http://pf.kakao.com/_xnxhXrn', '_blank', 'noopener,noreferrer')
   }
 
   return (
