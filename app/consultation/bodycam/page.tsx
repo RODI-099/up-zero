@@ -14,6 +14,9 @@ import { useAuth } from "@/components/auth/auth-context"
 import { createConsultation } from "@/lib/api/consultations"
 import { useToast } from "@/hooks/use-toast"
 
+// Force dynamic rendering to prevent prerendering issues
+export const dynamic = 'force-dynamic'
+
 export default function BodycamConsultationPage() {
   const { user, loading: authLoading } = useAuth()
   const { toast } = useToast()
