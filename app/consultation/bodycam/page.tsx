@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -15,13 +15,13 @@ import { createConsultation } from "@/lib/api/consultations"
 import { useToast } from "@/hooks/use-toast"
 
 export default function BodycamConsultationPage() {
-  const { user } = useAuth()
+  const { user, loading: authLoading } = useAuth()
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
-    name: user?.name || '',
+    name: '',
     phone: '',
-    email: user?.email || '',
+    email: '',
     situation: '',
     platform: '',
     moneyDemand: '',
@@ -33,6 +33,17 @@ export default function BodycamConsultationPage() {
     emergency: false,
     followup: false,
   })
+
+  // Update form data when user data becomes available
+  useEffect(() => {
+    if (!authLoading && user) {
+      setFormData(prev => ({
+        ...prev,
+        name: user.name || '',
+        email: user.email || '',
+      }))
+    }
+  }, [authLoading, user])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
