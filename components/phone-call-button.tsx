@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 export function PhoneCallButton() {
   const handlePhoneCall = () => {
     // Make a phone call
-    window.location.href = 'tel:1668-2293'
+    window.location.href = 'tel:1555-1526'
   }
 
   return (
@@ -22,7 +22,7 @@ export function PhoneCallButton() {
       
       {/* Tooltip */}
       <div className="absolute bottom-16 right-0 bg-black text-white text-xs px-2 py-1 rounded opacity-0 hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
-        전화로 문의 (1668-2293)
+        전화로 문의 (1555-1526)
       </div>
     </div>
   )

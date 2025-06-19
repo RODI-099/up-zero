@@ -31,15 +31,15 @@ export default function LocationPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="text-lg font-semibold mb-3">주소</h3>
-                  <p className="text-gray-700 mb-2">서울특별시 강남구 테헤란로 123</p>
-                  <p className="text-gray-700 mb-4">upoZero 빌딩 10층</p>
+                  <p className="text-gray-700 mb-2">전라남도 여수시 화산로 70-1</p>
+                  <p className="text-gray-700 mb-4">2층</p>
                   <Button variant="outline" size="sm">
                     주소 복사
                   </Button>
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-3">우편번호</h3>
-                  <p className="text-gray-700 mb-4">06234</p>
+                  <p className="text-gray-700 mb-4">59641</p>
                   <Button variant="outline" size="sm">
                     길찾기
                   </Button>
@@ -57,7 +57,7 @@ export default function LocationPage() {
               <CardTitle>전화번호</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-lg font-semibold mb-2">02-1234-5678</p>
+              <p className="text-lg font-semibold mb-2">1555-1526</p>
               <p className="text-gray-600 text-sm">대표번호</p>
             </CardContent>
           </Card>
@@ -93,21 +93,17 @@ export default function LocationPage() {
             <Card>
               <CardHeader>
                 <Train className="h-8 w-8 text-blue-600 mb-2" />
-                <CardTitle>지하철</CardTitle>
+                <CardTitle>KTX/기차</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
+                <div className="space-y-3 text-sm">
                   <div>
-                    <p className="font-semibold text-blue-600">2호선 강남역</p>
-                    <p className="text-sm text-gray-600">12번 출구에서 도보 5분</p>
+                    <p className="font-semibold text-blue-600">여수EXPO역</p>
+                    <p className="text-gray-600">택시로 약 15분</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-green-600">분당선 선릉역</p>
-                    <p className="text-sm text-gray-600">1번 출구에서 도보 7분</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-orange-600">9호선 선정릉역</p>
-                    <p className="text-sm text-gray-600">2번 출구에서 도보 10분</p>
+                    <p className="font-semibold text-green-600">여수역</p>
+                    <p className="text-gray-600">택시로 약 20분</p>
                   </div>
                 </div>
               </CardContent>
@@ -119,18 +115,14 @@ export default function LocationPage() {
                 <CardTitle>버스</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
+                <div className="space-y-3 text-sm">
                   <div>
-                    <p className="font-semibold text-red-600">간선버스</p>
-                    <p className="text-sm text-gray-600">146, 360, 740</p>
+                    <p className="font-semibold text-red-600">시내버스</p>
+                    <p className="text-gray-600">화산로 정류장 하차</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-blue-600">지선버스</p>
-                    <p className="text-sm text-gray-600">3412, 4319, 6411</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-green-600">광역버스</p>
-                    <p className="text-sm text-gray-600">9303, 9408</p>
+                    <p className="font-semibold text-blue-600">고속버스</p>
+                    <p className="text-gray-600">여수종합버스터미널에서 택시 이용</p>
                   </div>
                 </div>
               </CardContent>
@@ -142,18 +134,18 @@ export default function LocationPage() {
                 <CardTitle>자가용</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
+                <div className="space-y-3 text-sm">
                   <div>
                     <p className="font-semibold">주차 안내</p>
-                    <p className="text-sm text-gray-600">건물 지하 1-3층 주차장 이용</p>
+                    <p className="text-gray-600">건물 주변 공영주차장 이용</p>
                   </div>
                   <div>
                     <p className="font-semibold">주차 요금</p>
-                    <p className="text-sm text-gray-600">방문객 2시간 무료</p>
+                    <p className="text-gray-600">방문객 2시간 무료</p>
                   </div>
                   <div>
-                    <p className="font-semibold">발렛 서비스</p>
-                    <p className="text-sm text-gray-600">사전 예약 시 이용 가능</p>
+                    <p className="font-semibold">네비게이션</p>
+                    <p className="text-gray-600">화산로 70-1 검색</p>
                   </div>
                 </div>
               </CardContent>
@@ -167,25 +159,25 @@ export default function LocationPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <h3 className="font-semibold mb-2">코엑스</h3>
-                <p className="text-sm text-gray-600">도보 15분</p>
+                <h3 className="font-semibold mb-2">여수EXPO</h3>
+                <p className="text-sm text-gray-600">차량 15분</p>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="pt-6">
-                <h3 className="font-semibold mb-2">강남역</h3>
+                <h3 className="font-semibold mb-2">여수시청</h3>
+                <p className="text-sm text-gray-600">도보 10분</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center">
+              <CardContent className="pt-6">
+                <h3 className="font-semibold mb-2">화산공원</h3>
                 <p className="text-sm text-gray-600">도보 5분</p>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="pt-6">
-                <h3 className="font-semibold mb-2">선릉역</h3>
-                <p className="text-sm text-gray-600">도보 7분</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center">
-              <CardContent className="pt-6">
-                <h3 className="font-semibold mb-2">테헤란로</h3>
+                <h3 className="font-semibold mb-2">화산로</h3>
                 <p className="text-sm text-gray-600">바로 앞</p>
               </CardContent>
             </Card>
@@ -219,8 +211,8 @@ export default function LocationPage() {
                 3
               </div>
               <div>
-                <h3 className="font-semibold mb-1">1층 안내데스크</h3>
-                <p className="text-gray-600 text-sm">도착 후 1층 안내데스크에서 방문 목적을 말씀해주세요.</p>
+                <h3 className="font-semibold mb-1">2층 사무실</h3>
+                <p className="text-gray-600 text-sm">도착 후 2층 upoZero 사무실로 방문해주세요.</p>
               </div>
             </div>
           </div>
