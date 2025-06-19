@@ -77,7 +77,7 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">고객센터</h3>
             <ul className="space-y-2">
-              <li className="text-gray-300">전화: 1668-2293</li>
+              <li className="text-gray-300">전화: 1555-1526</li>
               <li className="text-gray-300">이메일: info@upozero.com</li>
               <li className="text-gray-300">운영시간: 24시간 연중무휴</li>
               <li>
@@ -86,6 +86,36 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Company Information */}
+        <div className="border-t border-gray-800 mt-8 pt-8">
+          <div className="text-center mb-6">
+            <h4 className="text-lg font-semibold text-gray-300 mb-4">(주)메타실드</h4>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm text-gray-400">
+              <div>
+                <span className="font-medium">대표자:</span> 강봉채
+              </div>
+              <div>
+                <span className="font-medium">TEL:</span> 1555-1526
+              </div>
+              <div>
+                <span className="font-medium">FAX:</span> 1555-1526
+              </div>
+              <div>
+                <span className="font-medium">사업자등록번호:</span> 467-86-03261
+              </div>
+              <div>
+                <span className="font-medium">통신판매업등록번호:</span> 2024-경기하남-0709호
+              </div>
+              <div>
+                <span className="font-medium">개인정보관리책임자:</span> 강봉채
+              </div>
+            </div>
+            <div className="mt-4 text-sm text-gray-400">
+              <span className="font-medium">주소:</span> 서울특별시 강서구 마곡중앙6로 21, 529호 (마곡동, 이너매스마곡1)
+            </div>
           </div>
         </div>
 
