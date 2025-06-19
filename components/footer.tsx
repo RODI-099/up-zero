@@ -79,7 +79,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li className="text-gray-300">전화: 1668-2293</li>
               <li className="text-gray-300">이메일: info@upozero.com</li>
-              <li className="text-gray-300">운영시간: 평일 09:00-18:00</li>
+              <li className="text-gray-300">운영시간: 24시간 연중무휴</li>
               <li>
                 <Link href="/consultation" className="text-blue-400 hover:text-blue-300">
                   무료 상담 신청

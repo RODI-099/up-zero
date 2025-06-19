@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MapPin, Phone, Mail, Clock, Car, Train, Bus } from "lucide-react"
 
@@ -79,9 +79,8 @@ export default function LocationPage() {
               <CardTitle>운영시간</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm mb-1">평일: 09:00 - 18:00</p>
-              <p className="text-sm mb-1">토요일: 09:00 - 13:00</p>
-              <p className="text-sm text-gray-600">일요일 및 공휴일 휴무</p>
+              <p className="text-sm mb-1">24시간 연중무휴</p>
+              <p className="text-sm text-gray-600">긴급상황 대응 가능</p>
             </CardContent>
           </Card>
         </div>

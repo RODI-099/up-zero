@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { FileText, Award, TrendingUp, Users, Download, ExternalLink } from "lucide-react"
+import { FileText, Award, TrendingUp, Users, Download } from "lucide-react"
 import Link from "next/link"
 
 export default function SupportPage() {
@@ -41,30 +41,6 @@ export default function SupportPage() {
       status: "완료",
       accuracy: "92.1%",
       badge: "혁신",
-    },
-  ]
-
-  const publications = [
-    {
-      title: "Deep Learning-based Deepfake Detection in Real-time Video Streams",
-      journal: "IEEE Transactions on Information Forensics and Security",
-      year: "2024",
-      impact: "Q1",
-      citations: 45,
-    },
-    {
-      title: "Advanced Pattern Recognition for Sextortion Attack Prevention",
-      journal: "Computers & Security",
-      year: "2023",
-      impact: "Q1",
-      citations: 32,
-    },
-    {
-      title: "Automated Digital Forensics Framework for Cybercrime Investigation",
-      journal: "Digital Investigation",
-      year: "2023",
-      impact: "Q2",
-      citations: 28,
     },
   ]
 
@@ -209,35 +185,6 @@ export default function SupportPage() {
                       다운로드
                     </Button>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-
-      {/* Publications */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-8">학술 논문</h2>
-        <div className="space-y-4">
-          {publications.map((pub, index) => (
-            <Card key={index}>
-              <CardContent className="pt-6">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold mb-2">{pub.title}</h3>
-                    <p className="text-gray-600 mb-2">
-                      {pub.journal} ({pub.year})
-                    </p>
-                    <div className="flex items-center gap-4 text-sm">
-                      <Badge variant="outline">{pub.impact}</Badge>
-                      <span className="text-gray-500">인용 횟수: {pub.citations}</span>
-                    </div>
-                  </div>
-                  <Button size="sm" variant="outline">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    논문 보기
-                  </Button>
                 </div>
               </CardContent>
             </Card>
