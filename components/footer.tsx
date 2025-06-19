@@ -11,6 +11,9 @@ export function Footer() {
             <p className="text-gray-300 mb-4">
               디지털 안전의 새로운 기준을 제시하며, 모든 사용자가 안전한 디지털 환경에서 생활할 수 있도록 지원합니다.
             </p>
+            <div className="text-gray-300 mb-4">
+              <p className="text-sm">대표자: 강봉채</p>
+            </div>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-white">
                 <Facebook className="h-5 w-5" />
