@@ -8,11 +8,10 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <div className="text-2xl font-bold text-blue-400 mb-4">upoZero</div>
-            <p className="text-gray-300 mb-4">
-              디지털 안전의 새로운 기준을 제시하며, 모든 사용자가 안전한 디지털 환경에서 생활할 수 있도록 지원합니다.
-            </p>
-            <div className="text-gray-300 mb-4">
+            <div className="text-gray-300 mb-4 space-y-1">
               <p className="text-sm">대표자: 강봉채</p>
+              <p className="text-sm">사업자등록번호: 467-86-03261</p>
+              <p className="text-sm">주소: 서울특별시 강서구 마곡중앙6로 21, 529호 (마곡동, 이너매스마곡1)</p>
             </div>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-white">
