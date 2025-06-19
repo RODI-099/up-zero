@@ -11,7 +11,7 @@ export default function NewsPage() {
     title: "upoZero, 차세대 딥페이크 탐지 기술로 글로벌 시장 진출",
     excerpt:
       "upoZero가 개발한 실시간 딥페이크 탐지 기술이 국제 보안 전시회에서 주목받으며 해외 진출의 발판을 마련했습니다.",
-    date: "2024-01-20",
+    date: "2025-06-04",
     category: "기업 소식",
     image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg",
     source: "디지털타임스",
@@ -21,7 +21,7 @@ export default function NewsPage() {
     {
       title: "upoZero, 정부 사이버보안 과제 수주...50억원 규모",
       excerpt: "과학기술정보통신부 주관 '차세대 사이버보안 기술개발' 과제에 선정되어 3년간 50억원을 지원받게 됩니다.",
-      date: "2024-01-18",
+      date: "2025-06-02",
       category: "정부 과제",
       source: "전자신문",
       image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
@@ -29,15 +29,15 @@ export default function NewsPage() {
     {
       title: "몸캠피싱 피해 급증...upoZero 솔루션 주목",
       excerpt: "최근 몸캠피싱 피해가 급증하면서 upoZero의 실시간 탐지 및 차단 솔루션이 업계의 주목을 받고 있습니다.",
-      date: "2024-01-15",
+      date: "2025-05-30",
       category: "업계 동향",
       source: "보안뉴스",
       image: "https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg",
     },
     {
-      title: "upoZero CEO, '2024 보안기술 혁신상' 수상",
+      title: "upoZero CEO, '2025 보안기술 혁신상' 수상",
       excerpt: "김대표가 한국정보보호학회에서 주관하는 보안기술 혁신상을 수상하며 기술력을 인정받았습니다.",
-      date: "2024-01-12",
+      date: "2025-05-27",
       category: "수상",
       source: "IT조선",
       image: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg",
@@ -45,7 +45,7 @@ export default function NewsPage() {
     {
       title: "AI 기반 사이버보안 시장 성장...upoZero 수혜 전망",
       excerpt: "글로벌 AI 보안 시장이 연평균 25% 성장하면서 upoZero와 같은 전문 기업들의 성장이 기대됩니다.",
-      date: "2024-01-10",
+      date: "2025-05-25",
       category: "시장 분석",
       source: "한국경제",
       image: "https://images.pexels.com/photos/8386423/pexels-photo-8386423.jpeg",
@@ -53,7 +53,7 @@ export default function NewsPage() {
     {
       title: "upoZero, 일본 사이버보안 기업과 파트너십 체결",
       excerpt: "일본의 주요 사이버보안 기업과 기술 협력 및 시장 진출을 위한 전략적 파트너십을 체결했습니다.",
-      date: "2024-01-08",
+      date: "2025-05-23",
       category: "파트너십",
       source: "매일경제",
       image: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg",
@@ -61,7 +61,7 @@ export default function NewsPage() {
     {
       title: "딥페이크 기술 악용 사례 증가...대응 기술 개발 시급",
       excerpt: "딥페이크 기술의 악용 사례가 증가하면서 upoZero와 같은 탐지 기술의 중요성이 더욱 부각되고 있습니다.",
-      date: "2024-01-05",
+      date: "2025-05-20",
       category: "기술 동향",
       source: "ZDNet Korea",
       image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg",
@@ -71,18 +71,18 @@ export default function NewsPage() {
   const pressReleases = [
     {
       title: "upoZero, 시리즈 A 투자 유치 완료",
-      date: "2024-01-22",
+      date: "2025-06-06",
       summary: "총 100억원 규모의 시리즈 A 투자를 성공적으로 유치하여 기술 개발과 해외 진출을 가속화합니다.",
     },
     {
       title: "신규 딥페이크 탐지 솔루션 'DeepGuard' 출시",
-      date: "2024-01-15",
+      date: "2025-05-30",
       summary: "차세대 AI 기술을 적용한 실시간 딥페이크 탐지 솔루션을 정식 출시했습니다.",
     },
     {
       title: "upoZero, 글로벌 사이버보안 컨퍼런스 참가",
-      date: "2024-01-10",
-      summary: "미국 RSA Conference 2024에 참가하여 최신 기술을 선보일 예정입니다.",
+      date: "2025-05-25",
+      summary: "미국 RSA Conference 2025에 참가하여 최신 기술을 선보일 예정입니다.",
     },
   ]
 
