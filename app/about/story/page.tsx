@@ -83,7 +83,7 @@ export default function StoryPage() {
               "디지털 기술의 발전과 함께 새로운 형태의 위협도 계속 등장하고 있습니다. upoZero는 이러한 변화에 발맞춰
               지속적으로 혁신하며, 모든 사용자가 안심하고 디지털 세상을 누릴 수 있도록 최선을 다하겠습니다."
             </p>
-            <p className="font-semibold text-blue-600">김대표, upoZero CEO</p>
+            <p className="font-semibold text-blue-600">강봉채 , upoZero CEO</p>
           </div>
         </div>
       </div>
