@@ -11,7 +11,7 @@ export function Footer() {
             <div className="text-gray-300 mb-4 space-y-1">
               <p className="text-sm">대표자: 강봉채</p>
               <p className="text-sm">사업자등록번호: 552-87-03402</p>
-              <p className="text-sm">주소: 전라남도 여수시 화산로 70-1 2층</p>
+              <p className="text-sm">주소: 서울특별시 강서구 마곡중앙6로 21. 529(마곡동, 이너매스마곡 l)</p>
             </div>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-white">
