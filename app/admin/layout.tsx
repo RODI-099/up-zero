@@ -1,9 +1,9 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
@@ -18,11 +18,9 @@ import {
   Menu,
   LogOut,
   User,
-  Loader2,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/components/auth/auth-context"
-import { supabase } from "@/lib/supabase"
 
 const sidebarItems = [
   {
@@ -73,83 +71,8 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [isCheckingAccess, setIsCheckingAccess] = useState(true)
-  const [hasAdminAccess, setHasAdminAccess] = useState(false)
   const pathname = usePathname()
-  const router = useRouter()
-  const { user, isLoading: authLoading } = useAuth()
-
-  useEffect(() => {
-    const checkAdminAccess = async () => {
-      console.log('🔐 Checking admin access...')
-      
-      // If auth is still loading, wait
-      if (authLoading) {
-        console.log('⏳ Auth still loading...')
-        return
-      }
-
-      // If no user, redirect to login
-      if (!user) {
-        console.log('❌ No user found, redirecting to home')
-        router.push('/')
-        return
-      }
-
-      try {
-        // Get user data from database to check role
-        console.log('📋 Fetching user role for:', user.id)
-        const { data: userData, error } = await supabase
-          .from('users')
-          .select('role')
-          .eq('id', user.id)
-          .single()
-
-        if (error) {
-          console.error('❌ Error fetching user role:', error)
-          router.push('/')
-          return
-        }
-
-        console.log('👤 User role:', userData?.role)
-
-        // Check if user has admin role
-        if (userData?.role === 'admin') {
-          console.log('✅ Admin access granted')
-          setHasAdminAccess(true)
-        } else {
-          console.log('❌ Access denied - user is not admin')
-          router.push('/')
-          return
-        }
-      } catch (error) {
-        console.error('💥 Error checking admin access:', error)
-        router.push('/')
-        return
-      } finally {
-        setIsCheckingAccess(false)
-      }
-    }
-
-    checkAdminAccess()
-  }, [user, authLoading, router])
-
-  // Show loading while checking access
-  if (authLoading || isCheckingAccess) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-blue-600" />
-          <p className="text-gray-600">관리자 권한을 확인하는 중...</p>
-        </div>
-      </div>
-    )
-  }
-
-  // If no admin access, don't render anything (user will be redirected)
-  if (!hasAdminAccess) {
-    return null
-  }
+  const { user } = useAuth()
 
   const Sidebar = ({ className }: { className?: string }) => (
     <div className={cn("flex h-full flex-col bg-gray-900 text-white", className)}>
@@ -184,8 +107,8 @@ export default function AdminLayout({
             <User className="h-4 w-4" />
           </div>
           <div>
-            <div className="text-sm font-medium">{user?.name}</div>
-            <div className="text-xs text-gray-400">{user?.email}</div>
+            <div className="text-sm font-medium">{user?.name || "Guest User"}</div>
+            <div className="text-xs text-gray-400">{user?.email || "guest@admin.com"}</div>
             <div className="text-xs text-blue-400">관리자</div>
           </div>
         </div>
@@ -193,7 +116,7 @@ export default function AdminLayout({
           variant="outline" 
           size="sm" 
           className="w-full text-gray-300 border-gray-600 hover:bg-gray-800"
-          onClick={() => router.push('/')}
+          onClick={() => window.location.href = '/'}
         >
           <LogOut className="mr-2 h-4 w-4" />
           사이트로 돌아가기
