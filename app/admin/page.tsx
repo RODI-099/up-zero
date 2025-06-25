@@ -1,328 +1,156 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import {
-  Users,
-  MessageSquare,
-  Shield,
-  TrendingUp,
-  AlertTriangle,
-  CheckCircle,
-  Clock,
-  Eye,
-  FileText,
-  Settings,
-} from "lucide-react"
-import Link from "next/link"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useAuth } from "@/components/auth/auth-context"
+import { useRouter } from "next/navigation"
+import { Loader2, Eye, EyeOff, AlertCircle } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
 
-export default function AdminDashboard() {
-  const stats = [
-    {
-      title: "총 사용자",
-      value: "12,847",
-      change: "+12%",
-      changeType: "increase" as const,
-      icon: Users,
-    },
-    {
-      title: "활성 상담",
-      value: "156",
-      change: "+8%",
-      changeType: "increase" as const,
-      icon: MessageSquare,
-    },
-    {
-      title: "보안 위협 차단",
-      value: "2,341",
-      change: "+23%",
-      changeType: "increase" as const,
-      icon: Shield,
-    },
-    {
-      title: "시스템 가동률",
-      value: "99.9%",
-      change: "0%",
-      changeType: "neutral" as const,
-      icon: TrendingUp,
-    },
-  ]
+export default function AdminLoginPage() {
+  const [id, setId] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const { login } = useAuth()
+  const { toast } = useToast()
+  const router = useRouter()
 
-  const recentConsultations = [
-    {
-      id: "C-2024-001",
-      type: "몸캠피싱",
-      status: "진행중",
-      priority: "긴급",
-      createdAt: "2024-01-20 14:30",
-      user: "김**",
-    },
-    {
-      id: "C-2024-002",
-      type: "딥페이크",
-      status: "완료",
-      priority: "높음",
-      createdAt: "2024-01-20 13:15",
-      user: "이**",
-    },
-    {
-      id: "C-2024-003",
-      type: "일반 보안",
-      status: "대기",
-      priority: "보통",
-      createdAt: "2024-01-20 12:45",
-      user: "박**",
-    },
-    {
-      id: "C-2024-004",
-      type: "기업 상담",
-      status: "진행중",
-      priority: "높음",
-      createdAt: "2024-01-20 11:20",
-      user: "삼성전자",
-    },
-  ]
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!id || !password) {
+      toast({
+        title: "입력 오류",
+        description: "ID와 비밀번호를 모두 입력해주세요.",
+        variant: "destructive",
+      })
+      return
+    }
 
-  const securityAlerts = [
-    {
-      id: "A-001",
-      type: "딥페이크 탐지",
-      message: "의심스러운 딥페이크 콘텐츠 5건 탐지됨",
-      severity: "high",
-      time: "5분 전",
-    },
-    {
-      id: "A-002",
-      type: "시스템 모니터링",
-      message: "서버 CPU 사용률 85% 도달",
-      severity: "medium",
-      time: "15분 전",
-    },
-    {
-      id: "A-003",
-      type: "사용자 활동",
-      message: "비정상적인 로그인 시도 감지",
-      severity: "high",
-      time: "1시간 전",
-    },
-  ]
+    setIsLoading(true)
 
-  const systemStatus = [
-    { name: "웹 서버", status: "정상", uptime: "99.9%" },
-    { name: "데이터베이스", status: "정상", uptime: "99.8%" },
-    { name: "AI 분석 엔진", status: "정상", uptime: "99.7%" },
-    { name: "모니터링 시스템", status: "점검중", uptime: "98.5%" },
-  ]
+    try {
+      const result = await login(id, password)
+      
+      if (result.success) {
+        toast({
+          title: "로그인 성공",
+          description: "관리자 페이지로 이동합니다.",
+        })
+        router.push("/admin/dashboard")
+      } else {
+        toast({
+          title: "로그인 실패",
+          description: result.error || "ID 또는 비밀번호가 올바르지 않습니다.",
+          variant: "destructive",
+        })
+      }
+    } catch (error) {
+      toast({
+        title: "로그인 오류",
+        description: "로그인 중 오류가 발생했습니다.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
-    <div className="space-y-6">
-      {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => (
-          <Card key={stat.title}>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-              <stat.icon className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <p
-                className={`text-xs ${
-                  stat.changeType === "increase"
-                    ? "text-green-600"
-                    : stat.changeType === "decrease"
-                      ? "text-red-600"
-                      : "text-gray-600"
-                }`}
-              >
-                {stat.change} 지난 달 대비
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-white tracking-wider mb-2">ADMINISTRATOR</h1>
+        </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Recent Consultations */}
-        <Card>
-          <CardHeader>
-            <CardTitle>최근 상담 요청</CardTitle>
-            <CardDescription>최근 접수된 상담 요청 현황</CardDescription>
+        {/* Login Card */}
+        <Card className="bg-gray-800/50 border-gray-600 backdrop-blur-sm">
+          <CardHeader className="text-center pb-4">
+            <CardDescription className="text-gray-300 text-base">
+              로그인이 필요한 페이지 입니다.
+            </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentConsultations.map((consultation) => (
-                <div key={consultation.id} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div className="space-y-1">
-                    <div className="flex items-center space-x-2">
-                      <span className="font-medium">{consultation.id}</span>
-                      <Badge variant="outline">{consultation.type}</Badge>
-                      <Badge
-                        variant={
-                          consultation.priority === "긴급"
-                            ? "destructive"
-                            : consultation.priority === "높음"
-                              ? "default"
-                              : "secondary"
-                        }
-                      >
-                        {consultation.priority}
-                      </Badge>
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      {consultation.user} • {consultation.createdAt}
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Badge
-                      variant={
-                        consultation.status === "완료"
-                          ? "default"
-                          : consultation.status === "진행중"
-                            ? "secondary"
-                            : "outline"
-                      }
-                    >
-                      {consultation.status}
-                    </Badge>
-                    <Button size="sm" variant="ghost">
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4">
-              <Button asChild variant="outline" className="w-full">
-                <Link href="/admin/consultations">모든 상담 보기</Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Security Alerts */}
-        <Card>
-          <CardHeader>
-            <CardTitle>보안 알림</CardTitle>
-            <CardDescription>실시간 보안 모니터링 알림</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {securityAlerts.map((alert) => (
-                <div key={alert.id} className="flex items-start space-x-3 p-3 border rounded-lg">
-                  <div
-                    className={`mt-1 h-2 w-2 rounded-full ${
-                      alert.severity === "high"
-                        ? "bg-red-500"
-                        : alert.severity === "medium"
-                          ? "bg-yellow-500"
-                          : "bg-green-500"
-                    }`}
+          <CardContent className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* ID Field */}
+              <div className="space-y-2">
+                <Label htmlFor="id" className="text-white font-medium flex items-center gap-2">
+                  <span className="text-lg">🔑</span> ID
+                </Label>
+                <div className="relative">
+                  <Input
+                    id="id"
+                    type="text"
+                    placeholder="ID"
+                    value={id}
+                    onChange={(e) => setId(e.target.value)}
+                    className="bg-gray-700/50 border-gray-600 text-white placeholder-gray-400 h-12 pr-12"
+                    required
                   />
-                  <div className="flex-1 space-y-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-medium text-sm">{alert.type}</span>
-                      <span className="text-xs text-gray-500">{alert.time}</span>
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <div className="w-6 h-6 bg-gray-600 rounded flex items-center justify-center">
+                      <span className="text-xs text-gray-300">👤</span>
                     </div>
-                    <p className="text-sm text-gray-600">{alert.message}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-            <div className="mt-4">
-              <Button asChild variant="outline" className="w-full">
-                <Link href="/admin/security">보안 모니터링 보기</Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+              </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* System Status */}
-        <Card>
-          <CardHeader>
-            <CardTitle>시스템 상태</CardTitle>
-            <CardDescription>주요 시스템 컴포넌트 상태</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {systemStatus.map((system) => (
-                <div key={system.name} className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    {system.status === "정상" ? (
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                    ) : system.status === "점검중" ? (
-                      <Clock className="h-5 w-5 text-yellow-500" />
-                    ) : (
-                      <AlertTriangle className="h-5 w-5 text-red-500" />
-                    )}
-                    <span className="font-medium">{system.name}</span>
-                  </div>
-                  <div className="text-right">
-                    <div
-                      className={`text-sm font-medium ${
-                        system.status === "정상"
-                          ? "text-green-600"
-                          : system.status === "점검중"
-                            ? "text-yellow-600"
-                            : "text-red-600"
-                      }`}
-                    >
-                      {system.status}
-                    </div>
-                    <div className="text-xs text-gray-500">가동률 {system.uptime}</div>
-                  </div>
+              {/* Password Field */}
+              <div className="space-y-2">
+                <Label htmlFor="password" className="text-white font-medium flex items-center gap-2">
+                  <span className="text-lg">🔐</span> PASSWORD
+                </Label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="PASSWORD"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="bg-gray-700/50 border-gray-600 text-white placeholder-gray-400 h-12 pr-12"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
                 </div>
-              ))}
-            </div>
+              </div>
+
+              {/* Login Button */}
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full h-12 bg-gray-700 hover:bg-gray-600 text-white font-medium text-lg border border-gray-600"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    로그인 중...
+                  </>
+                ) : (
+                  "LOGIN"
+                )}
+              </Button>
+            </form>
           </CardContent>
         </Card>
 
-        {/* Quick Actions */}
-        <Card>
-          <CardHeader>
-            <CardTitle>빠른 작업</CardTitle>
-            <CardDescription>자주 사용하는 관리 기능</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid gap-3">
-              <Button asChild variant="outline" className="justify-start">
-                <Link href="/admin/consultations/new">
-                  <MessageSquare className="mr-2 h-4 w-4" />새 상담 등록
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="justify-start">
-                <Link href="/admin/content/articles/new">
-                  <FileText className="mr-2 h-4 w-4" />새 글 작성
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="justify-start">
-                <Link href="/admin/users">
-                  <Users className="mr-2 h-4 w-4" />
-                  사용자 관리
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="justify-start">
-                <Link href="/admin/security">
-                  <Shield className="mr-2 h-4 w-4" />
-                  보안 모니터링
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="justify-start">
-                <Link href="/admin/analytics">
-                  <TrendingUp className="mr-2 h-4 w-4" />
-                  분석 보고서
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="justify-start">
-                <Link href="/admin/settings">
-                  <Settings className="mr-2 h-4 w-4" />
-                  시스템 설정
-                </Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Footer Notice */}
+        <div className="text-center mt-6">
+          <div className="flex items-center justify-center gap-2 text-gray-400 text-sm">
+            <AlertCircle className="h-4 w-4" />
+            <span>관리자모드는 IE9 이하의 브라우저를 지원하지 않습니다.</span>
+          </div>
+        </div>
       </div>
     </div>
   )
