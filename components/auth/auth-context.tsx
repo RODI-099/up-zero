@@ -8,6 +8,7 @@ interface AuthUser {
   id: string
   email: string
   name: string
+  role: string
 }
 
 interface AuthContextType {
@@ -26,10 +27,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     console.log('🔄 AuthProvider: Initializing...')
-    
-    // Check if we have valid Supabase credentials
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://zuplyqfhioctteilbsfy.supabase.co'
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1cGx5cWZoaW9jdHRlaWxic2Z5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk1MTI3MzAsImV4cCI6MjA2NTA4ODczMH0.c7c8Fk2j2s5ZvQRfAewv4gMc5CQoaT0pdfcdZ3zQxyk'
     
     // Get initial session
     supabase.auth.getSession().then(({ data: { session }, error }) => {
@@ -81,7 +78,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser({
           id: data.id,
           email: data.email,
-          name: data.name
+          name: data.name,
+          role: data.role || 'user'
         })
       }
     } catch (error) {
@@ -90,7 +88,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
-    // Trim whitespace from inputs
     const trimmedEmail = email.trim()
     const trimmedPassword = password.trim()
 
@@ -107,11 +104,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         console.error('❌ Login error:', error)
         setIsLoading(false)
         
-        // Provide more specific error messages
         if (error.message.includes('Invalid login credentials')) {
-          return { success: false, error: '이메일 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요.' }
+          return { success: false, error: '이메일 또는 비밀번호가 올바르지 않습니다.' }
         } else if (error.message.includes('Email not confirmed')) {
-          return { success: false, error: '이메일 인증이 필요합니다. 이메일을 확인해주세요.' }
+          return { success: false, error: '이메일 인증이 필요합니다.' }
         } else if (error.message.includes('Too many requests')) {
           return { success: false, error: '너무 많은 로그인 시도가 있었습니다. 잠시 후 다시 시도해주세요.' }
         }
@@ -136,7 +132,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const signup = async (email: string, password: string, name: string): Promise<{ success: boolean; error?: string }> => {
-    // Trim whitespace from inputs
     const trimmedEmail = email.trim()
     const trimmedPassword = password.trim()
     const trimmedName = name.trim()
@@ -147,7 +142,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log('🚀 SIGNUP PROCESS STARTED')
       console.log('📧 Email:', trimmedEmail)
       console.log('👤 Name:', trimmedName)
-      console.log('🔒 Password length:', trimmedPassword.length)
       
       // Step 1: Sign up with Supabase Auth
       console.log('1️⃣ Creating auth user...')
@@ -155,9 +149,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         email: trimmedEmail,
         password: trimmedPassword,
         options: {
-          emailRedirectTo: undefined, // Disable email confirmation
+          emailRedirectTo: undefined,
           data: {
-            name: trimmedName // Include name in metadata
+            name: trimmedName
           }
         }
       })
@@ -166,15 +160,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         console.error('❌ Auth signup error:', authError)
         setIsLoading(false)
         
-        // Provide more specific error messages
         if (authError.message.includes('User already registered')) {
-          return { success: false, error: '이미 가입된 이메일입니다. 로그인을 시도해보세요.' }
+          return { success: false, error: '이미 가입된 이메일입니다.' }
         } else if (authError.message.includes('Password should be at least')) {
           return { success: false, error: '비밀번호는 최소 6자 이상이어야 합니다.' }
         } else if (authError.message.includes('Unable to validate email address')) {
           return { success: false, error: '유효하지 않은 이메일 주소입니다.' }
-        } else if (authError.message.includes('Signup is disabled')) {
-          return { success: false, error: '현재 회원가입이 비활성화되어 있습니다.' }
         }
         
         return { success: false, error: authError.message }
@@ -187,9 +178,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       console.log('✅ Auth user created successfully:', authData.user.id)
-      console.log('📧 User email confirmed:', authData.user.email_confirmed_at ? 'Yes' : 'No')
 
-      // Step 2: Create user profile in our users table
+      // Step 2: Create user profile
       console.log('2️⃣ Creating user profile...')
       const { data: profileData, error: profileError } = await supabase
         .from('users')
@@ -198,6 +188,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             id: authData.user.id,
             email: trimmedEmail,
             name: trimmedName,
+            role: 'user'
           }
         ])
         .select()
@@ -205,7 +196,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (profileError) {
         console.error('❌ Profile creation error:', profileError)
-        console.log('🔄 Attempting to fetch existing profile...')
         
         // Try to fetch existing profile
         const { data: existingProfile, error: fetchError } = await supabase
@@ -216,11 +206,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         if (fetchError) {
           console.error('❌ Failed to fetch existing profile:', fetchError)
-          
-          // Try to clean up the auth user if profile creation failed
-          console.log('🧹 Attempting to clean up auth user...')
           await supabase.auth.signOut()
-          
           setIsLoading(false)
           return { success: false, error: 'Failed to create user profile. Please try again.' }
         }
@@ -230,7 +216,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser({
             id: existingProfile.id,
             email: existingProfile.email,
-            name: existingProfile.name
+            name: existingProfile.name,
+            role: existingProfile.role || 'user'
           })
           setIsLoading(false)
           return { success: true }
@@ -240,7 +227,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser({
           id: profileData.id,
           email: profileData.email,
-          name: profileData.name
+          name: profileData.name,
+          role: profileData.role || 'user'
         })
       }
 
@@ -251,7 +239,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       console.error('💥 Signup exception:', error)
       setIsLoading(false)
-      return { success: false, error: 'An unexpected error occurred during signup. Please try again.' }
+      return { success: false, error: 'An unexpected error occurred during signup.' }
     }
   }
 

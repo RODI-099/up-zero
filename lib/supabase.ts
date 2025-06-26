@@ -23,11 +23,24 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
   }
 })
 
+// Test connection function
+export async function testSupabaseConnection() {
+  try {
+    const { data, error } = await supabase.auth.getSession()
+    console.log('✅ Supabase connection test successful')
+    return { success: true, data, error }
+  } catch (error) {
+    console.error('❌ Supabase connection test failed:', error)
+    return { success: false, error }
+  }
+}
+
 // Types for our database tables
 export interface User {
   id: string
   email: string
   name: string
+  role: string
   created_at: string
   updated_at: string
 }
