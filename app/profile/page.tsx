@@ -11,6 +11,8 @@ import { User, Mail, Calendar, Shield, FileText, Settings } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 
+export const dynamic = 'force-dynamic'
+
 export default function ProfilePage() {
   const { user } = useAuth()
   const router = useRouter()

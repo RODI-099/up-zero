@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation"
 import { Loader2, Eye, EyeOff, AlertCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
+export const dynamic = 'force-dynamic'
+
 export default function AdminLoginPage() {
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
