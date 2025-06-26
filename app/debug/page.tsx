@@ -1,5 +1,7 @@
 import { DebugPanel } from "@/components/auth/debug-panel"
 
+export const dynamic = 'force-dynamic'
+
 export default function DebugPage() {
   return (
     <div className="container mx-auto px-4 py-12">
