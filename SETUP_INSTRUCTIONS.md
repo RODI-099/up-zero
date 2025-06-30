@@ -21,7 +21,7 @@ Your login errors are occurring because the Supabase database hasn't been set up
 **IMPORTANT**: After running the migration:
 
 1. **Sign up a NEW user first** - Don't try to log in with existing credentials
-2. Go to your application and click "Sign Up"
+2. Go to your application and click "Sign Up" (회원가입)
 3. Create a new account with email and password
 4. After successful signup, try logging in with those same credentials
 
@@ -34,11 +34,11 @@ The "Invalid login credentials" error occurs because:
 
 ## What the Migration Does
 
-✅ Creates all required tables (`users`, `consultations`, `case_studies`)
-✅ Sets up Row Level Security (RLS) policies
-✅ **Crucially**: Adds the INSERT policy that allows new users to create profiles
-✅ Adds sample case studies for the magazine section
-✅ Creates proper triggers and functions
+✅ Creates all required tables (`users`, `consultations`, `case_studies`)  
+✅ Sets up Row Level Security (RLS) policies  
+✅ **Crucially**: Adds the INSERT policy that allows new users to create profiles  
+✅ Adds sample case studies for the magazine section  
+✅ Creates proper triggers and functions  
 
 ## After Migration Success
 
