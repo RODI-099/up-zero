@@ -46,7 +46,7 @@ A comprehensive digital security platform built with Next.js and Supabase, focus
 4. Run the database migrations:
    - Go to your Supabase dashboard
    - Navigate to SQL Editor
-   - Run the migration file: `supabase/migrations/001_initial_schema.sql`
+   - Run the migration file: `supabase/migrations/fix_authentication_setup.sql`
 
 5. Start the development server:
    ```bash
@@ -63,7 +63,7 @@ The project uses Supabase with the following main tables:
 
 ### Running Migrations
 
-1. Copy the content from `supabase/migrations/001_initial_schema.sql`
+1. Copy the content from `supabase/migrations/fix_authentication_setup.sql`
 2. Paste it into the Supabase SQL Editor
 3. Execute the migration
 
@@ -117,13 +117,13 @@ Required environment variables:
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase anonymous key
 - `SUPABASE_SERVICE_ROLE_KEY`: Your Supabase service role key (for admin operations)
 
-## Contributing
+## Troubleshooting
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+### Authentication Issues
+If you encounter login or signup issues:
+1. Make sure you've run the database migration
+2. Try signing up a new user first before logging in
+3. Check the browser console for specific error messages
 
 ## License
 
