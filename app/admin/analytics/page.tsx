@@ -263,7 +263,7 @@ export default function AnalyticsPage() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span>응답 시간</span>
-                  <span className="font-medium">< 2시간</span>
+                  <span className="font-medium">&lt; 2시간</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>해결율</span>
