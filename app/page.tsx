@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, Users, Award, TrendingUp } from "lucide-react"
+import { ScrollingMessages } from "@/components/scrolling-messages"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -11,7 +12,7 @@ export default function HomePage() {
       <section className="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="z-10">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 디지털 안전의 새로운 기준
                 <span className="block text-yellow-300">upoZero</span>
@@ -34,15 +35,10 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
-              <Image
-                src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg"
-                alt="Digital Security Technology"
-                width={500}
-                height={400}
-                className="rounded-lg shadow-2xl"
-                priority
-              />
+            <div className="relative flex justify-center items-center">
+              <div className="absolute -top-10 -left-10 w-32 h-32 bg-blue-500 rounded-full opacity-20 blur-xl"></div>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500 rounded-full opacity-20 blur-xl"></div>
+              <ScrollingMessages />
             </div>
           </div>
         </div>
@@ -51,6 +47,7 @@ export default function HomePage() {
       {/* Stats Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">디지털 보안의 신뢰할 수 있는 파트너</h2>
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-blue-600 mb-2">10,000+</div>
