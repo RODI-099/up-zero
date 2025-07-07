@@ -3,7 +3,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Shield, Users, Award, TrendingUp } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { FraudChatDemo } from "@/components/fraud-chat-demo"
 
 export default function HomePage() {
   return (
@@ -25,7 +24,14 @@ export default function HomePage() {
                 <Button asChild size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black">
                   <Link href="/consultation">무료 상담 신청</Link>
                 </Button>
-                <FraudChatDemo />
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="border-white text-white hover:bg-white hover:text-blue-600"
+                >
+                  <Link href="/services">서비스 둘러보기</Link>
+                </Button>
               </div>
             </div>
             <div className="relative">
