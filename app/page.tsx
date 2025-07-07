@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, Users, Award, TrendingUp } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { FraudChatDemo } from "@/components/fraud-chat-demo"
 
 export default function HomePage() {
