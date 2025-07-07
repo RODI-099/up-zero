@@ -24,8 +24,8 @@ export default function HomePage() {
               <div className="flex gap-4">
                 <Button asChild size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black">
                   <Link href="/consultation">무료 상담 신청</Link>
-                  <FraudChatDemo />
                 </Button>
+                <FraudChatDemo />
               </div>
             </div>
             <div className="relative">
