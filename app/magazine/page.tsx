@@ -172,7 +172,7 @@ export default function MagazinePage() {
         <h2 className="text-3xl font-bold mb-8">실제 피해 사례</h2>
         <div className="grid md:grid-cols-2 gap-8">
           {caseStudies.map((caseStudy, index) => (
-            <Card key={caseStudy.title} className="overflow-hidden hover:shadow-lg transition-shadow">
+            <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative h-48">
                 <Image src={caseStudy.image} alt={caseStudy.title} fill className="object-cover" />
               </div>
@@ -196,7 +196,7 @@ export default function MagazinePage() {
                   <p className="text-sm text-gray-700 line-clamp-4">{caseStudy.content}</p>
                 </div>
                 <Button asChild variant="outline" className="w-full">
-                  <Link href={`/magazine/case-study-${caseStudies.indexOf(caseStudy) + 1}`}>자세히 보기</Link>
+                  <Link href={`/magazine/case-study-${index + 1}`}>자세히 보기</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -209,7 +209,7 @@ export default function MagazinePage() {
         <h2 className="text-3xl font-bold mb-8">최신 글</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post, index) => (
-            <Card key={post.title} className="overflow-hidden hover:shadow-lg transition-shadow">
+            <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative h-48">
                 <Image src={post.image} alt={post.title} fill className="object-cover" />
               </div>
@@ -230,7 +230,7 @@ export default function MagazinePage() {
                   </div>
                 </div>
                 <Button asChild variant="outline" className="w-full">
-                  <Link href={`/magazine/post-${posts.indexOf(post) + 1}`}>읽어보기</Link>
+                  <Link href={`/magazine/post-${index + 1}`}>읽어보기</Link>
                 </Button>
               </CardContent>
             </Card>
