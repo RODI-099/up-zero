@@ -92,3 +92,22 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Add scrolling animation for messages */
+@keyframes scrollMessages {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.scrolling-messages {
+  animation: scrollMessages 15s linear infinite;
+  animation-delay: 2s;
+}
+
+.scrolling-messages:hover {
+  animation-play-state: paused;
+}
