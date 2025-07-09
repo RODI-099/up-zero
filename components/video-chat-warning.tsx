@@ -1,11 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { AlertTriangle, Video, Shield, X, Image as ImageIcon, Camera, Lock } from "lucide-react"
+import { AlertTriangle, Video, Shield, X } from "lucide-react"
 import Link from "next/link"
-import { cn } from "@/lib/utils"
 
 export function VideoChatWarning() {
   const [isVisible, setIsVisible] = useState(true)
@@ -39,29 +38,54 @@ export function VideoChatWarning() {
         
         <CardContent className="p-4 h-[280px] flex flex-col">
           <div className="flex-1 overflow-hidden">
-            <div className="h-full flex flex-col space-y-3 overflow-y-auto scrolling-messages">
-              {messages.map((message, index) => (
-                <div 
-                  key={index}
-                  className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500 animate-in slide-in-from-top-5 duration-500"
-                  style={{ animationDelay: `${index * 300}ms` }}
-                >
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="flex items-center gap-2">
-                      <Video className="h-4 w-4 text-red-400" />
-                      <span className="text-sm font-medium">{message.label}</span>
+            <div className="messages-container h-full overflow-hidden relative">
+              <div className="messages-scroll">
+                {/* First set of messages */}
+                {messages.map((message, index) => (
+                  <div 
+                    key={`first-${index}`}
+                    className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500 mb-3"
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="flex items-center gap-2">
+                        <Video className="h-4 w-4 text-red-400" />
+                        <span className="text-sm font-medium">{message.label}</span>
+                      </div>
+                      <span className="text-xs text-gray-400">{message.time}</span>
                     </div>
-                    <span className="text-xs text-gray-400">{message.time}</span>
+                    <p className="text-sm text-gray-300 mb-2">
+                      "{message.text}"
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <AlertTriangle className="h-3 w-3 text-yellow-500" />
+                      <span className="text-xs text-yellow-400">{message.status}</span>
+                    </div>
                   </div>
-                  <p className="text-sm text-gray-300 mb-2">
-                    "{message.text}"
-                  </p>
-                  <div className="flex items-center gap-2">
-                    <AlertTriangle className="h-3 w-3 text-yellow-500" />
-                    <span className="text-xs text-yellow-400">{message.status}</span>
+                ))}
+                
+                {/* Duplicate messages for seamless scrolling */}
+                {messages.map((message, index) => (
+                  <div 
+                    key={`second-${index}`}
+                    className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500 mb-3"
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="flex items-center gap-2">
+                        <Video className="h-4 w-4 text-red-400" />
+                        <span className="text-sm font-medium">{message.label}</span>
+                      </div>
+                      <span className="text-xs text-gray-400">{message.time}</span>
+                    </div>
+                    <p className="text-sm text-gray-300 mb-2">
+                      "{message.text}"
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <AlertTriangle className="h-3 w-3 text-yellow-500" />
+                      <span className="text-xs text-yellow-400">{message.status}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
           

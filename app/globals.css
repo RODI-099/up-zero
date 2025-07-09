@@ -93,21 +93,26 @@ body {
   }
 }
 
-/* Add scrolling animation for messages */
-@keyframes scrollMessages {
+/* Scrolling messages animation */
+@keyframes scrollUp {
   0% {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-50%);
+    transform: translateY(-50%); /* Move up by half the height to create seamless loop */
   }
 }
 
-.scrolling-messages {
-  animation: scrollMessages 15s linear infinite;
-  animation-delay: 2s;
+.messages-container {
+  position: relative;
+  overflow: hidden;
 }
 
-.scrolling-messages:hover {
+.messages-scroll {
+  animation: scrollUp 10s linear infinite;
+  animation-delay: 1s;
+}
+
+.messages-scroll:hover {
   animation-play-state: paused;
 }
