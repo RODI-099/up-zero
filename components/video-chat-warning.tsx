@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { AlertTriangle, Video, Shield, X, Image as ImageIcon, Camera, Lock } from "lucide-react"
@@ -8,43 +8,12 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 export function VideoChatWarning() {
-  const [currentMessage, setCurrentMessage] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
-  const messagesEndRef = useRef<HTMLDivElement>(null)
   
   const messages = [
-    { sender: "unknown", text: "안녕하세요, 오랜만에 연락드려요. 영상통화 한번 할까요?" },
-    { sender: "victim", text: "누구세요?" },
-    { sender: "unknown", text: "저번에 만났던 사람인데 기억 안 나세요? 얼굴 보면 기억날 거예요." },
-    { sender: "victim", text: "잘 기억이 안 나는데요..." },
-    { sender: "unknown", text: "영상통화 한번만 해요. 제가 보고싶어요." },
-    { sender: "unknown", text: "제 사진 보내드릴게요", type: "text" },
-    { 
-      sender: "unknown", 
-      type: "image", 
-      imageUrl: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
-      text: "프로필 사진"
-    },
-    { sender: "victim", text: "음... 영상통화는 좀 그렇네요" },
-    { sender: "unknown", text: "잠깐만 얼굴 보여주세요. 제가 먼저 보여드릴게요" },
-    { sender: "system", text: "⚠️ 주의: 낯선 사람과의 영상통화는 몸캠피싱의 위험이 있습니다!" },
+    { text: "안녕하세요, 영상통화 한번 할까요? 제가 얼굴 보여드릴게요.", label: "영상통화 위협", time: "오늘 14:23", status: "몸캠피싱 의심 패턴" },
+    { text: "영상 캡쳐했어요. 돈 보내지 않으면 모든 연락처에 공유할 거예요.", label: "협박 메시지", time: "오늘 15:45", status: "몸캠피싱 확인됨" },
   ]
-
-  useEffect(() => {
-    if (currentMessage < messages.length - 1) {
-      const timer = setTimeout(() => {
-        setCurrentMessage(prev => prev + 1)
-      }, 2000)
-      return () => clearTimeout(timer)
-    }
-  }, [currentMessage, messages.length])
-
-  useEffect(() => {
-    // Scroll to bottom when new messages appear
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [currentMessage]);
 
   if (!isVisible) return null
 
@@ -69,59 +38,46 @@ export function VideoChatWarning() {
         </div>
         
         <CardContent className="p-4 h-[280px] flex flex-col">
-          <div className="flex-1 space-y-3 overflow-y-auto flex flex-col">
-            {messages.slice(0, currentMessage + 1).map((message, index) => (
-              message.type === "image" ? (
-                <div
+          <div className="flex-1 overflow-hidden">
+            <div className="h-full flex flex-col space-y-3 overflow-y-auto scrolling-messages">
+              {messages.map((message, index) => (
+                <div 
                   key={index}
-                  className="bg-gray-700 self-start rounded-lg rounded-bl-none max-w-[80%] overflow-hidden"
+                  className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500 animate-in slide-in-from-top-5 duration-500"
+                  style={{ animationDelay: `${index * 300}ms` }}
                 >
-                  <div className="relative h-32 w-full">
-                    <img 
-                      src={message.imageUrl} 
-                      alt={message.text || "Shared image"} 
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="flex justify-between items-start mb-2">
+                    <div className="flex items-center gap-2">
+                      <Video className="h-4 w-4 text-red-400" />
+                      <span className="text-sm font-medium">{message.label}</span>
+                    </div>
+                    <span className="text-xs text-gray-400">{message.time}</span>
                   </div>
-                  <div className="p-2 text-xs text-gray-300 flex items-center">
-                    <Camera className="h-3 w-3 mr-1" />
-                    {message.text}
+                  <p className="text-sm text-gray-300 mb-2">
+                    "{message.text}"
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <AlertTriangle className="h-3 w-3 text-yellow-500" />
+                    <span className="text-xs text-yellow-400">{message.status}</span>
                   </div>
                 </div>
-              ) : (
-                <div
-                  key={index}
-                  className={cn(
-                    "max-w-[80%] p-3 rounded-lg text-sm animate-in fade-in slide-in-from-top-5 duration-300",
-                    message.sender === "unknown"
-                      ? "bg-gray-700 self-start rounded-bl-none"
-                      : message.sender === "victim"
-                        ? "bg-blue-600 self-end rounded-br-none ml-auto"
-                        : "bg-red-600 self-start w-full max-w-full"
-                  )}
-                >
-                  {message.text}
-                </div>
-              )
-            ))}
-            <div ref={messagesEndRef} />
+              ))}
+            </div>
           </div>
           
-          {currentMessage >= messages.length - 1 && (
-            <div className="mt-4 space-y-2">
-              <Button asChild className="w-full bg-red-600 hover:bg-red-700">
-                <Link href="/consultation/bodycam">
-                  <Shield className="mr-2 h-4 w-4" />
-                  몸캠피싱 상담 신청
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="w-full text-white border-gray-600 hover:bg-gray-800">
-                <Link href="/magazine/case-study-1">
-                  피해 사례 보기
-                </Link>
-              </Button>
-            </div>
-          )}
+          <div className="mt-4 space-y-2">
+            <Button asChild className="w-full bg-red-600 hover:bg-red-700">
+              <Link href="/consultation/bodycam">
+                <Shield className="mr-2 h-4 w-4" />
+                몸캠피싱 상담 신청
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="w-full text-white border-gray-600 hover:bg-gray-800">
+              <Link href="/magazine/case-study-1">
+                피해 사례 보기
+              </Link>
+            </Button>
+          </div>
         </CardContent>
       </Card>
     </div>
