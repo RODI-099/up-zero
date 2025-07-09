@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, Users, Award, TrendingUp } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star } from "lucide-react"
 import Link from "next/link"
 import { VideoChatWarning } from "@/components/video-chat-warning"
 import Image from "next/image"
@@ -9,19 +9,19 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative bg-gradient-to-br from-indigo-900 via-blue-800 to-purple-900 text-white py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg')] opacity-10 bg-cover bg-center"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                디지털 안전의 새로운 기준
-                <span className="block text-yellow-300">upoZero</span>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                디지털 안전을 위한
+                <span className="block text-yellow-300">새로운 기준</span>
               </h1>
-              <p className="text-xl mb-8 text-blue-100">
-                몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다. 첨단 기술과 전문 솔루션으로 디지털
-                위협을 제로화합니다.
+              <p className="text-xl mb-8 text-blue-100 max-w-lg">
+                몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다. 첨단 기술과 전문 솔루션으로 디지털 위협을 제로화합니다.
               </p>
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black">
                   <Link href="/consultation">무료 상담 신청</Link>
                 </Button>
@@ -40,80 +40,291 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        
+        {/* Wave Divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-auto">
+            <path fill="#f9fafb" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+        </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Features Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">디지털 위협으로부터 안전하게</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              upoZero의 혁신적인 보안 솔루션으로 다양한 디지털 위협으로부터 자유로워지세요
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+              <div className="h-2 bg-blue-600"></div>
+              <CardContent className="p-6">
+                <Shield className="h-12 w-12 text-blue-600 mb-4" />
+                <h3 className="text-xl font-bold mb-2">몸캠피싱 차단</h3>
+                <p className="text-gray-600 mb-4">실시간 모니터링과 AI 분석을 통한 몸캠피싱 예방 및 대응</p>
+                <Link href="/services" className="text-blue-600 font-medium flex items-center">
+                  자세히 보기 <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+              <div className="h-2 bg-purple-600"></div>
+              <CardContent className="p-6">
+                <Users className="h-12 w-12 text-purple-600 mb-4" />
+                <h3 className="text-xl font-bold mb-2">딥페이크 탐지</h3>
+                <p className="text-gray-600 mb-4">고도화된 딥러닝 기술로 딥페이크 콘텐츠 실시간 탐지</p>
+                <Link href="/services" className="text-purple-600 font-medium flex items-center">
+                  자세히 보기 <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+              <div className="h-2 bg-green-600"></div>
+              <CardContent className="p-6">
+                <Award className="h-12 w-12 text-green-600 mb-4" />
+                <h3 className="text-xl font-bold mb-2">디지털 포렌식</h3>
+                <p className="text-gray-600 mb-4">전문 포렌식 분석을 통한 디지털 증거 수집 및 분석</p>
+                <Link href="/services" className="text-green-600 font-medium flex items-center">
+                  자세히 보기 <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+              <div className="h-2 bg-yellow-600"></div>
+              <CardContent className="p-6">
+                <TrendingUp className="h-12 w-12 text-yellow-600 mb-4" />
+                <h3 className="text-xl font-bold mb-2">예방 교육</h3>
+                <p className="text-gray-600 mb-4">맞춤형 보안 교육과 인식 개선 프로그램 제공</p>
+                <Link href="/services" className="text-yellow-600 font-medium flex items-center">
+                  자세히 보기 <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section with Gradient Background */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">10,000+</div>
-              <div className="text-gray-600">보호된 사용자</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+              <div className="text-4xl font-bold text-white mb-2">10,000+</div>
+              <div className="text-blue-100">보호된 사용자</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">99.9%</div>
-              <div className="text-gray-600">탐지 정확도</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+              <div className="text-4xl font-bold text-white mb-2">99.9%</div>
+              <div className="text-blue-100">탐지 정확도</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
-              <div className="text-gray-600">모니터링</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+              <div className="text-4xl font-bold text-white mb-2">24/7</div>
+              <div className="text-blue-100">모니터링</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">5년</div>
-              <div className="text-gray-600">업계 경험</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+              <div className="text-4xl font-bold text-white mb-2">5년</div>
+              <div className="text-blue-100">업계 경험</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Overview */}
-      <section className="py-20">
+      {/* Case Studies Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">주요 서비스</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              최첨단 AI 기술과 전문 인력이 결합된 종합 디지털 보안 솔루션
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">실제 피해 사례</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              몸캠피싱과 딥페이크 피해 사례를 통해 위험성과 대응 방법을 알아보세요
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Shield className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <CardTitle>몸캠피싱 차단</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>실시간 모니터링과 AI 분석을 통한 몸캠피싱 예방 및 대응</CardDescription>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative h-48">
+                <Image
+                  src="https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg"
+                  alt="데이팅 앱 피해 사례"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold mb-2">데이팅 앱을 통한 몸캠피싱 피해 사례</h3>
+                <p className="text-gray-600 mb-4">외로움을 이용한 데이팅 앱 몸캠피싱의 실제 피해 사례와 대응 방법을 소개합니다.</p>
+                <Button asChild variant="outline">
+                  <Link href="/magazine/case-study-1">자세히 보기</Link>
+                </Button>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <CardTitle>딥페이크 탐지</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>고도화된 딥러닝 기술로 딥페이크 콘텐츠 실시간 탐지</CardDescription>
+            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative h-48">
+                <Image
+                  src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
+                  alt="군인 대상 몸캠피싱"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold mb-2">군인 대상 몸캠피싱 협박 사례</h3>
+                <p className="text-gray-600 mb-4">군인의 특수한 상황을 악용한 몸캠피싱 사례와 군부대 내 대응 방안을 다룹니다.</p>
+                <Button asChild variant="outline">
+                  <Link href="/magazine/case-study-2">자세히 보기</Link>
+                </Button>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Award className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <CardTitle>디지털 포렌식</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>전문 포렌식 분석을 통한 디지털 증거 수집 및 분석</CardDescription>
+            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="relative h-48">
+                <Image
+                  src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg"
+                  alt="딥페이크 기술 동향"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold mb-2">2024년 딥페이크 기술 동향과 대응 전략</h3>
+                <p className="text-gray-600 mb-4">최신 딥페이크 기술의 발전 현황과 이에 대응하는 보안 기술의 발전 방향을 분석합니다.</p>
+                <Button asChild variant="outline">
+                  <Link href="/magazine/featured-post">자세히 보기</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Download App Section */}
+      <section className="py-20 bg-gray-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">upoZero 앱으로 언제 어디서나 안전하게</h2>
+              <p className="text-xl mb-8 text-gray-300">
+                모바일 앱을 통해 실시간 보안 알림을 받고, 언제 어디서나 몸캠피싱과 딥페이크 위협으로부터 보호받으세요.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
+                  <Link href="#">
+                    <Download className="mr-2 h-5 w-5" />
+                    앱 다운로드
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+                  <Link href="/services/demo">데모 체험하기</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-1">
+                <div className="bg-gray-900 rounded-xl p-6">
+                  <div className="relative h-[500px] w-full rounded-lg overflow-hidden">
+                    <Image
+                      src="https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg"
+                      alt="upoZero 앱 스크린샷"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Shield className="h-5 w-5 text-blue-400" />
+                        <span className="text-sm font-medium text-blue-400">실시간 보안 알림</span>
+                      </div>
+                      <h3 className="text-xl font-bold mb-2">몸캠피싱 위협 감지됨</h3>
+                      <p className="text-sm text-gray-300">의심스러운 영상통화 요청이 감지되었습니다. 주의하세요!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">고객 후기</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              upoZero 서비스를 경험한 고객들의 생생한 후기를 확인하세요
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-6">
+                  "몸캠피싱 피해를 당했을 때 정말 절망적이었는데, upoZero의 신속한 대응 덕분에 추가 피해 없이 해결할 수 있었습니다. 24시간 상담 서비스가 큰 도움이 되었습니다."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                    <span className="font-semibold text-blue-600">김</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold">김○○</div>
+                    <div className="text-sm text-gray-500">일반 사용자</div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <TrendingUp className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <CardTitle>예방 교육</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>맞춤형 보안 교육과 인식 개선 프로그램 제공</CardDescription>
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-6">
+                  "딥페이크로 만들어진 가짜 영상이 퍼지고 있다는 제보를 받고 당황했는데, upoZero의 딥페이크 탐지 기술로 빠르게 확인하고 대응할 수 있었습니다. 정말 감사합니다."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+                    <span className="font-semibold text-purple-600">이</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold">이○○</div>
+                    <div className="text-sm text-gray-500">연예인 매니저</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-6">
+                  "우리 회사는 upoZero의 기업용 보안 솔루션을 도입한 후 임직원들의 디지털 보안 인식이 크게 향상되었습니다. 특히 예방 교육 프로그램이 매우 효과적이었습니다."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                    <span className="font-semibold text-green-600">박</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold">박○○</div>
+                    <div className="text-sm text-gray-500">기업 보안 담당자</div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -121,7 +332,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-800 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">디지털 위협으로부터 지금 바로 보호받으세요</h2>
           <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
