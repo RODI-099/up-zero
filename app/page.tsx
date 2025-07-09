@@ -206,12 +206,24 @@ export default function HomePage() {
       {/* Download App Section */}
       <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center relative">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">upoZero 앱으로 언제 어디서나 안전하게</h2>
               <p className="text-xl mb-8 text-gray-300">
                 모바일 앱을 통해 실시간 보안 알림을 받고, 언제 어디서나 몸캠피싱과 딥페이크 위협으로부터 보호받으세요.
               </p>
+              
+              <div className="bg-gray-800 rounded-lg p-4 mb-6 border-l-4 border-red-500">
+                <div className="flex items-center gap-2 mb-2">
+                  <AlertTriangle className="h-5 w-5 text-red-500" />
+                  <h3 className="font-semibold text-red-400">몸캠피싱 위협 감지됨</h3>
+                </div>
+                <p className="text-sm text-gray-300 mb-3">
+                  "낯선 사람의 영상통화 요청이 감지되었습니다. 이 패턴은 몸캠피싱 수법과 일치합니다."
+                </p>
+                <div className="text-xs text-gray-400">2분 전 • 즉시 차단됨</div>
+              </div>
+              
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
                   <Link href="#">
@@ -224,26 +236,87 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-1">
-                <div className="bg-gray-900 rounded-xl p-6">
-                  <div className="relative h-[500px] w-full rounded-lg overflow-hidden">
-                    <Image
-                      src="https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg"
-                      alt="upoZero 앱 스크린샷"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Shield className="h-5 w-5 text-blue-400" />
-                        <span className="text-sm font-medium text-blue-400">실시간 보안 알림</span>
-                      </div>
-                      <h3 className="text-xl font-bold mb-2">몸캠피싱 위협 감지됨</h3>
-                      <p className="text-sm text-gray-300">의심스러운 영상통화 요청이 감지되었습니다. 주의하세요!</p>
+            <div className="relative lg:ml-6">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-1 shadow-2xl">
+                <div className="bg-gray-900 rounded-xl p-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <Shield className="h-5 w-5 text-blue-400" />
+                      <span className="text-sm font-medium">upoZero 보안</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-xs text-green-400">활성화됨</span>
                     </div>
                   </div>
+                  
+                  <div className="space-y-4">
+                    {/* Phishing Message 1 */}
+                    <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500">
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="flex items-center gap-2">
+                          <Video className="h-4 w-4 text-red-400" />
+                          <span className="text-sm font-medium">영상통화 위협</span>
+                        </div>
+                        <span className="text-xs text-gray-400">오늘 14:23</span>
+                      </div>
+                      <p className="text-sm text-gray-300 mb-2">
+                        "안녕하세요, 영상통화 한번 할까요? 제가 얼굴 보여드릴게요."
+                      </p>
+                      <div className="flex items-center gap-2">
+                        <AlertTriangle className="h-3 w-3 text-yellow-500" />
+                        <span className="text-xs text-yellow-400">몸캠피싱 의심 패턴</span>
+                      </div>
+                    </div>
+                    
+                    {/* Phishing Message 2 */}
+                    <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500">
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="flex items-center gap-2">
+                          <Video className="h-4 w-4 text-red-400" />
+                          <span className="text-sm font-medium">협박 메시지</span>
+                        </div>
+                        <span className="text-xs text-gray-400">오늘 15:45</span>
+                      </div>
+                      <p className="text-sm text-gray-300 mb-2">
+                        "영상 캡쳐했어요. 돈 보내지 않으면 모든 연락처에 공유할 거예요."
+                      </p>
+                      <div className="flex items-center gap-2">
+                        <AlertTriangle className="h-3 w-3 text-red-500" />
+                        <span className="text-xs text-red-400">몸캠피싱 확인됨</span>
+                      </div>
+                    </div>
+                    
+                    {/* App Response */}
+                    <div className="bg-blue-900/30 rounded-lg p-3 border-l-2 border-blue-500">
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="flex items-center gap-2">
+                          <Shield className="h-4 w-4 text-blue-400" />
+                          <span className="text-sm font-medium">upoZero 대응</span>
+                        </div>
+                        <span className="text-xs text-gray-400">방금 전</span>
+                      </div>
+                      <p className="text-sm text-gray-300 mb-2">
+                        "몸캠피싱 위협이 감지되어 자동으로 차단되었습니다. 증거가 안전하게 저장되었습니다."
+                      </p>
+                      <div className="flex items-center gap-2">
+                        <Button size="sm" variant="outline" className="h-7 text-xs border-blue-500 text-blue-400">
+                          상담사 연결
+                        </Button>
+                        <Button size="sm" variant="outline" className="h-7 text-xs border-blue-500 text-blue-400">
+                          신고하기
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating Alert */}
+              <div className="absolute -top-6 -right-6 bg-red-600 text-white rounded-full px-4 py-2 shadow-lg animate-pulse">
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4" />
+                  <span className="text-sm font-bold">실시간 보호 중</span>
                 </div>
               </div>
             </div>
