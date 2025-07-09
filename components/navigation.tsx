@@ -121,14 +121,40 @@ export function Navigation() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link
-                    href="/pr/news"
-                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                  >
-                    홍보센터
-                  </Link>
-                </NavigationMenuLink>
+                <NavigationMenuTrigger>홍보센터</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[400px] gap-3 p-4">
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="/pr/news"
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">뉴스</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">최신 뉴스와 보도자료</p>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="/pr/awards"
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">수상&협력</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">수상 내역 및 파트너십</p>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="/pr/brochure"
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">브로슈어</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          회사 소개 자료 다운로드
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
@@ -290,13 +316,13 @@ export function Navigation() {
                 <div className="space-y-2">
                   <div className="text-lg font-semibold">홍보센터</div>
                   <div className="ml-4 space-y-2">
-                    <Link href="/pr/news" className="block text-sm text-gray-400" onClick={() => setIsOpen(false)}>
+                    <Link href="/pr/news" className="block text-sm" onClick={() => setIsOpen(false)}>
                       뉴스
                     </Link>
-                    <Link href="/pr/awards" className="block text-sm text-gray-400" onClick={() => setIsOpen(false)}>
+                    <Link href="/pr/awards" className="block text-sm" onClick={() => setIsOpen(false)}>
                       수상&협력
                     </Link>
-                    <Link href="/pr/brochure" className="block text-sm text-gray-400" onClick={() => setIsOpen(false)}>
+                    <Link href="/pr/brochure" className="block text-sm" onClick={() => setIsOpen(false)}>
                       브로슈어
                     </Link>
                   </div>
