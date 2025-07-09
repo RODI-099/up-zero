@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTriangle, Video } from "lucide-react"
+import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTriangle, Video, Lock } from "lucide-react"
 import Link from "next/link"
 import { VideoChatWarning } from "@/components/video-chat-warning"
 import Image from "next/image"
