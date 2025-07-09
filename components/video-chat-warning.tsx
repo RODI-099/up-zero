@@ -1,15 +1,16 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { AlertTriangle, Video, Shield, X } from "lucide-react"
+import { AlertTriangle, Video, Shield, X, Image as ImageIcon, Camera, Lock } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 export function VideoChatWarning() {
   const [currentMessage, setCurrentMessage] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
   
   const messages = [
     { sender: "unknown", text: "안녕하세요, 오랜만에 연락드려요. 영상통화 한번 할까요?" },
@@ -17,6 +18,15 @@ export function VideoChatWarning() {
     { sender: "unknown", text: "저번에 만났던 사람인데 기억 안 나세요? 얼굴 보면 기억날 거예요." },
     { sender: "victim", text: "잘 기억이 안 나는데요..." },
     { sender: "unknown", text: "영상통화 한번만 해요. 제가 보고싶어요." },
+    { sender: "unknown", text: "제 사진 보내드릴게요", type: "text" },
+    { 
+      sender: "unknown", 
+      type: "image", 
+      imageUrl: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
+      text: "프로필 사진"
+    },
+    { sender: "victim", text: "음... 영상통화는 좀 그렇네요" },
+    { sender: "unknown", text: "잠깐만 얼굴 보여주세요. 제가 먼저 보여드릴게요" },
     { sender: "system", text: "⚠️ 주의: 낯선 사람과의 영상통화는 몸캠피싱의 위험이 있습니다!" },
   ]
 
@@ -28,6 +38,13 @@ export function VideoChatWarning() {
       return () => clearTimeout(timer)
     }
   }, [currentMessage, messages.length])
+
+  useEffect(() => {
+    // Scroll to bottom when new messages appear
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [currentMessage]);
 
   if (!isVisible) return null
 
@@ -52,22 +69,42 @@ export function VideoChatWarning() {
         </div>
         
         <CardContent className="p-4 h-[280px] flex flex-col">
-          <div className="flex-1 space-y-3 overflow-y-auto">
+          <div className="flex-1 space-y-3 overflow-y-auto flex flex-col">
             {messages.slice(0, currentMessage + 1).map((message, index) => (
-              <div
-                key={index}
-                className={cn(
-                  "max-w-[80%] p-3 rounded-lg text-sm",
-                  message.sender === "unknown"
-                    ? "bg-gray-700 self-start rounded-bl-none"
-                    : message.sender === "victim"
-                      ? "bg-blue-600 self-end rounded-br-none ml-auto"
-                      : "bg-red-600 self-start w-full max-w-full"
-                )}
-              >
-                {message.text}
-              </div>
+              message.type === "image" ? (
+                <div
+                  key={index}
+                  className="bg-gray-700 self-start rounded-lg rounded-bl-none max-w-[80%] overflow-hidden"
+                >
+                  <div className="relative h-32 w-full">
+                    <img 
+                      src={message.imageUrl} 
+                      alt={message.text || "Shared image"} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-2 text-xs text-gray-300 flex items-center">
+                    <Camera className="h-3 w-3 mr-1" />
+                    {message.text}
+                  </div>
+                </div>
+              ) : (
+                <div
+                  key={index}
+                  className={cn(
+                    "max-w-[80%] p-3 rounded-lg text-sm animate-in fade-in slide-in-from-top-5 duration-300",
+                    message.sender === "unknown"
+                      ? "bg-gray-700 self-start rounded-bl-none"
+                      : message.sender === "victim"
+                        ? "bg-blue-600 self-end rounded-br-none ml-auto"
+                        : "bg-red-600 self-start w-full max-w-full"
+                  )}
+                >
+                  {message.text}
+                </div>
+              )
             ))}
+            <div ref={messagesEndRef} />
           </div>
           
           {currentMessage >= messages.length - 1 && (

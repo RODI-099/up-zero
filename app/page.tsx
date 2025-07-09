@@ -207,13 +207,13 @@ export default function HomePage() {
       <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center relative">
-            <div>
+            <div className="z-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">upoZero 앱으로 언제 어디서나 안전하게</h2>
               <p className="text-xl mb-8 text-gray-300">
                 모바일 앱을 통해 실시간 보안 알림을 받고, 언제 어디서나 몸캠피싱과 딥페이크 위협으로부터 보호받으세요.
               </p>
               
-              <div className="bg-gray-800 rounded-lg p-4 mb-6 border-l-4 border-red-500">
+              <div className="bg-gray-800 rounded-lg p-4 mb-6 border-l-4 border-red-500 animate-in slide-in-from-top-5 duration-500">
                 <div className="flex items-center gap-2 mb-2">
                   <AlertTriangle className="h-5 w-5 text-red-500" />
                   <h3 className="font-semibold text-red-400">몸캠피싱 위협 감지됨</h3>
@@ -236,7 +236,7 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-            <div className="relative lg:ml-6">
+            <div className="relative lg:ml-6 z-0">
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-1 shadow-2xl">
                 <div className="bg-gray-900 rounded-xl p-4">
                   <div className="flex items-center justify-between mb-4">
@@ -252,7 +252,7 @@ export default function HomePage() {
                   
                   <div className="space-y-4">
                     {/* Phishing Message 1 */}
-                    <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500">
+                    <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500 animate-in slide-in-from-top-5 duration-300">
                       <div className="flex justify-between items-start mb-2">
                         <div className="flex items-center gap-2">
                           <Video className="h-4 w-4 text-red-400" />
@@ -270,7 +270,7 @@ export default function HomePage() {
                     </div>
                     
                     {/* Phishing Message 2 */}
-                    <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500">
+                    <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500 animate-in slide-in-from-top-5 duration-500 delay-300">
                       <div className="flex justify-between items-start mb-2">
                         <div className="flex items-center gap-2">
                           <Video className="h-4 w-4 text-red-400" />
@@ -286,9 +286,35 @@ export default function HomePage() {
                         <span className="text-xs text-red-400">몸캠피싱 확인됨</span>
                       </div>
                     </div>
+
+                    {/* Phishing Image Message */}
+                    <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500 animate-in slide-in-from-top-5 duration-500 delay-500">
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="flex items-center gap-2">
+                          <Video className="h-4 w-4 text-red-400" />
+                          <span className="text-sm font-medium">이미지 공유</span>
+                        </div>
+                        <span className="text-xs text-gray-400">오늘 15:30</span>
+                      </div>
+                      <div className="relative h-24 w-full mb-2 rounded-md overflow-hidden">
+                        <Image
+                          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
+                          alt="Phishing profile"
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                          <Lock className="h-8 w-8 text-white/70" />
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <AlertTriangle className="h-3 w-3 text-yellow-500" />
+                        <span className="text-xs text-yellow-400">의심스러운 이미지 차단됨</span>
+                      </div>
+                    </div>
                     
                     {/* App Response */}
-                    <div className="bg-blue-900/30 rounded-lg p-3 border-l-2 border-blue-500">
+                    <div className="bg-blue-900/30 rounded-lg p-3 border-l-2 border-blue-500 animate-in slide-in-from-top-5 duration-500 delay-700">
                       <div className="flex justify-between items-start mb-2">
                         <div className="flex items-center gap-2">
                           <Shield className="h-4 w-4 text-blue-400" />
@@ -313,7 +339,7 @@ export default function HomePage() {
               </div>
               
               {/* Floating Alert */}
-              <div className="absolute -top-6 -right-6 bg-red-600 text-white rounded-full px-4 py-2 shadow-lg animate-pulse">
+              <div className="absolute -top-6 -right-6 bg-red-600 text-white rounded-full px-4 py-2 shadow-lg animate-pulse z-20">
                 <div className="flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4" />
                   <span className="text-sm font-bold">실시간 보호 중</span>
