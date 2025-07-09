@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, Users, Award, TrendingUp } from "lucide-react"
 import Link from "next/link"
+import { VideoChatWarning } from "@/components/video-chat-warning"
 import Image from "next/image"
 
 export default function HomePage() {
@@ -35,14 +36,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative">
-              <Image
-                src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg"
-                alt="Digital Security Technology"
-                width={500}
-                height={400}
-                className="rounded-lg shadow-2xl"
-                priority
-              />
+              <VideoChatWarning />
             </div>
           </div>
         </div>

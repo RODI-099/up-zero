@@ -11,9 +11,9 @@ interface Message {
 }
 
 const messages: Message[] = [
-  { sender: "fraud", text: "안녕하세요, 오랜만에 연락드리네요." },
+  { sender: "fraud", text: "안녕하세요, 오랜만에 연락드려요. 영상통화 한번 할까요?" },
   { sender: "victim", text: "누구세요?" },
-  { sender: "fraud", text: "저번에 만났던 ○○이에요. 혹시 저 기억 안 나세요?" },
+  { sender: "fraud", text: "저번에 만났던 사람인데 기억 안 나세요? 얼굴 보면 기억날 거예요." },
   { sender: "victim", text: "아... 네. 무슨 일로 연락하셨어요?" },
   { sender: "fraud", text: "다름이 아니라, 그때 저희 영상통화했던 거 기억나세요? 제가 실수로 녹화를 눌러버렸네요..." },
   { sender: "victim", text: "네? 녹화요? 무슨 소리예요?" },
@@ -23,7 +23,7 @@ const messages: Message[] = [
   { sender: "victim", text: "무슨 부탁이요?" },
   { sender: "fraud", text: "지금 당장 500만원만 보내주세요. 그럼 영상은 깨끗하게 지워드릴게요." },
   { sender: "victim", text: "말도 안 돼! 신고할 거예요!" },
-  { sender: "fraud", text: "신고하면 영상은 바로 유포됩니다. 잘 생각해보세요. 연락처 목록 다 가지고 있어요." },
+  { sender: "fraud", text: "신고하면 영상은 바로 유포됩니다. 잘 생각해보세요. 연락처 목록 다 가지고 있어요." }
 ]
 
 export function FraudChatDemo() {
