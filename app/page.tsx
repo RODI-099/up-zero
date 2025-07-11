@@ -3,8 +3,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTriangle, Video, Lock, MessageSquare } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-// Import the component normally, we'll handle SSR differently
-import { VideoChatWarning } from "@/components/video-chat-warning"
+import dynamic from "next/dynamic"
+
+// Dynamic import with SSR disabled to prevent hydration mismatch
+const VideoChatWarning = dynamic(() => import("@/components/video-chat-warning").then(mod => ({ default: mod.VideoChatWarning })), {
+  ssr: false
+})
 
 const stats = [
   { label: "보호된 사용자", value: "10,000+" },
@@ -123,8 +127,8 @@ export default function HomePage() {
         </div>
       </section>
       
-      {/* Only render VideoChatWarning on client side using client-side state */}
-      <div id="video-chat-warning-container"></div>
+      {/* VideoChatWarning will only render on client side */}
+      <VideoChatWarning />
 
       {/* Stats Section with Gradient Background */}
       <section className="py-20 bg-[#404EED] text-white">

@@ -1,39 +1,24 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { AlertTriangle, Video, Shield, X } from "lucide-react"
 import Link from "next/link"
 
 export function VideoChatWarning() {
-  // Add useEffect to ensure component only renders on client side
-  const [isMounted, setIsMounted] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
-  
-  useEffect(() => {
-    setIsMounted(true)
-    
-    // Mount the component to the container
-    const container = document.getElementById('video-chat-warning-container')
-    if (container) {
-      container.style.position = 'fixed'
-      container.style.bottom = '120px'
-      container.style.right = '20px'
-      container.style.zIndex = '50'
-    }
-  }, [])
   
   const messages = [
     { text: "안녕하세요, 영상통화 한번 할까요? 제가 얼굴 보여드릴게요.", label: "영상통화 위협", time: "오늘 14:23", status: "몸캠피싱 의심 패턴" },
     { text: "영상 캡쳐했어요. 돈 보내지 않으면 모든 연락처에 공유할 거예요.", label: "협박 메시지", time: "오늘 15:45", status: "몸캠피싱 확인됨" },
   ]
 
-  // Don't render anything during SSR or if component is hidden
-  if (!isMounted || !isVisible) return null
+  // Don't render if component is hidden
+  if (!isVisible) return null
 
   return (
-    <div className="relative w-full max-w-md mx-auto">
+    <div className="fixed bottom-[120px] right-5 z-50 w-full max-w-md">
       <Button 
         variant="ghost" 
         size="sm" 
