@@ -240,7 +240,13 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-            <div className="relative lg:ml-6 z-0">
+            <div className="relative lg:ml-6 z-0 flex flex-col">
+              <div data-poster-url="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-poster-00001.jpg" data-video-urls="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-transcode.mp4,https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-transcode.webm" data-autoplay="true" data-loop="true" data-wf-ignore="true" className="home--group-chat-img video _2025 w-background-video w-background-video-atom mb-6 rounded-xl overflow-hidden">
+                <video id="d47663e3-0c39-72fc-b3c9-c24ed4385454-video" autoPlay loop muted playsInline style={{backgroundImage: "url('https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-poster-00001.jpg')"}} data-wf-ignore="true" data-object-fit="cover" className="w-full h-full object-cover">
+                  <source src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-transcode.mp4" data-wf-ignore="true" />
+                  <source src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-transcode.webm" data-wf-ignore="true" />
+                </video>
+              </div>
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-1 shadow-2xl">
                 <div className="bg-gray-900 rounded-xl p-4">
                   <div className="flex items-center justify-between mb-4">
@@ -265,7 +271,7 @@ export default function HomePage() {
                         <span className="text-xs text-gray-400">오늘 14:23</span>
                       </div>
                       <p className="text-sm text-gray-300 mb-2">
-                        "안녕하세요, 영상통화 한번 할까요? 제가 얼굴 보여드릴게요."
+                        "오랜만이에요, 지금 시간 되시면 영상통화 한번 해요. 제가 먼저 얼굴 보여드릴게요."
                       </p>
                       <div className="flex items-center gap-2">
                         <AlertTriangle className="h-3 w-3 text-yellow-500" />
@@ -283,7 +289,7 @@ export default function HomePage() {
                         <span className="text-xs text-gray-400">오늘 15:45</span>
                       </div>
                       <p className="text-sm text-gray-300 mb-2">
-                        "영상 캡쳐했어요. 돈 보내지 않으면 모든 연락처에 공유할 거예요."
+                        "방금 영상 다 녹화했어요. 30분 안에 500만원 보내지 않으면 가족, 친구, 직장 동료들에게 다 공유할 거예요."
                       </p>
                       <div className="flex items-center gap-2">
                         <AlertTriangle className="h-3 w-3 text-red-500" />
@@ -327,7 +333,7 @@ export default function HomePage() {
                         <span className="text-xs text-gray-400">방금 전</span>
                       </div>
                       <p className="text-sm text-gray-300 mb-2">
-                        "몸캠피싱 위협이 감지되어 자동으로 차단되었습니다. 증거가 안전하게 저장되었습니다."
+                        "몸캠피싱 위협이 감지되어 자동으로 차단되었습니다. 협박 메시지와 발신자 정보가 증거로 저장되었으며, 신고 절차를 도와드리겠습니다."
                       </p>
                       <div className="flex items-center gap-2">
                         <Button size="sm" variant="outline" className="h-7 text-xs border-blue-500 text-blue-400">
