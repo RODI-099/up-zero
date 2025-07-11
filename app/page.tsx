@@ -4,6 +4,7 @@ import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTria
 import Link from "next/link"
 import Image from "next/image"
 import dynamic from "next/dynamic"
+import VideoChatWarning from "@/components/video-chat-warning"
 
 const VideoChatWarning = dynamic(() => import("@/components/video-chat-warning").then(mod => mod.VideoChatWarning), {
   ssr: false
