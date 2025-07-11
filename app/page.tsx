@@ -3,12 +3,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTriangle, Video, Lock, MessageSquare } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import dynamic from "next/dynamic"
-
-// Dynamic import with SSR disabled to prevent hydration mismatch
-const VideoChatWarning = dynamic(() => import("@/components/video-chat-warning").then(mod => ({ default: mod.VideoChatWarning })), {
-  ssr: false
-})
+import { VideoChatWarning } from "@/components/video-chat-warning"
 
 const stats = [
   { label: "보호된 사용자", value: "10,000+" },
