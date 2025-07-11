@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -20,6 +20,7 @@ export const dynamic = 'force-dynamic'
 export default function BodycamConsultationPage() {
   const { user, loading: authLoading } = useAuth()
   const { toast } = useToast()
+  const gtmInitialized = useRef(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -36,6 +37,21 @@ export default function BodycamConsultationPage() {
     emergency: false,
     followup: false,
   })
+
+  // Initialize Google Tag Manager
+  useEffect(() => {
+    if (!gtmInitialized.current) {
+      // Add Google Tag Manager
+      const script = document.createElement('script')
+      script.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-5WRSPHMS');`
+      document.head.appendChild(script)
+      gtmInitialized.current = true
+    }
+  }, [])
 
   // Update form data when user data becomes available
   useEffect(() => {
