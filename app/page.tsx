@@ -6,6 +6,7 @@ import Image from "next/image"
 import dynamic from "next/dynamic"
 
 const VideoChatWarning = dynamic(() => import("@/components/video-chat-warning").then(mod => ({ default: mod.VideoChatWarning })), {
+const VideoChatWarning = dynamic(() => import("@/components/video-chat-warning").then(mod => mod.VideoChatWarning), {
   ssr: false
 })
 
