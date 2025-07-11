@@ -146,6 +146,15 @@ export default function BodycamConsultationPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
+      {/* Google Tag Manager (noscript) */}
+      <noscript>
+        <iframe 
+          src="https://www.googletagmanager.com/ns.html?id=GTM-5WRSPHMS"
+          height="0" 
+          width="0" 
+          style={{ display: 'none', visibility: 'hidden' }}
+        />
+      </noscript>
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">몸캠피싱 상담</h1>

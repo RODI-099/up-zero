@@ -58,6 +58,15 @@ export function KakaoChannelButton() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
+      {/* Google Tag Manager (noscript) */}
+      <noscript>
+        <iframe 
+          src="https://www.googletagmanager.com/ns.html?id=GTM-5WRSPHMS"
+          height="0" 
+          width="0" 
+          style={{ display: 'none', visibility: 'hidden' }}
+        />
+      </noscript>
       <Button
         onClick={handleKakaoChannelClick}
         className="h-14 w-14 rounded-full bg-yellow-400 hover:bg-yellow-500 text-yellow-900 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
