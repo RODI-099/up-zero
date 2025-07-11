@@ -1,13 +1,35 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { AlertTriangle, Video, Shield, X } from "lucide-react"
 import Link from "next/link"
 
 export function VideoChatWarning() {
   const [isVisible, setIsVisible] = useState(true)
+  const isClient = typeof window !== 'undefined'
   
+  const messages = [
+    {
+      label: "알 수 없는 발신자",
+      time: "방금 전",
+      text: "안녕하세요, 화상통화 연결됐나요?",
+      status: "의심스러운 활동 감지됨"
+    },
+    {
+      label: "익명 사용자",
+      time: "1분 전",
+      text: "카메라 켜주세요. 얼굴이 안 보여요.",
+      status: "보안 위험 경고"
+    },
+    {
+      label: "미확인 연락처",
+      time: "2분 전",
+      text: "녹화 시작할게요. 괜찮죠?",
+      status: "피싱 시도 의심"
+    }
+  ]
 
   // Don't render if component is hidden or if we're on the server
   if (!isClient || !isVisible) return null
