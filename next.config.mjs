@@ -26,6 +26,12 @@ const nextConfig = {
         hostname: 'cdn.ampproject.org',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.prod.website-files.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
