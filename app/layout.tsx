@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import Script from 'next/script'
+import Script from "next/script"
 import "./globals.css"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
@@ -26,36 +26,25 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        {/* Google Analytics */}
+        {/* Google tag (gtag.js) */}
         <Script
-          id="gtm-script"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17285285574"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="gtag-init"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-5WRSPHMS');
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17285285574');
             `,
           }}
         />
       </head>
       <body className={inter.className}>
-        {/* Google Tag Manager (noscript) */}
-        <noscript dangerouslySetInnerHTML={{
-          __html: `
-            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WRSPHMS"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-          `
-        }} />
-        {/* Google Tag Manager (noscript) */}
-        <noscript dangerouslySetInnerHTML={{
-          __html: `
-            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WRSPHMS"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-          `
-        }} />
         <AuthProvider>
           <Navigation />
           <main>{children}</main>
