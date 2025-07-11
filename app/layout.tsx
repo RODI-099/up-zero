@@ -32,17 +32,17 @@ export default function RootLayout({
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              <!-- Google tag (gtag.js) -->
-              <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17285285574"></script>
-              <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
               
                 gtag('config', 'AW-17285285574');
-              </script>
             `,
           }}
+        />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17285285574"
+          strategy="afterInteractive"
         />
       </head>
       <body className={inter.className}>
