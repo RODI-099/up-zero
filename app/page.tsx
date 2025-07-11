@@ -9,6 +9,13 @@ const VideoChatWarning = dynamic(() => import("@/components/video-chat-warning")
   ssr: false
 })
 
+const stats = [
+  { label: "보호된 사용자", value: "10,000+" },
+  { label: "탐지 정확도", value: "99.9%" },
+  { label: "모니터링", value: "24/7" },
+  { label: "업계 경험", value: "5년" }
+]
+
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
