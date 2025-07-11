@@ -36,8 +36,15 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
-              <VideoChatWarning />
+            <div className="relative flex justify-center items-center">
+              <Image 
+                src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6841ca4c5468891aedebb224_homepage-hero-mobile-858x803.webp"
+                alt="Digital Security Hero Image"
+                width={500}
+                height={467}
+                className="rounded-lg shadow-xl z-10"
+                priority
+              />
             </div>
           </div>
         </div>
