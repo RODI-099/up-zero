@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTriangle, Video, Lock } from "lucide-react"
+import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTriangle, Video, Lock, MessageSquare } from "lucide-react"
 import Link from "next/link"
 import { VideoChatWarning } from "@/components/video-chat-warning"
 import Image from "next/image"
@@ -8,28 +8,28 @@ import Image from "next/image"
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-indigo-900 via-blue-800 to-purple-900 text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg')] opacity-10 bg-cover bg-center"></div>
+      {/* Discord-style Hero Section */}
+      <section className="relative bg-[#404EED] dark:bg-[#5865F2] text-white py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg')] opacity-5 bg-cover bg-center"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                디지털 안전을 위한
-                <span className="block text-yellow-300">새로운 기준</span>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight uppercase tracking-tight">
+                디지털 안전을
+                <span className="block">위한 새로운 기준</span>
               </h1>
-              <p className="text-xl mb-8 text-blue-100 max-w-lg">
+              <p className="text-xl mb-8 text-white/90 max-w-lg">
                 몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다. 첨단 기술과 전문 솔루션으로 디지털 위협을 제로화합니다.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black">
+                <Button asChild size="lg" className="bg-white hover:bg-gray-100 text-[#5865F2] font-semibold">
                   <Link href="/consultation">무료 상담 신청</Link>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white hover:text-blue-600"
+                  className="border-white text-white hover:bg-white/20"
                 >
                   <Link href="/services">서비스 둘러보기</Link>
                 </Button>
@@ -42,15 +42,11 @@ export default function HomePage() {
         </div>
         
         {/* Wave Divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-auto">
-            <path fill="#f9fafb" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-white/10"></div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">디지털 위협으로부터 안전하게</h2>
@@ -112,7 +108,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section with Gradient Background */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+      <section className="py-20 bg-[#404EED] text-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
@@ -204,11 +200,11 @@ export default function HomePage() {
       </section>
 
       {/* Download App Section */}
-      <section className="py-20 bg-gray-900 text-white">
+      <section className="py-20 bg-[#23272A] text-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center relative">
             <div className="z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">upoZero 앱으로 언제 어디서나 안전하게</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 uppercase tracking-tight">upoZero 앱으로 언제 어디서나 안전하게</h2>
               <p className="text-xl mb-8 text-gray-300">
                 모바일 앱을 통해 실시간 보안 알림을 받고, 언제 어디서나 몸캠피싱과 딥페이크 위협으로부터 보호받으세요.
               </p>
@@ -225,13 +221,13 @@ export default function HomePage() {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
+                <Button asChild size="lg" className="bg-white text-[#5865F2] hover:bg-gray-100 font-semibold">
                   <Link href="#">
                     <Download className="mr-2 h-5 w-5" />
                     앱 다운로드
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/20">
                   <Link href="/services/demo">데모 체험하기</Link>
                 </Button>
               </div>
@@ -351,7 +347,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">고객 후기</h2>
@@ -431,15 +427,68 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-800 text-white">
+      <section className="py-20 bg-[#5865F2] text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">디지털 위협으로부터 지금 바로 보호받으세요</h2>
-          <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 uppercase tracking-tight">디지털 위협으로부터 지금 바로 보호받으세요</h2>
+          <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
             전문가와의 무료 상담을 통해 맞춤형 보안 솔루션을 확인해보세요
           </p>
-          <Button asChild size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black">
+          <Button asChild size="lg" className="bg-white hover:bg-gray-100 text-[#5865F2] font-semibold">
             <Link href="/consultation">무료 상담 신청하기</Link>
           </Button>
+        </div>
+      </section>
+      
+      {/* Discord-style Community Section */}
+      <section className="py-20 bg-[#F6F6F6]">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 uppercase tracking-tight">안전한 커뮤니티에<br />함께하세요</h2>
+              <p className="text-xl mb-8 text-gray-600 max-w-lg">
+                upoZero 커뮤니티에 가입하여 최신 보안 정보를 공유하고, 전문가들과 소통하며 디지털 안전에 대해 함께 배워보세요.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="bg-[#5865F2] hover:bg-[#4752C4] text-white">
+                  <Link href="#">
+                    <MessageSquare className="mr-2 h-5 w-5" />
+                    커뮤니티 가입하기
+                  </Link>
+                </Button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="bg-white rounded-xl shadow-xl p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-[#5865F2] rounded-full flex items-center justify-center">
+                    <Shield className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold">upoZero 커뮤니티</h3>
+                    <p className="text-sm text-gray-500">5,000+ 회원</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="bg-gray-100 rounded-lg p-3">
+                    <p className="text-sm font-medium">📢 공지사항</p>
+                    <p className="text-xs text-gray-600">최신 보안 업데이트 및 중요 알림</p>
+                  </div>
+                  <div className="bg-gray-100 rounded-lg p-3">
+                    <p className="text-sm font-medium">💬 일반 채팅</p>
+                    <p className="text-xs text-gray-600">커뮤니티 회원들과 자유롭게 대화</p>
+                  </div>
+                  <div className="bg-gray-100 rounded-lg p-3">
+                    <p className="text-sm font-medium">🛡️ 보안 팁</p>
+                    <p className="text-xs text-gray-600">일상에서 실천할 수 있는 보안 팁 공유</p>
+                  </div>
+                  <div className="bg-gray-100 rounded-lg p-3">
+                    <p className="text-sm font-medium">🆘 도움 요청</p>
+                    <p className="text-xs text-gray-600">긴급 상황 시 빠른 도움 요청</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, LogIn, UserPlus } from "lucide-react"
+import { cn } from "@/lib/utils"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,10 +25,15 @@ export function Navigation() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold text-blue-600">upoZero</div>
+            <div className={cn(
+              "text-2xl font-bold",
+              "bg-clip-text text-transparent bg-gradient-to-r from-[#5865F2] to-[#404EED]"
+            )}>
+              upoZero
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -203,7 +209,9 @@ export function Navigation() {
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center gap-2">
             {user ? (
-              <UserMenu />
+              <div className="bg-[#5865F2]/10 rounded-full p-1">
+                <UserMenu />
+              </div>
             ) : (
               <>
                 <LoginDialog>
@@ -213,7 +221,7 @@ export function Navigation() {
                   </Button>
                 </LoginDialog>
                 <SignupDialog>
-                  <Button size="sm">
+                  <Button size="sm" className="bg-[#5865F2] hover:bg-[#4752C4]">
                     <UserPlus className="mr-2 h-4 w-4" />
                     회원가입
                   </Button>
