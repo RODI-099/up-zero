@@ -241,12 +241,6 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative lg:ml-6 z-0 flex flex-col">
-              <div data-poster-url="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-poster-00001.jpg" data-video-urls="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-transcode.mp4,https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-transcode.webm" data-autoplay="true" data-loop="true" data-wf-ignore="true" className="home--group-chat-img video _2025 w-background-video w-background-video-atom mb-6 rounded-xl overflow-hidden">
-                <video id="d47663e3-0c39-72fc-b3c9-c24ed4385454-video" autoPlay loop muted playsInline style={{backgroundImage: "url('https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-poster-00001.jpg')"}} data-wf-ignore="true" data-object-fit="cover" className="w-full h-full object-cover">
-                  <source src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-transcode.mp4" data-wf-ignore="true" />
-                  <source src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F6787b62a9742f59453ba8919_Discord_Websote_Refresh_Emojis2_EN-transcode.webm" data-wf-ignore="true" />
-                </video>
-              </div>
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-1 shadow-2xl">
                 <div className="bg-gray-900 rounded-xl p-4">
                   <div className="flex items-center justify-between mb-4">
