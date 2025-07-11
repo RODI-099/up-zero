@@ -2,8 +2,12 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTriangle, Video, Lock, MessageSquare } from "lucide-react"
 import Link from "next/link"
-import { VideoChatWarning } from "@/components/video-chat-warning"
 import Image from "next/image"
+import dynamic from "next/dynamic"
+
+const VideoChatWarning = dynamic(() => import("@/components/video-chat-warning").then(mod => ({ default: mod.VideoChatWarning })), {
+  ssr: false
+})
 
 export default function HomePage() {
   return (
