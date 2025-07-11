@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, MessageSquare } from "lucide-react"
+import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTriangle, Video, Lock, MessageSquare } from "lucide-react"
 import Link from "next/link"
+import { VideoChatWarning } from "@/components/video-chat-warning"
 import Image from "next/image"
 
 export default function HomePage() {
@@ -10,24 +11,20 @@ export default function HomePage() {
       {/* Discord-style Hero Section */}
       <section className="relative bg-[#404EED] dark:bg-[#5865F2] text-white py-20 overflow-hidden min-h-[600px] flex items-center">
         <div className="absolute inset-0 bg-gradient-to-b from-[#404EED] to-[#5865F2] opacity-100"></div>
-        <div className="absolute inset-0 bg-[url('/images/discord-bg-objects.png')] bg-cover bg-center opacity-30"></div>
+        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg')] opacity-5 bg-cover bg-center"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight uppercase tracking-tight font-display">
-                GROUP CHAT
-                <span className="block">THAT'S ALL</span>
-                <span className="block">FUN & GAMES</span>
+                디지털 안전을
+                <span className="block">위한 새로운 기준</span>
               </h1>
               <p className="text-xl mb-8 text-white/90 max-w-lg">
-                Discord is great for playing games and chilling with friends, or even building a worldwide community. Customize your own space to talk, play, and hang out.
+                몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다. 첨단 기술과 전문 솔루션으로 디지털 위협을 제로화합니다.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-white hover:bg-gray-100 text-[#5865F2] font-semibold rounded-full">
-                  <Link href="#">
-                    <Download className="mr-2 h-5 w-5" />
-                    Download for Windows
-                  </Link>
+                  <Link href="/consultation">무료 상담 신청</Link>
                 </Button>
                 <Button
                   asChild
@@ -35,41 +32,12 @@ export default function HomePage() {
                   size="lg"
                   className="border-white text-white hover:bg-white/20 rounded-full"
                 >
-                  <Link href="#">Open Discord in your browser</Link>
+                  <Link href="/services">서비스 둘러보기</Link>
                 </Button>
               </div>
             </div>
             <div className="relative">
-              <div className="discord-computer-mockup">
-                <div className="relative w-full h-[400px]">
-                  <Image 
-                    src="/images/discord-computer-mockup.png" 
-                    alt="Discord interface on computer and mobile" 
-                    fill
-                    className="object-contain"
-                  />
-                  <div className="absolute top-[25%] left-[25%] w-[50%] h-[30%] overflow-hidden">
-                    <div className="discord-messages-scroll">
-                      <div className="message">
-                        <div className="message-avatar"></div>
-                        <div className="message-content">
-                          <div className="message-author">CoolUser123</div>
-                          <div className="message-text">Hey everyone! Who's up for a game tonight?</div>
-                        </div>
-                      </div>
-                      <div className="message">
-                        <div className="message-avatar"></div>
-                        <div className="message-content">
-                          <div className="message-author">GameMaster</div>
-                  <div className="discord-phone-screen">
-                    <div className="discord-phone-header"></div>
-                    <div className="discord-phone-content"></div>
-                  </div>
-                </div>
-                <div className="discord-character discord-character-1"></div>
-                <div className="discord-character discord-character-2"></div>
-                <div className="discord-character discord-character-3"></div>
-              </div>
+              <VideoChatWarning />
             </div>
           </div>
         </div>
@@ -78,6 +46,22 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-white/10"></div>
       </section>
 
+      {/* Features Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">디지털 위협으로부터 안전하게</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              upoZero의 혁신적인 보안 솔루션으로 다양한 디지털 위협으로부터 자유로워지세요
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+              <div className="h-2 bg-blue-600"></div>
+              <CardContent className="p-6">
+                <Shield className="h-12 w-12 text-blue-600 mb-4" />
+                <h3 className="text-xl font-bold mb-2">몸캠피싱 차단</h3>
                 <p className="text-gray-600 mb-4">실시간 모니터링과 AI 분석을 통한 몸캠피싱 예방 및 대응</p>
                 <Link href="/services" className="text-blue-600 font-medium flex items-center">
                   자세히 보기 <ArrowRight className="ml-1 h-4 w-4" />
