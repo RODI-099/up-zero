@@ -40,7 +40,7 @@ export default function Post2Page() {
         {/* Featured Image */}
         <div className="mb-8">
           <Image
-            src="https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg"
+            src="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-7c5c-622f-9c03-b1534d6034fa/raw?se=2025-07-14T07%3A36%3A18Z&sp=r&sv=2024-08-04&sr=b&scid=d20524d8-b247-505d-992b-d95daedcaeee&skoid=0da8417a-a4c3-4a19-9b05-b82cee9d8868&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-13T22%3A12%3A26Z&ske=2025-07-14T22%3A12%3A26Z&sks=b&skv=2024-08-04&sig=pQAChj4aSWb3pMxERkrSoCwny5LNPRMBmYQCS9TmJJw%3D"
             alt="AI 사이버 보안"
             width={800}
             height={400}
