@@ -117,7 +117,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <head>
+      <body className={inter.className}>
         {/* Google Tag Manager */}
         <Script
           id="gtm-script"
@@ -147,8 +147,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className={inter.className}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe 
