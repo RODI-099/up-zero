@@ -522,7 +522,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTriangle, Video, Lock, MessageSquare } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import VideoChatWarningClient from "@/components/VideoChatWarningClient"
 
 const stats = [
   { label: "보호된 사용자", value: "10,000+" },
