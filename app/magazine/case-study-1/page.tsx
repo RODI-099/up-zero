@@ -60,7 +60,7 @@ export default function CaseStudy1Page() {
           </p>
           <div className="flex items-center gap-2 text-red-700">
             <Phone className="h-4 w-4" />
-            <span className="font-semibold">upoZero 긴급상담: 02-1234-5678 (24시간)</span>
+            <span className="font-semibold">upoZero 긴급상담: 1668 2293 (24시간)</span>
           </div>
         </div>
 
@@ -224,7 +224,7 @@ export default function CaseStudy1Page() {
           <div className="grid md:grid-cols-3 gap-4 text-center">
             <div>
               <h4 className="font-semibold text-red-700 mb-2">upoZero 긴급상담</h4>
-              <p className="text-red-600">02-1234-5678</p>
+              <p className="text-red-600">1668 2293</p>
               <p className="text-sm text-red-500">24시간 운영</p>
             </div>
             <div>
@@ -234,7 +234,7 @@ export default function CaseStudy1Page() {
             </div>
             <div>
               <h4 className="font-semibold text-red-700 mb-2">디지털성범죄피해자지원센터</h4>
-              <p className="text-red-600">02-735-8994</p>
+              <p className="text-red-600">1668 2293</p>
               <p className="text-sm text-red-500">전문 상담</p>
             </div>
           </div>

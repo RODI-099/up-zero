@@ -165,7 +165,7 @@ export default function BodycamConsultationPage() {
         <Alert className="mb-8 border-red-200 bg-red-50">
           <AlertTriangle className="h-4 w-4 text-red-600" />
           <AlertDescription className="text-red-800">
-            <strong>긴급상황 시:</strong> 즉시 전화 상담 02-1234-5678 (24시간 운영) 또는 경찰서 신고 112
+            <strong>긴급상황 시:</strong> 즉시 전화 상담 1668 2293 (24시간 운영) 또는 경찰서 신고 112
           </AlertDescription>
         </Alert>
 
@@ -255,7 +255,7 @@ export default function BodycamConsultationPage() {
                   </div>
                   <div>
                     <p className="font-semibold">디지털성범죄피해자지원센터</p>
-                    <p>02-735-8994</p>
+                    <p>1668 2293</p>
                   </div>
                 </div>
               </CardContent>

@@ -60,7 +60,7 @@ export default function CaseStudy3Page() {
           </p>
           <div className="flex items-center gap-2 text-red-700">
             <Phone className="h-4 w-4" />
-            <span className="font-semibold">SNS 보안 상담: 02-1234-5678 (24시간)</span>
+            <span className="font-semibold">SNS 보안 상담: 1668 2293 (24시간)</span>
           </div>
         </div>
 
