@@ -185,7 +185,8 @@ export function ConsultationClient() {
                   </Button>
                   <Button variant="outline" onClick={() => router.push("/")}>
                     홈으로 이동
-              <p className="text-2xl font-bold text-blue-600 mb-2">1668 2293</p>
+                  </Button>
+                  <p className="text-2xl font-bold text-blue-600 mb-2">1668 2293</p>
                 </div>
               )}
             </CardContent>
