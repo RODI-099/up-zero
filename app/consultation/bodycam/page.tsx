@@ -247,7 +247,7 @@ export default function BodycamConsultationPage() {
                 <div className="space-y-3 text-sm">
                   <div>
                     <p className="font-semibold text-red-600">upoZero 긴급상담</p>
-                    <p>02-1234-5678 (24시간)</p>
+                    <p>1668 2293 (24시간)</p>
                   </div>
                   <div>
                     <p className="font-semibold">경찰청 사이버수사대</p>
