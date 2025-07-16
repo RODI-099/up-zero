@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Shield, Users, Award, TrendingUp, ArrowRight, CheckCircle, AlertTriangle, Phone } from "lucide-react"
+import { Shield, Users, Award, TrendingUp, ArrowRight, CheckCircle, AlertTriangle, Phone, Download } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { FraudChatDemo } from "@/components/fraud-chat-demo"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function HomePage() {
   return (
@@ -96,6 +98,52 @@ export default function HomePage() {
                 </Link>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile App Section */}
+      <section className="py-20 bg-gray-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight uppercase tracking-tight">
+                UPOZERO 앱으로 언제 어디서나 안전하게
+              </h2>
+              <p className="text-xl mb-8 text-white/90">
+                모바일 앱을 통해 실시간 보안 알림을 받고, 언제 어디서나 몸캠피싱과 딥페이크 위협으로부터 보호받으세요.
+              </p>
+              
+              <Alert className="bg-gray-800 border-red-500 mb-8">
+                <AlertTriangle className="h-5 w-5 text-red-500" />
+                <AlertDescription className="text-white">
+                  <div className="font-semibold mb-1">몸캠피싱 위험 감지됨</div>
+                  <div className="text-sm text-gray-300">"낯선 사람의 영상통화 요청이 감지되었습니다. 이 패턴은 몸캠피싱 수법과 일치합니다."</div>
+                  <div className="text-xs text-gray-400 mt-1">2분 전 • 즉시 차단됨</div>
+                </AlertDescription>
+              </Alert>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="bg-white hover:bg-gray-100 text-gray-900 font-semibold rounded-full">
+                  <Link href="#">
+                    <Download className="mr-2 h-4 w-4" />
+                    앱 다운로드
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="border-white text-white hover:bg-white/20 rounded-full"
+                >
+                  <Link href="/services">자세히 알아보기</Link>
+                </Button>
+              </div>
+            </div>
+            
+            <div className="flex justify-center">
+              <FraudChatDemo />
+            </div>
           </div>
         </div>
       </section>
