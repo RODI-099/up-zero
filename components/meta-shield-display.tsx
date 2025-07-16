@@ -14,10 +14,10 @@ export function MetaShieldDisplay() {
 
   return (
     <div className="relative max-w-md mx-auto">
-      <div className="bg-blue-600 rounded-lg p-4 shadow-xl transform perspective-1000 rotate-y-[-5deg] rotate-x-[5deg]">
+      <div className="bg-blue-600 rounded-lg p-4 shadow-xl">
         <div className="bg-white rounded-lg overflow-hidden border-4 border-blue-700">
           <Image
-            src="/images/meta-shield-hero.png"
+            src="/images/meta-shield.png"
             alt="Meta Shield Security System"
             width={600}
             height={500}
