@@ -145,18 +145,18 @@ export default function HomePage() {
             <div className="flex justify-center">
               <FraudChatDemo />
             </div>
-            
-            <div className="mt-8 flex justify-center">
-              <div className="max-w-md">
-                <Image 
-                  src="/images/meta-shield.png"
-                  alt="Meta Shield Security System"
-                  width={600}
-                  height={500}
-                  className="w-full h-auto rounded-lg shadow-lg"
-                  priority
-                />
-              </div>
+          </div>
+          
+          <div className="lg:col-span-2 mt-8 flex justify-center">
+            <div className="max-w-md">
+              <Image 
+                src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg"
+                alt="Meta Shield Security System"
+                width={600}
+                height={500}
+                className="w-full h-auto rounded-lg shadow-lg"
+                priority
+              />
             </div>
           </div>
         </div>
