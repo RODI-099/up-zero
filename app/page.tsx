@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Users, Award, TrendingUp, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { MetaShieldDisplay } from "@/components/meta-shield-display"
 
 export default function HomePage() {
   return (
@@ -36,7 +35,14 @@ export default function HomePage() {
               </div>
             </div>
             <div className="hidden lg:flex justify-center items-center">
-              <MetaShieldDisplay />
+              <Image
+                src="/images/meta-shield-hero.png"
+                alt="Meta Shield Security System"
+                width={600}
+                height={600}
+                className="w-full h-auto max-w-md"
+                priority
+              />
             </div>
           </div>
         </div>
