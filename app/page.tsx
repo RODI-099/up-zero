@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Users, Award, TrendingUp, ArrowRight, CheckCircle, AlertTriangle, Phone, Download } from "lucide-react"
+import { MetaShieldDisplay } from "@/components/meta-shield-display"
 import Link from "next/link"
 import Image from "next/image"
 import { FraudChatDemo } from "@/components/fraud-chat-demo"
@@ -143,6 +144,19 @@ export default function HomePage() {
             
             <div className="flex justify-center">
               <FraudChatDemo />
+            </div>
+            
+            <div className="mt-8 flex justify-center">
+              <div className="max-w-md">
+                <Image 
+                  src="/images/meta-shield.png"
+                  alt="Meta Shield Security System"
+                  width={600}
+                  height={500}
+                  className="w-full h-auto rounded-lg shadow-lg"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
