@@ -98,9 +98,11 @@ import "./globals.css"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { AuthProvider } from "@/components/auth/auth-context"
+import { ChatProvider } from "@/components/chat/chat-context"
 import { Toaster } from "@/components/ui/toaster"
 import { KakaoChannelButton } from "@/components/kakao-channel-button"
 import { PhoneCallButton } from "@/components/phone-call-button"
+import { ChatButton } from "@/components/chat/chat-button"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -157,12 +159,15 @@ export default function RootLayout({
           />
         </noscript>
         <AuthProvider>
-          <Navigation />
-          <main>{children}</main>
-          <Footer />
-          <KakaoChannelButton />
-          <PhoneCallButton />
-          <Toaster />
+          <ChatProvider>
+            <Navigation />
+            <main>{children}</main>
+            <Footer />
+            <KakaoChannelButton />
+            <PhoneCallButton />
+            <ChatButton />
+            <Toaster />
+          </ChatProvider>
         </AuthProvider>
       </body>
     </html>

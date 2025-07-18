@@ -494,11 +494,11 @@ export default function HomePage() {
             </div>
             <div className="relative flex justify-center items-center">
               <Image 
-                src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6841ca4c5468891aedebb224_homepage-hero-mobile-858x803.webp"
+                src="/images/image copy copy.png"
                 alt="Digital Security Hero Image"
                 width={500}
                 height={467}
-                className="rounded-lg shadow-xl z-10"
+                className="rounded-lg shadow-xl z-10 object-cover"
                 priority
               />
             </div>
@@ -713,90 +713,340 @@ export default function HomePage() {
                     </div>
                   </div>
                   
-                  <div className="space-y-4">
-                    {/* Phishing Message 1 */}
-                    <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500 animate-in slide-in-from-top-5 duration-300">
-                      <div className="flex justify-between items-start mb-2">
-                        <div className="flex items-center gap-2">
-                          <Video className="h-4 w-4 text-red-400" />
-                          <span className="text-sm font-medium">영상통화 위협</span>
+                  {/* Scrolling Messages Container */}
+                  <div className="h-80 overflow-hidden relative group">
+                    <div className="absolute inset-0 animate-scroll-messages group-hover:animation-paused">
+                      <div className="space-y-4">
+                        {/* Phishing Message 1 */}
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-red-400" />
+                              <span className="text-sm font-medium">영상통화 위협</span>
+                            </div>
+                            <span className="text-xs text-gray-400">오늘 14:23</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "오랜만이에요, 지금 시간 되시면 영상통화 한번 해요. 제가 먼저 얼굴 보여드릴게요."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-yellow-500" />
+                            <span className="text-xs text-yellow-400">몸캠피싱 의심 패턴</span>
+                          </div>
                         </div>
-                        <span className="text-xs text-gray-400">오늘 14:23</span>
-                      </div>
-                      <p className="text-sm text-gray-300 mb-2">
-                        "오랜만이에요, 지금 시간 되시면 영상통화 한번 해요. 제가 먼저 얼굴 보여드릴게요."
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <AlertTriangle className="h-3 w-3 text-yellow-500" />
-                        <span className="text-xs text-yellow-400">몸캠피싱 의심 패턴</span>
-                      </div>
-                    </div>
-                    
-                    {/* Phishing Message 2 */}
-                    <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500 animate-in slide-in-from-top-5 duration-500 delay-300">
-                      <div className="flex justify-between items-start mb-2">
-                        <div className="flex items-center gap-2">
-                          <Video className="h-4 w-4 text-red-400" />
-                          <span className="text-sm font-medium">협박 메시지</span>
+                        
+                        {/* Phishing Message 2 */}
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-red-400" />
+                              <span className="text-sm font-medium">협박 메시지</span>
+                            </div>
+                            <span className="text-xs text-gray-400">오늘 15:45</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "방금 영상 다 녹화했어요. 30분 안에 500만원 보내지 않으면 가족, 친구, 직장 동료들에게 다 공유할 거예요."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-red-500" />
+                            <span className="text-xs text-red-400">몸캠피싱 확인됨</span>
+                          </div>
                         </div>
-                        <span className="text-xs text-gray-400">오늘 15:45</span>
-                      </div>
-                      <p className="text-sm text-gray-300 mb-2">
-                        "방금 영상 다 녹화했어요. 30분 안에 500만원 보내지 않으면 가족, 친구, 직장 동료들에게 다 공유할 거예요."
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <AlertTriangle className="h-3 w-3 text-red-500" />
-                        <span className="text-xs text-red-400">몸캠피싱 확인됨</span>
-                      </div>
-                    </div>
 
-                    {/* Phishing Image Message */}
-                    <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500 animate-in slide-in-from-top-5 duration-500 delay-500">
-                      <div className="flex justify-between items-start mb-2">
-                        <div className="flex items-center gap-2">
-                          <Video className="h-4 w-4 text-red-400" />
-                          <span className="text-sm font-medium">이미지 공유</span>
+                        {/* Phishing Image Message */}
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-red-400" />
+                              <span className="text-sm font-medium">이미지 공유</span>
+                            </div>
+                            <span className="text-xs text-gray-400">오늘 15:30</span>
+                          </div>
+                          <div className="relative h-24 w-full mb-2 rounded-md overflow-hidden">
+                            <Image
+                              src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
+                              alt="Phishing profile"
+                              fill
+                              className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                              <Lock className="h-8 w-8 text-white/70" />
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-yellow-500" />
+                            <span className="text-xs text-yellow-400">의심스러운 이미지 차단됨</span>
+                          </div>
                         </div>
-                        <span className="text-xs text-gray-400">오늘 15:30</span>
-                      </div>
-                      <div className="relative h-24 w-full mb-2 rounded-md overflow-hidden">
-                        <Image
-                          src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
-                          alt="Phishing profile"
-                          fill
-                          className="object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                          <Lock className="h-8 w-8 text-white/70" />
+                        
+                        {/* App Response */}
+                        <div className="bg-blue-900/30 rounded-lg p-3 border-l-2 border-blue-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Shield className="h-4 w-4 text-blue-400" />
+                              <span className="text-sm font-medium">upoZero 대응</span>
+                            </div>
+                            <span className="text-xs text-gray-400">방금 전</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "몸캠피싱 위협이 감지되어 자동으로 차단되었습니다. 협박 메시지와 발신자 정보가 증거로 저장되었으며, 신고 절차를 도와드리겠습니다."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <Button size="sm" variant="outline" className="h-7 text-xs border-blue-500 text-blue-400">
+                              상담사 연결
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-7 text-xs border-blue-500 text-blue-400">
+                              신고하기
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <AlertTriangle className="h-3 w-3 text-yellow-500" />
-                        <span className="text-xs text-yellow-400">의심스러운 이미지 차단됨</span>
+
+                        {/* Additional Messages for Seamless Loop */}
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-red-400" />
+                              <span className="text-sm font-medium">딥페이크 탐지</span>
+                            </div>
+                            <span className="text-xs text-gray-400">오늘 16:10</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "회원님과 닮은 가짜 영상이 유포되고 있습니다. 즉시 확인하세요."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-red-500" />
+                            <span className="text-xs text-red-400">딥페이크 위협 감지</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-red-400" />
+                              <span className="text-sm font-medium">금전 요구</span>
+                            </div>
+                            <span className="text-xs text-gray-400">오늘 16:30</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "지금까지 계좌에 돈을 보내지 않았네요. 마지막 경고입니다. 1시간 내로 보내지 않으면 모든 연락처에 전송합니다."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-red-500" />
+                            <span className="text-xs text-red-400">협박 메시지 차단</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-blue-900/30 rounded-lg p-3 border-l-2 border-blue-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Shield className="h-4 w-4 text-blue-400" />
+                              <span className="text-sm font-medium">자동 신고 완료</span>
+                            </div>
+                            <span className="text-xs text-gray-400">방금 전</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "경찰청 사이버수사대에 자동 신고가 완료되었습니다. 수사 번호: CS-2025-0718-001"
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <Button size="sm" variant="outline" className="h-7 text-xs border-blue-500 text-blue-400">
+                              진행상황 확인
+                            </Button>
+                          </div>
+                        </div>
+
+                        {/* New Additional Messages */}
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-orange-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <AlertTriangle className="h-4 w-4 text-orange-400" />
+                              <span className="text-sm font-medium">보이스피싱 감지</span>
+                            </div>
+                            <span className="text-xs text-gray-400">17:15</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "안녕하세요, 검찰청입니다. 귀하의 명의로 대포통장이 개설되어 긴급 조치가 필요합니다."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-orange-500" />
+                            <span className="text-xs text-orange-400">기관 사칭 감지</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-yellow-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-yellow-400" />
+                              <span className="text-sm font-medium">스미싱 차단</span>
+                            </div>
+                            <span className="text-xs text-gray-400">17:42</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "[택배] 배송지 오류로 배송 중단. 링크 클릭하여 정보 확인 bit.ly/abc123"
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-yellow-500" />
+                            <span className="text-xs text-yellow-400">악성 링크 차단</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-green-900/30 rounded-lg p-3 border-l-2 border-green-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Shield className="h-4 w-4 text-green-400" />
+                              <span className="text-sm font-medium">AI 실시간 분석</span>
+                            </div>
+                            <span className="text-xs text-gray-400">18:00</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "24시간 머신러닝 모니터링으로 새로운 사기 패턴 3건을 추가 학습했습니다."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-xs text-green-400">보안 강화 완료</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-purple-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-purple-400" />
+                              <span className="text-sm font-medium">가족 사칭 시도</span>
+                            </div>
+                            <span className="text-xs text-gray-400">18:30</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "엄마야, 핸드폰 잃어버려서 새 번호야. 급한 일 있어서 돈 좀 보내줄 수 있어?"
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-purple-500" />
+                            <span className="text-xs text-purple-400">가족 사칭 패턴 감지</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-red-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-red-400" />
+                              <span className="text-sm font-medium">랜섬웨어 협박</span>
+                            </div>
+                            <span className="text-xs text-gray-400">19:05</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "당신의 모든 파일이 암호화되었습니다. 복구하려면 비트코인 3BTC를 보내세요."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-red-500" />
+                            <span className="text-xs text-red-400">랜섬웨어 감지</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-blue-900/30 rounded-lg p-3 border-l-2 border-blue-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Shield className="h-4 w-4 text-blue-400" />
+                              <span className="text-sm font-medium">위험 요소 차단</span>
+                            </div>
+                            <span className="text-xs text-gray-400">19:06</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "의심스러운 메시지와 발신자 번호가 블랙리스트에 추가되었습니다."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span className="text-xs text-blue-400">자동 차단 완료</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-pink-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-pink-400" />
+                              <span className="text-sm font-medium">로맨스 스캠</span>
+                            </div>
+                            <span className="text-xs text-gray-400">19:45</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "당신에게 반했어요. 만나고 싶지만 여행비가 없어서... 도와주실 수 있나요?"
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-pink-500" />
+                            <span className="text-xs text-pink-400">로맨스 스캠 패턴</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-indigo-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-indigo-400" />
+                              <span className="text-sm font-medium">투자 사기</span>
+                            </div>
+                            <span className="text-xs text-gray-400">20:15</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "독점 코인 정보! 100% 수익 보장! 지금 투자하시면 내일 10배 수익!"
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-indigo-500" />
+                            <span className="text-xs text-indigo-400">투자 사기 감지</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-cyan-900/30 rounded-lg p-3 border-l-2 border-cyan-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Shield className="h-4 w-4 text-cyan-400" />
+                              <span className="text-sm font-medium">종합 보안 리포트</span>
+                            </div>
+                            <span className="text-xs text-gray-400">20:30</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "오늘 차단된 위협: 몸캠피싱 2건, 보이스피싱 1건, 스미싱 3건, 기타 4건"
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                            <span className="text-xs text-cyan-400">일일 보고서 생성됨</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-gray-800 rounded-lg p-3 border-l-2 border-amber-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Video className="h-4 w-4 text-amber-400" />
+                              <span className="text-sm font-medium">신종 사기 패턴</span>
+                            </div>
+                            <span className="text-xs text-gray-400">21:00</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "AI가 생성한 가짜 증명서로 대출 사기를 시도하는 새로운 패턴이 감지되었습니다."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="h-3 w-3 text-amber-500" />
+                            <span className="text-xs text-amber-400">신종 패턴 학습 중</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-emerald-900/30 rounded-lg p-3 border-l-2 border-emerald-500">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-2">
+                              <Shield className="h-4 w-4 text-emerald-400" />
+                              <span className="text-sm font-medium">커뮤니티 보호</span>
+                            </div>
+                            <span className="text-xs text-gray-400">21:30</span>
+                          </div>
+                          <p className="text-sm text-gray-300 mb-2">
+                            "전국 사용자들과 공유된 위협 정보로 선제적 보안 업데이트를 완료했습니다."
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                            <span className="text-xs text-emerald-400">집단 지능 활성화</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     
-                    {/* App Response */}
-                    <div className="bg-blue-900/30 rounded-lg p-3 border-l-2 border-blue-500 animate-in slide-in-from-top-5 duration-500 delay-700">
-                      <div className="flex justify-between items-start mb-2">
-                        <div className="flex items-center gap-2">
-                          <Shield className="h-4 w-4 text-blue-400" />
-                          <span className="text-sm font-medium">upoZero 대응</span>
-                        </div>
-                        <span className="text-xs text-gray-400">방금 전</span>
-                      </div>
-                      <p className="text-sm text-gray-300 mb-2">
-                        "몸캠피싱 위협이 감지되어 자동으로 차단되었습니다. 협박 메시지와 발신자 정보가 증거로 저장되었으며, 신고 절차를 도와드리겠습니다."
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <Button size="sm" variant="outline" className="h-7 text-xs border-blue-500 text-blue-400">
-                          상담사 연결
-                        </Button>
-                        <Button size="sm" variant="outline" className="h-7 text-xs border-blue-500 text-blue-400">
-                          신고하기
-                        </Button>
-                      </div>
-                    </div>
+                    {/* Gradient Overlays for Smooth Fade */}
+                    <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-gray-900 to-transparent pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none"></div>
                   </div>
                 </div>
               </div>
