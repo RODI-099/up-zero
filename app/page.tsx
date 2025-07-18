@@ -494,7 +494,8 @@ export default function HomePage() {
             </div>
             <div className="relative flex justify-center items-center">
               <Image 
-                src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6841ca4c5468891aedebb224_homepage-hero-mobile-858x803.webp"
+                {/* src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6841ca4c5468891aedebb224_homepage-hero-mobile-858x803.webp" */}
+              
                 alt="Digital Security Hero Image"
                 width={500}
                 height={467}
