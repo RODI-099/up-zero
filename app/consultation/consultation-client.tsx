@@ -223,7 +223,7 @@ export function ConsultationClient() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-2xl font-bold text-blue-600 mb-2">02-1234-5678</p>
+                <p className="text-2xl font-bold text-blue-600 mb-2">1668 2293</p>
                 <p className="text-gray-600">평일 09:00 - 18:00</p>
                 <p className="text-gray-600">토요일 09:00 - 13:00</p>
               </CardContent>

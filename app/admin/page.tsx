@@ -36,9 +36,13 @@ export default function AdminLoginPage() {
     setIsLoading(true)
 
     try {
-      const result = await login(id, password)
+      // Try logging in with email format
+      const email = id.includes('@') ? id : `${id}@upozero.com`
+      const result = await login(email, password)
       
       if (result.success) {
+        // Check if user has admin role after successful login
+        // The auth context will handle role checking
         toast({
           title: "로그인 성공",
           description: "관리자 페이지로 이동합니다.",
@@ -47,7 +51,7 @@ export default function AdminLoginPage() {
       } else {
         toast({
           title: "로그인 실패",
-          description: result.error || "ID 또는 비밀번호가 올바르지 않습니다.",
+          description: result.error || "관리자 ID 또는 비밀번호가 올바르지 않습니다.\n\n관리자 계정: admin@upozero.com / admin123",
           variant: "destructive",
         })
       }

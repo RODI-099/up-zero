@@ -69,6 +69,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         .single()
 
       if (error) {
+        // Check if it's a table not found error (database not set up)
+        if (error.code === 'PGRST116' || error.message?.includes('relation "users" does not exist')) {
+          console.warn('⚠️  Database tables not set up yet. Please run the migration.')
+          
+          // Temporary fallback: create user object from auth data
+          const { data: authUser } = await supabase.auth.getUser()
+          if (authUser.user) {
+            console.log('🔧 Creating temporary user profile from auth data')
+            setUser({
+              id: authUser.user.id,
+              email: authUser.user.email || '',
+              name: authUser.user.email?.split('@')[0] || 'User',
+              role: 'user'
+            })
+          }
+          return
+        }
         console.error('❌ Error fetching user profile:', error)
         return
       }
@@ -83,7 +100,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         })
       }
     } catch (error) {
-      console.error('💥 Exception in fetchUserProfile:', error)
+      console.warn('💥 Exception in fetchUserProfile (likely database not set up):', error)
+      // Temporary fallback: create user object from auth data
+      const { data: authUser } = await supabase.auth.getUser()
+      if (authUser.user) {
+        console.log('🔧 Creating temporary user profile from auth data')
+        setUser({
+          id: authUser.user.id,
+          email: authUser.user.email || '',
+          name: authUser.user.email?.split('@')[0] || 'User',
+          role: 'user'
+        })
+      }
     }
   }
 
@@ -91,21 +119,41 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const trimmedEmail = email.trim()
     const trimmedPassword = password.trim()
 
+    console.log('🚀 LOGIN DEBUG: Starting login process')
+    console.log('📧 Email:', trimmedEmail)
+    console.log('🔧 Supabase configured:', !!supabase)
+    
     setIsLoading(true)
     try {
       console.log('🔐 Attempting login for:', trimmedEmail)
+      console.log('⏰ Login request sent at:', new Date().toLocaleTimeString())
       
       const { data, error } = await supabase.auth.signInWithPassword({
         email: trimmedEmail,
         password: trimmedPassword,
       })
 
+      console.log('📥 Login response received at:', new Date().toLocaleTimeString())
+      console.log('📋 Response data:', data)
+      console.log('❌ Response error:', error)
+
       if (error) {
         console.error('❌ Login error:', error)
         setIsLoading(false)
         
         if (error.message.includes('Invalid login credentials')) {
-          return { success: false, error: '이메일 또는 비밀번호가 올바르지 않습니다.' }
+          console.log('🔍 Debug: Invalid credentials error detected')
+          console.log('📋 Available demo account: demo@upozero.com / demo123')
+          console.log('💡 If demo account doesn\'t work, create user in Supabase Dashboard')
+          return { 
+            success: false, 
+            error: `이메일 또는 비밀번호가 올바르지 않습니다.
+
+🔧 해결 방법:
+1. 데모 계정 사용: demo@upozero.com / demo123
+2. 또는 Supabase 대시보드에서 새 사용자 생성
+3. 데이터베이스 마이그레이션이 실행되었는지 확인` 
+          }
         } else if (error.message.includes('Email not confirmed')) {
           return { success: false, error: '이메일 인증이 필요합니다.' }
         } else if (error.message.includes('Too many requests')) {
@@ -122,6 +170,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return { success: true }
       }
       
+      console.log('⚠️ No user data returned')
       setIsLoading(false)
       return { success: false, error: 'Login failed' }
     } catch (error) {

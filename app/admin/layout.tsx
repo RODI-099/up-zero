@@ -1,9 +1,9 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
@@ -72,7 +72,51 @@ export default function AdminLayout({
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const pathname = usePathname()
-  const { user } = useAuth()
+  const router = useRouter()
+  const { user, isLoading } = useAuth()
+
+  // Check authentication for admin pages (except login page)
+  useEffect(() => {
+    if (!isLoading && pathname !== '/admin') {
+      if (!user) {
+        console.log('🚫 No user, redirecting to admin login')
+        router.push('/admin')
+      } else if (user.role !== 'admin') {
+        console.log('🚫 User is not admin, role:', user.role)
+        router.push('/')
+      }
+    }
+  }, [user, isLoading, pathname, router])
+
+  // Don't protect the admin login page
+  if (pathname === '/admin') {
+    return <div className="min-h-screen bg-gray-100">{children}</div>
+  }
+
+  // Show loading while checking auth
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-2 text-gray-600">인증 확인 중...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Show access denied if not authenticated
+  if (!user || user.role !== 'admin') {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-800 mb-2">접근 권한이 없습니다</h1>
+          <p className="text-gray-600 mb-4">관리자 권한이 필요합니다.</p>
+          <Button onClick={() => router.push('/admin')}>로그인 페이지로</Button>
+        </div>
+      </div>
+    )
+  }
 
   const Sidebar = ({ className }: { className?: string }) => (
     <div className={cn("flex h-full flex-col bg-gray-900 text-white", className)}>

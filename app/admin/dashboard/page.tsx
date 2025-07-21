@@ -1,3 +1,8 @@
+"use client"
+
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/components/auth/auth-context"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -19,6 +24,33 @@ import Link from "next/link"
 export const dynamic = 'force-dynamic'
 
 export default function AdminDashboard() {
+  const { user, isLoading } = useAuth()
+  const router = useRouter()
+
+  // Protect admin route
+  useEffect(() => {
+    if (!isLoading && (!user || user.role !== 'admin')) {
+      console.log('🚫 Admin access denied. User:', user)
+      router.push('/admin')
+    }
+  }, [user, isLoading, router])
+
+  // Show loading while checking auth
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-2 text-gray-600">인증 확인 중...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Redirect if not admin
+  if (!user || user.role !== 'admin') {
+    return null
+  }
   const stats = [
     {
       title: "총 사용자",
@@ -132,9 +164,7 @@ export default function AdminDashboard() {
                 className={`text-xs ${
                   stat.changeType === "increase"
                     ? "text-green-600"
-                    : stat.changeType === "decrease"
-                      ? "text-red-600"
-                      : "text-gray-600"
+                    : "text-gray-600"
                 }`}
               >
                 {stat.change} 지난 달 대비
