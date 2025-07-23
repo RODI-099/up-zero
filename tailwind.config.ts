@@ -60,6 +60,27 @@ const config: Config = {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
+  			},
+  			// Discord color palette
+  			discord: {
+  				dark: '#2f3136',
+  				'dark-gray': '#36393f',
+  				gray: '#40444b',
+  				'light-gray': '#dcddde',
+  				blue: '#5865f2',
+  				'blue-hover': '#4752c4',
+  				blurple: '#7289da',
+  				green: '#57f287',
+  				yellow: '#fee75c',
+  				red: '#ed4245',
+  				white: '#ffffff',
+  				offwhite: '#b9bbbe',
+  				separator: '#4f545c',
+  				hover: '#404549',
+  				message: '#2f3136',
+  				chat: '#36393f',
+  				light: '#f6f6f6',
+  				pattern: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 60 60\'%3E%3Cg fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
   			}
   		},
   		borderRadius: {
@@ -91,12 +112,34 @@ const config: Config = {
   				'100%': {
   					transform: 'translateY(-50%)'
   				}
+  			},
+  			'slide-in-right': {
+  				'0%': {
+  					transform: 'translateX(100%)',
+  					opacity: '0'
+  				},
+  				'100%': {
+  					transform: 'translateX(0)',
+  					opacity: '1'
+  				}
+  			},
+  			'slide-out-left': {
+  				'0%': {
+  					transform: 'translateX(0)',
+  					opacity: '1'
+  				},
+  				'100%': {
+  					transform: 'translateX(-100%)',
+  					opacity: '0'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'scroll-messages': 'scroll-messages 20s linear infinite'
+  			'scroll-messages': 'scroll-messages 20s linear infinite',
+  			'slide-in-right': 'slide-in-right 0.7s ease-out',
+  			'slide-out-left': 'slide-out-left 0.7s ease-out'
   		}
   	}
   },

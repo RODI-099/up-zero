@@ -11,6 +11,14 @@ const VideoChatWarningClient = dynamic(() => import("@/components/video-chat-war
   ssr: false
 })
 
+const BodycamPhishingChatClient = dynamic(() => import("@/components/bodycam-phishing-chat").then(mod => ({ default: mod.BodycamPhishingChat })), {
+  ssr: false
+})
+
+const BodycamWarningCardClient = dynamic(() => import("@/components/bodycam-warning-card").then(mod => ({ default: mod.BodycamWarningCard })), {
+  ssr: false
+})
+
 const stats = [
   { label: "보호된 사용자", value: "10,000+" },
   { label: "탐지 정확도", value: "99.9%" },
@@ -447,51 +455,57 @@ export default function HomePage() {
       {/* Discord-style Community Section */}
       <section className="py-20 bg-[#F6F6F6]">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 uppercase tracking-tight">안전한 커뮤니티에<br />함께하세요</h2>
-              <p className="text-xl mb-8 text-gray-600 max-w-lg">
-                upoZero 커뮤니티에 가입하여 최신 보안 정보를 공유하고, 전문가들과 소통하며 디지털 안전에 대해 함께 배워보세요.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-[#5865F2] hover:bg-[#4752C4] text-white">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 uppercase tracking-tight">안전한 커뮤니티에<br className="md:hidden" /> 함께하세요</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              upoZero 커뮤니티에 가입하여 최신 보안 정보를 공유하고, 전문가들과 소통하며 디지털 안전에 대해 함께 배워보세요.
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-3 gap-8 items-start">
+            {/* Left Column - Info */}
+            <div className="lg:col-span-1">
+              <div className="bg-white p-6 rounded-xl shadow-md">
+                <h3 className="text-xl font-bold mb-4">몸캠피싱 관련 실시간 채팅</h3>
+                <p className="text-gray-600 mb-5">
+                  전문가와 실시간으로 상담하고 몸캠피싱 예방 및 대응법에 대해 알아보세요. 
+                  당신의 경험을 공유하고 다른 사람들을 도울 수도 있습니다.
+                </p>
+                
+                <h4 className="font-semibold mt-4 mb-2">몸캠피싱이란?</h4>
+                <p className="text-sm text-gray-600 mb-4">
+                  영상통화 중 녹화된 사진이나 영상을 이용해 금전을 요구하거나 협박하는 
+                  범죄 수법입니다. 특히 SNS에서 모르는 사람과의 영상통화는 주의하세요.
+                </p>
+                
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <span className="text-sm font-medium text-green-600">213명 온라인 상담 중</span>
+                </div>
+                
+                <Button asChild size="lg" className="w-full bg-[#5865F2] hover:bg-[#4752C4] text-white">
                   <Link href="#">
                     <MessageSquare className="mr-2 h-5 w-5" />
                     커뮤니티 가입하기
                   </Link>
                 </Button>
+                
+                <div className="mt-4 text-center">
+                  <Link href="/consultation" className="text-[#5865F2] text-sm hover:underline">
+                    1:1 전문가 상담 신청하기 →
+                  </Link>
+                </div>
+              </div>
+              
+              {/* Mobile Only Warning Card */}
+              <div className="mt-6 lg:hidden">
+                <BodycamWarningCardClient />
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-white rounded-xl shadow-xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-[#5865F2] rounded-full flex items-center justify-center">
-                    <Shield className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">upoZero 커뮤니티</h3>
-                    <p className="text-sm text-gray-500">5,000+ 회원</p>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="bg-gray-100 rounded-lg p-3">
-                    <p className="text-sm font-medium">📢 공지사항</p>
-                    <p className="text-xs text-gray-600">최신 보안 업데이트 및 중요 알림</p>
-                  </div>
-                  <div className="bg-gray-100 rounded-lg p-3">
-                    <p className="text-sm font-medium">💬 일반 채팅</p>
-                    <p className="text-xs text-gray-600">커뮤니티 회원들과 자유롭게 대화</p>
-                  </div>
-                  <div className="bg-gray-100 rounded-lg p-3">
-                    <p className="text-sm font-medium">🛡️ 보안 팁</p>
-                    <p className="text-xs text-gray-600">일상에서 실천할 수 있는 보안 팁 공유</p>
-                  </div>
-                  <div className="bg-gray-100 rounded-lg p-3">
-                    <p className="text-sm font-medium">🆘 도움 요청</p>
-                    <p className="text-xs text-gray-600">긴급 상황 시 빠른 도움 요청</p>
-                  </div>
-                </div>
-              </div>
+            
+            {/* Right Column - Chat Interface (Desktop Only) */}
+            <div className="hidden lg:block lg:col-span-2 relative">
+              <BodycamPhishingChatClient />
             </div>
           </div>
         </div>
