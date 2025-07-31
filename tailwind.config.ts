@@ -132,6 +132,42 @@ const config: Config = {
   					transform: 'translateX(-100%)',
   					opacity: '0'
   				}
+  			},
+  			'gradient-xy': {
+  				'0%, 100%': {
+  					'background-size': '400% 400%',
+  					'background-position': 'left center'
+  				},
+  				'50%': {
+  					'background-size': '200% 200%',
+  					'background-position': 'right center'
+  				}
+  			},
+  			'scan': {
+  				'0%': { transform: 'translateX(-100%)' },
+  				'100%': { transform: 'translateX(100%)' }
+  			},
+  			'float': {
+  				'0%, 100%': { transform: 'translateY(0px)' },
+  				'50%': { transform: 'translateY(-20px)' }
+  			},
+  			'matrix': {
+  				'0%': { transform: 'translateY(-100%)' },
+  				'100%': { transform: 'translateY(100%)' }
+  			},
+  			'grid-move': {
+  				'0%': { transform: 'translate(0, 0)' },
+  				'100%': { transform: 'translate(50px, 50px)' }
+  			},
+  			'pulse': {
+  				'0%, 100%': { 
+  					opacity: '0.3',
+  					transform: 'translate(-50%, -50%) scale(1)'
+  				},
+  				'50%': { 
+  					opacity: '0.6',
+  					transform: 'translate(-50%, -50%) scale(1.1)'
+  				}
   			}
   		},
   		animation: {
@@ -139,7 +175,15 @@ const config: Config = {
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			'scroll-messages': 'scroll-messages 20s linear infinite',
   			'slide-in-right': 'slide-in-right 0.7s ease-out',
-  			'slide-out-left': 'slide-out-left 0.7s ease-out'
+  			'slide-out-left': 'slide-out-left 0.7s ease-out',
+  			'gradient-xy': 'gradient-xy 15s ease infinite',
+  			'scan': 'scan 3s ease-in-out infinite',
+  			'float': 'float 6s ease-in-out infinite',
+  			'float-delay-1': 'float 6s ease-in-out infinite 2s',
+  			'float-delay-2': 'float 6s ease-in-out infinite 4s',
+  			'matrix': 'matrix 20s linear infinite',
+  			'grid-move': 'grid-move 20s linear infinite',
+  			'pulse': 'pulse 4s ease-in-out infinite'
   		}
   	}
   },

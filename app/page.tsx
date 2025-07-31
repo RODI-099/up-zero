@@ -6,6 +6,9 @@ import { Shield, Users, Award, TrendingUp, Download, ArrowRight, Star, AlertTria
 import Link from "next/link"
 import Image from "next/image"
 import dynamic from "next/dynamic"
+import VideoBackground from "@/components/video-background"
+import SecurityVideoHero from "@/components/security-video-hero"
+import DirectVideoBackground from "@/components/direct-video-background"
 
 const VideoChatWarningClient = dynamic(() => import("@/components/video-chat-warning").then(mod => ({ default: mod.VideoChatWarning })), {
   ssr: false
@@ -29,11 +32,79 @@ const stats = [
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Discord-style Hero Section */}
-      <section className="relative bg-[#404EED] dark:bg-[#5865F2] text-white py-20 overflow-hidden min-h-[600px] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#404EED] to-[#5865F2] opacity-100"></div>
-        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg')] opacity-5 bg-cover bg-center"></div>
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Hero Section with Reliable Background */}
+      <section className="relative text-white py-20 overflow-hidden min-h-[600px] flex items-center">
+        {/* Background Container with Fallback */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          {/* Primary Background - Security Theme */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]">
+            {/* Enhanced animations */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent animate-scan"></div>
+              <div 
+                className="absolute inset-0 bg-repeat opacity-30"
+                style={{
+                  backgroundImage: `
+                    linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '50px 50px',
+                  animation: 'grid-move 20s linear infinite'
+                }}
+              />
+            </div>
+            
+            {/* Floating Security Icons */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-20 left-10 text-cyan-400/40 animate-float">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V15H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z" />
+                </svg>
+              </div>
+              <div className="absolute top-40 right-20 text-blue-400/40 animate-float-delay-1">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" />
+                </svg>
+              </div>
+              <div className="absolute bottom-32 left-20 text-purple-400/40 animate-float-delay-2">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M11,14H13V16H11V14M11,6H13V12H11V6Z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+          {/* Video Background - Made More Visible for Testing */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover opacity-80 transition-opacity duration-1000"
+            style={{ backgroundColor: 'transparent' }}
+            onLoadStart={() => console.log('🎬 Video loading started')}
+            onLoadedData={(e) => {
+              console.log('✅ Video loaded successfully!')
+              e.currentTarget.style.opacity = '0.9'
+            }}
+            onError={(e) => {
+              console.log('❌ Video failed to load:', e)
+              e.currentTarget.style.display = 'none'
+            }}
+            onCanPlay={(e) => {
+              console.log('▶️ Video ready to play')
+              e.currentTarget.play().catch((err) => console.log('Autoplay blocked:', err))
+            }}
+          >
+            <source src="/videos/security-background-hd.mp4" type="video/mp4" />
+          </video>
+        </div>
+        
+        {/* Text overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40 z-10"></div>
+        
+        <div className="container mx-auto px-4 relative z-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight uppercase tracking-tight font-display">
