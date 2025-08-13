@@ -17,8 +17,42 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "upoZero - 디지털 안전의 새로운 기준",
-  description: "몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다.",
-  generator: 'v0.dev'
+  description: "몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다. 첨단 기술과 전문 솔루션으로 디지털 위협을 제로화합니다.",
+  keywords: "몸캠피싱, 딥페이크, 디지털성범죄, 사이버보안, 개인정보보호, upoZero",
+  authors: [{ name: "upoZero" }],
+  creator: "upoZero",
+  publisher: "upoZero",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    title: "upoZero - 디지털 안전의 새로운 기준",
+    description: "몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다.",
+    url: "https://upozero.com",
+    siteName: "upoZero",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "upoZero - 디지털 안전의 새로운 기준",
+    description: "몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다.",
+  },
+  verification: {
+    // Add your Naver verification code here after getting it from Naver Search Advisor
+    // naver: "your-naver-verification-code",
+    google: "google-site-verification-code", // Add Google verification if needed
+  },
+  generator: 'Next.js',
+  metadataBase: new URL('https://upozero.com'),
 }
 
 export default function RootLayout({
@@ -28,6 +62,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <head>
+        {/* Naver Blog RSS */}
+        <link rel="alternate" type="application/rss+xml" title="upoZero RSS" href="/rss.xml" />
+        {/* Additional meta for Naver */}
+        <meta name="naver-site-verification" content="d7ed835c724b509f6e7a50bc0478711103fcb629" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* Naver specific meta tags */}
+        <meta property="og:locale" content="ko_KR" />
+        <meta name="geo.region" content="KR" />
+        <meta name="geo.country" content="Korea" />
+        <meta name="distribution" content="Global" />
+        <meta name="rating" content="General" />
+      </head>
       <body className={inter.className}>
         {/* Google Tag Manager */}
         <Script
