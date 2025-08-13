@@ -16,9 +16,9 @@ import { ErrorBoundary } from "@/components/error-boundary"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "upoZero - 디지털 안전의 새로운 기준",
-  description: "몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다. 첨단 기술과 전문 솔루션으로 디지털 위협을 제로화합니다.",
-  keywords: "몸캠피싱, 딥페이크, 디지털성범죄, 사이버보안, 개인정보보호, upoZero",
+  title: "upoZero | 몸캠피싱·딥페이크 차단 전문 보안업체",
+  description: "몸캠피싱, 딥페이크 위협으로부터 안전하게! 24시간 실시간 모니터링과 AI 탐지 기술로 디지털 위협을 완벽 차단합니다.",
+  keywords: "몸캠피싱, 딥페이크, 디지털성범죄, 사이버보안, 개인정보보호, upoZero, 보안업체, AI탐지",
   authors: [{ name: "upoZero" }],
   creator: "upoZero",
   publisher: "upoZero",
@@ -34,17 +34,17 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "upoZero - 디지털 안전의 새로운 기준",
-    description: "몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다.",
-    url: "https://upozero.com",
+    title: "upoZero | 몸캠피싱·딥페이크 차단 전문업체",
+    description: "24시간 실시간 모니터링! 몸캠피싱·딥페이크 위협을 AI 기술로 완벽 차단하는 디지털 보안 전문 서비스입니다.",
+    url: "https://upozero.co.kr",
     siteName: "upoZero",
     locale: "ko_KR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "upoZero - 디지털 안전의 새로운 기준",
-    description: "몸캠피싱, 딥페이크 등 디지털 성범죄로부터 안전한 세상을 만들어갑니다.",
+    title: "upoZero | 몸캠피싱·딥페이크 차단 전문업체",
+    description: "24시간 실시간 모니터링! 몸캠피싱·딥페이크 위협을 AI 기술로 완벽 차단하는 디지털 보안 전문 서비스입니다.",
   },
   verification: {
     // Add your Naver verification code here after getting it from Naver Search Advisor
