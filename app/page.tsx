@@ -128,16 +128,7 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-            <div className="relative flex justify-center items-center">
-              <Image 
-                src="/images/304c282a-72ea-4f1c-8ced-10ba08aa9c31.png"
-                alt="Digital Security Hero Image"
-                width={500}
-                height={467}
-                className="rounded-lg shadow-xl z-10 object-cover"
-                priority
-              />
-            </div>
+            {/* Hero image section removed */}
           </div>
         </div>
         
